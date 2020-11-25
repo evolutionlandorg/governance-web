@@ -1,0 +1,23 @@
+{
+	"name": "governance-web",
+	"version": "0.1.0",
+	"author": "evolution land",
+	"description": "governance-web for evolution land",
+	"keywords": [
+		"node.js",
+		"javascript"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/evolutionlandorg/governance-web.git"
+	},
+	"license": "MIT",
+	"engines": {
+		"node": "14.0.x"
+	},
+	"devDependencies": {
+		"web3": "1.2.11",
+        "ethjs-contract": "0.2.3",
+        "ethjs-query": "0.3.8"
+	}
+}
