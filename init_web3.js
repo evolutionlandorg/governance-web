@@ -10,7 +10,7 @@ if (typeof web3 !== 'undefined') {
 
 function startApp() {
     const abi = [{"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"BalanceOfStaking","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"balanceOfApostleOwner","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"balanceOfLandOwner","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalSupply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"stake","outputs":[],"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"withdraw","outputs":[],"stateMutability":"nonpayable","type":"function"}];
-    const addresss = '0xc460468D3F5cC02D65CfF07A254da4E4485fCd66';
+    const addresss = '0x38EF245FABf02e412a0DD8833fE15D0b0B50d2F0';
     const Teller = contract(abi);
     const teller = Teller.at(addresss);
     listenForClicks(teller);
@@ -108,7 +108,7 @@ function listenForApprove(kton) {
             window.alert("must approve more than 0");
             return;
         }
-        kton.approve("0xc460468D3F5cC02D65CfF07A254da4E4485fCd66", value*1e18, {from: web3.eth.coinbase}, function(error, result) {
+        kton.approve("0x38EF245FABf02e412a0DD8833fE15D0b0B50d2F0", value*1e18, {from: web3.eth.coinbase}, function(error, result) {
             if (error) {
                  console.log(error);
                  return;
