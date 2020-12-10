@@ -22,8 +22,7 @@
 	},
 	"scripts": {
 		"lint-new-works": "./lint-new-work.sh",
-		"lint-all": "npm run lint-new-works -- eslint .",
-		"lint-all-fix": "npm run lint-all -- --fix"
+		"lint-all": "eslint . --fix"
 	},
 	"dependencies": {
 		"eslint": "^7.15.0",
