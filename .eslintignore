@@ -1,2 +1,2 @@
-node_modules
+.gitignore 
 web3_bundle.js

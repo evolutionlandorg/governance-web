@@ -16,8 +16,17 @@
 		"node": "14.0.x"
 	},
 	"devDependencies": {
-		"web3": "1.2.11",
-        "ethjs-contract": "0.2.3",
-        "ethjs-query": "0.3.8"
+		"ethjs-contract": "0.2.3",
+		"ethjs-query": "0.3.8",
+		"web3": "1.2.11"
+	},
+	"scripts": {
+		"lint-new-works": "./lint-new-work.sh",
+		"lint-all": "npm run lint-new-works -- eslint .",
+		"lint-all-fix": "npm run lint -- --fix"
+	},
+	"dependencies": {
+		"eslint": "^7.15.0",
+		"eslint-config-strongloop": "^2.1.0"
 	}
 }
