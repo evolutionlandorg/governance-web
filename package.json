@@ -16,8 +16,20 @@
 		"node": "14.0.x"
 	},
 	"devDependencies": {
-		"web3": "1.2.11",
-        "ethjs-contract": "0.2.3",
-        "ethjs-query": "0.3.8"
+		"ethjs-contract": "0.2.3",
+		"ethjs-query": "0.3.8",
+		"web3": "1.2.11"
+	},
+	"scripts": {
+		"lint-new-works": "./lint-new-work.sh",
+		"lint-all": "eslint . --fix",
+		"build": "browserify init_web3.js -o web3_bundle.js",
+		"start": "npm run build && http-server --port 5000"
+	},
+	"dependencies": {
+		"browserify": "^17.0.0",
+		"eslint": "^7.15.0",
+		"eslint-config-strongloop": "^2.1.0",
+		"http-server": "^0.12.3"
 	}
 }

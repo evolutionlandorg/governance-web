@@ -9,7 +9,7 @@ if (typeof web3 !== 'undefined') {
 }
 
 function startApp() {
-    const abi = [{"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"balanceOfStaking","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"balanceOfApostleOwner","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"balanceOfLandOwner","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalSupply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"stake","outputs":[],"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"withdraw","outputs":[],"stateMutability":"nonpayable","type":"function"}];
+    const abi = [{"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"BalanceOfStaking","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"balanceOfApostleOwner","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"balanceOfLandOwner","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalSupply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"stake","outputs":[],"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"withdraw","outputs":[],"stateMutability":"nonpayable","type":"function"}];
     const addresss = '0x38EF245FABf02e412a0DD8833fE15D0b0B50d2F0';
     const Teller = contract(abi);
     const teller = Teller.at(addresss);
@@ -91,12 +91,7 @@ function listenForClicks(teller) {
             teller.balanceOfApostleOwner(web3.eth.coinbase).then(function(result) {
                 console.log("result:", result);
                 var rsp = document.getElementById('response');
-                votes = votes + '<p style="color:rgb(0,200,100);">apostleVote: ' + result[0] + ' * 1</p>';
-            });
-            teller.totalSupply().then(function(result) {
-                console.log("result:", result);
-                var rsp = document.getElementById('response');
-                rsp.innerHTML = votes + '<p style="color:rgb(0,200,100);">totalSupply: ' + result[0] + ' * 1</p>';
+                rsp.innerHTML = votes + '<p style="color:rgb(0,200,100);">apostleVote: ' + result[0] + ' * 1</p>';
             });
         });
     });
