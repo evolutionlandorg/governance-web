@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Document</title>
+    <style>
+        body{
+            padding:0;
+            margin:0;
+            overflow-x: hidden;
+            background-color: #1B182F;
+            color:white;
+        }
+        
+        nav{
+            /* border: 1px solid black; */
+            /* width:100vw; */
+            height:10vh;
+            padding:20px ;
+            
+        }
+        .right{
+            float:right;
+            padding:0px 20px;
+            color:#3FF9E7;
+        }
+        hr{
+            position: relative;
+            width:100vw;
+            margin-left: -10%;
+            border:1px solid  #1D506E;
+        }
+        .profiletop{
+            display: inline-block;
+            margin:10px;
+        }
+        #profileimg{
+            width:5vw;
+            height:11vh;
+            border-radius: 50%;
+            /* border: 1px solid black; */
+        }
+        #connect{
+            width:150px;
+            height:40px;
+            margin-top: 20px;
+            background-color: #3FF9E7;
+            border:none;
+        }
+        #dividends{
+            /* padding:10px; */
+            /* border: 1px solid black; */
+            width:99%;
+            margin-left: 0.5%;
+        }
+        #dividends .col-sm{
+            text-align: center;
+            border:1px solid #1D506E;
+            border-radius: 3px;
+            margin: 0px;
+            padding: 20px 0px;
+            
+        }
+        #dividends .col-sm img,h3{
+            width:5vw;
+            height:10vh;
+            display: inline;
+            
+        }
+        #dividends .col-sm h3{
+            font-size: 22px;
+            color:#3FF9E7;
+        }
+        #powerbox{
+            padding:10px;
+            border:1px solid #1D506E;
+            border-radius: 10px;
+            position: relative;
+            margin-top: 1%;
+            
+        }
+
+        #top_powerbox button{
+            position: absolute;
+            right:10px;
+            display: inline;
+            float:right;
+            background:transparent;
+            border: 1px solid #3FF9E7;
+            border-radius: 50%;
+            width: 2.5%;
+            color:#3FF9E7;
+        }
+        #top_powerbox h1{
+            display: inline-block;
+            
+        }
+        #top_powerbox {
+            padding-left:20px;
+            color:#1D506E;
+        }
+         #powerbox #powerbox_inner{
+             display: flex;
+            padding:20px 0px;
+            margin-left:10px;
+            margin-right: 10px;
+        }
+        #powerbox #powerbox_inner .col-sm{
+            margin:50px 10px;
+            border:1px solid #1D506E;
+            /* padding: 20px 20px; */
+            padding-bottom: 0px;
+            padding-right: 0px;
+            padding-left:0px;
+            border-radius: 10px;
+            height:250px;
+            position: relative;
+        }
+        
+        #lowerhalf{
+            text-align: center;
+            background-color: #282442;
+            margin:0px -4.9%;
+            /* position: absolute; */
+            /* width:100%; */
+            height:43%;
+            border-radius: 0px 0px 10px 10px;
+        }
+        #lowerhalf{
+            padding:35px;
+            padding-left:15%;
+            position: absolute;
+            width: 100%;
+            margin: auto;
+        }
+        #lowerhalf p,button{
+            display: inline;
+            margin:10px;
+        }
+        #lowerhalf button{
+            width:100px;
+            height:40px;
+            display: inline-block;
+        }
+        #lowerhalf p{
+            display: inline-block;
+            padding-top: 10px;
+        }
+        #upperhalf img,p,h2{
+            display: inline-block;
+        }
+        #upperhalf h2{
+            width:10px;
+            position: absolute;
+            left:8rem;
+            top:3.5rem;
+        }
+        #upperhalf p{
+            /* width:200px; */
+            height:30px;
+            margin: 0px;
+            margin-left:10px;
+        }
+        #upperhalf img{
+            width:5rem;
+            height:5rem;
+            /* border:1px solid black; */
+            margin-left:20px;
+            
+        }
+        #upperhalf{
+
+            margin:10px 0px;
+            padding: 20px 10px;
+        }
+        #alone_col{
+            margin-left: 25%;
+        }
+        ul{
+            border-radius:10px;
+            border:1px solid #1D506E;
+            padding: 0px;
+        }
+        li{
+            list-style-type: none;
+            padding: 10px 10px;
+            border-bottom: 1px solid #1D506E;
+            margin: 0px;
+            /* line-height: 20px; */
+        }
+        li p{
+            display: inline-block;
+            margin-left:10px;
+            
+        }
+        .proposal{
+            position: relative;
+        }
+        .proposal button{
+            
+            border:1px solid #3FF9E7;
+            position: absolute;
+            right:10px;
+            bottom: 10px;
+            color:#3FF9E7;
+        }
+       #Power{
+           font-size: 22px;
+           /* margin-left: 5px; */
+           color:#3FF9E7;
+           /* padding: 5px; */
+           
+       }
+       #powerdummy{
+           margin-top: 5%;
+           
+       }
+       #top_powerbox h1{
+        /* color: linear-gradient(to bottom,#FAD961 100%,#F7861C 100%); */
+        
+        /* font-size: 72px; */
+        background: -webkit-linear-gradient(#FAD961, #F7861C);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+	/* -webkit-text-fill-color: transparent; */
+       }
+       #dummyproposal{
+           margin-top: 5%;
+       }
+       #dummyproposal h1{
+           font-size:22px;
+           color:#3FF9E7;
+       }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <a href="" id="logo">Logo</a>
+            <a href="" class="right">Game</a>
+            <a href="" class="right">Vote</a>
+            <a href="" class="right">Forum</a>
+            <a href="" class="right">Docs</a>
+
+        </nav>
+        <hr>
+        <div class="row">
+            <img src="img/profile.png" alt="" id="profileimg" class="profiletop">
+            <button id="connect" class="btn btn-primary profiletop">Connect</button>
+        </div>
+        <div class="row" id="dividends">
+            <div class="col-sm">
+                <img src="img/people.png" alt="">
+                <h3>Governance</h3>
+            </div>
+            <div class="col-sm">
+                <img src="img/depends.png" alt="">
+                <h3>Dividends</h3>
+            </div>
+        </div>
+        <div id="powerdummy">
+            <h3 id="Power">Power</h3>
+            <div id="powerbox">
+                <div id="top_powerbox" class="row">
+                    <h1>0.00</h1>
+                    <button>?</button>
+
+                </div>
+                <div class="row" id="powerbox_inner">
+                    <div class="col-sm">
+                        <div id="upperhalf" class="row">
+                            <img src="img/kton.png" alt="">
+                            <p>Kion Power</p>
+                            <h2>0.00</h2>
+                        </div>
+                        <div id="lowerhalf" class="row">
+                            <button class="btn btn-primary" id="alone_col">Authorize</button> 
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div id="upperhalf" class="row">
+                            <img src="img/land.png" alt="">
+                            <p>Land Power      </p>
+                            <h2>0.00</h2>
+                        </div>
+                        <div id="lowerhalf" class="row">
+                            <p>My land: 0</p>
+                            <button class="btn btn-primary">Authorize</button> 
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div id="upperhalf" class="row">
+                            <img src="img/apostle.png" alt="">
+                            <p>Apostle Power</p>
+                            <h2>0.00</h2>
+                        </div>
+                        <div id="lowerhalf" class="row"> 
+                            <p>My Apostle: 0</p>
+                            <button class="btn btn-primary">Authorize</button> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="dummyproposal">
+            <h1>Proposal List</h1>
+            <div id="Proposals">
+                <ul id="proposallist">
+                    <li>
+                        <div class="proposal">
+
+                            <p style="display: block;margin-bottom:0px;margin-top:10px;font-size: 20px;">Test poll wit link test poll</p>
+                            
+                            <p>Available Power:1000</p>
+                            <p>Time: 2020/12/20 18:24</p>
+                            <button class='btn btn-primar'>Vote</button>
+                        </div>
+                        
+                    </li>
+                    <li>
+                        <div class="proposal">
+
+                            <p style="display: block;margin-bottom:0px;margin-top:10px;font-size: 20px;">Test poll wit link test poll</p>
+                            
+                            <p style>Available Power:1000</p>
+                            <p>Time: 2020/12/20 18:24</p>
+                            <button class='btn btn-primar'>Vote</button>
+                        </div>
+                        
+                    </li>
+                    <li>
+                        <div class="proposal">
+
+                            <p style="display: block;margin-bottom:0px;margin-top:10px;font-size: 20px;">Test poll wit link test poll</p>
+                            
+                            <p>Available Power:1000</p>
+                            <p>Time: 2020/12/20 18:24</p>
+                            <button class='btn btn-primar'>Vote</button>
+                        </div>
+                        
+                    </li>
+                    <li>
+                        <div class="proposal">
+
+                            <p style="display: block;margin-bottom:0px;margin-top:10px;font-size: 20px;">Test poll wit link test poll</p>
+                            
+                            <p>Available Power:1000</p>
+                            <p>Time: 2020/12/20 18:24</p>
+                            <button class='btn btn-primar'>Vote</button>
+                        </div>
+                        
+                    </li>
+                    <li>
+                        <div class="proposal">
+
+                            <p style="display: block;margin-bottom:0px;margin-top:10px;font-size: 20px;">Test poll wit link test poll</p>
+                            
+                            <p>Available Power:1000</p>
+                            <p>Time: 2020/12/20 18:24</p>
+                            <button class='btn btn-primar'>Vote</button>
+                        </div>
+                        
+                    </li>
+                    <li>
+                        <div class="proposal">
+
+                            <p style="display: block;margin-bottom:0px;margin-top:10px;font-size: 20px;">Test poll wit link test poll</p>
+                            
+                            <p>Available Power:1000</p>
+                            <p>Time: 2020/12/20 18:24</p>
+                            <button class='btn btn-primar'>Vote</button>
+                        </div>
+                        
+                    </li>
+                    <li>
+                        <div class="proposal">
+
+                            <p style="display: block;margin-bottom:0px;margin-top:10px;font-size: 20px;">Test poll wit link test poll</p>
+                            
+                            <p>Available Power:1000</p>
+                            <p>Time: 2020/12/20 18:24</p>
+                            <button class='btn btn-primar'>Vote</button>
+                        </div>
+                        
+                    </li>
+                    <li>
+                        <div class="proposal">
+
+                            <p style="display: block;margin-bottom:0px;margin-top:10px;font-size: 20px;">Test poll wit link test poll</p>
+                            
+                            <p>Available Power:1000</p>
+                            <p>Time: 2020/12/20 18:24</p>
+                            <button class='btn btn-primar'>Vote</button>
+                        </div>
+                        
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+        
+    </div>
+</body>
+</html>
