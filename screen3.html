@@ -43,11 +43,15 @@
             border-radius: 50%;
             /* border: 1px solid black; */
         }
-        #connect{
-            width:10.98vw;
-            height:6.08vh;
-            margin-top: 3.04vh;
-            background-color: #3FF9E7;
+
+        #userhash{
+            position: absolute;
+            display: inline-block;
+            /* width:10.98vw; */
+            /* height:6.08vh; */
+            margin-top: 6.84vh;
+            margin-left:5.85vw;
+            /* background-color: #3FF9E7; */
             border:none;
         }
         #dividends{
@@ -96,11 +100,19 @@
         }
         #top_powerbox h1{
             display: inline-block;
+            position: absolute;
+            left: 8.05vw;
+            top:6.08vh;
             
         }
         #top_powerbox {
             padding-left:1.46vw;
             color:#1D506E;
+        }
+        #top_powerbox p{
+            margin-left: 0.73vw;
+            color:#F8B140;
+            display: inline-block;
         }
          #powerbox #powerbox_inner{
              display: flex;
@@ -116,7 +128,7 @@
             padding-right: 0px;
             padding-left:0px;
             border-radius: 10px;
-            height:38.05vh;
+            height:42vh;
             position: relative;
         }
         
@@ -126,7 +138,7 @@
             margin:0px -4.9%;
             /* position: absolute; */
             /* width:100%; */
-            height:43%;
+            height:49%;
             border-radius: 0px 0px 10px 10px;
         }
         #lowerhalf{
@@ -144,6 +156,9 @@
             width:7.32vw;
             height:6.08vh;
             display: inline-block;
+            background-color: #3FF9E7;
+            border: none;
+            color: #1B182F;
         }
         #lowerhalf p{
             display: inline-block;
@@ -232,7 +247,11 @@
        }
        #dummyproposal h1{
            font-size:5vmin;
+           display: inline-block;
            color:#3FF9E7;
+       }
+       #dummyproposal button{
+           float:right;
        }
        footer{
            height:10vh;
@@ -279,6 +298,96 @@
             height: 1.5vh;
             }
        }
+       #top_powerbox_img{
+           width:5.12vw;
+           height:12.17vh;
+           margin-left: 1.46vw;
+           border:1px solid black;
+       }
+       #lowerhalf_kton{
+            text-align: center;
+            background-color: #282442;
+            /* margin:0px -4.9%; */
+            /* position: absolute; */
+            /* width:100%; */
+            height:49%;
+            border-radius: 0px 0px 10px 10px;
+            /* padding:5.32vh 2.56vw; */
+            /* padding-left:15%; */
+            position: absolute;
+            width: 100%;
+            margin: 0px;
+        }
+        #lowerhalf_kton .row .kton_col{
+            margin:0px;
+            margin-left: 1.46vw;
+            
+            position: relative;
+            /* position: absolute; */
+            /* background-color: white; */
+        }
+        .kton_col{
+            padding-top:1.52vh;
+            margin-top: 0px ;
+            text-align: center;
+        }
+        .kton{
+            font-size: 2.5vmin;
+
+            /* position: absolute; */
+            margin-left: 2.19vw;
+            margin-bottom: 0px;
+            /* height:40px; */
+            /* margin: auto; */
+            /* margin-left: 30px; */
+        }
+        #kton_button{
+            width:6.58vw;
+            height:5.32vh;
+            margin-right: 0px;
+            background-color: #3FF9E7;
+            border: none;
+            color: #1B182F;
+        }
+        .spec{
+            margin-left: 2.92vw;
+        }
+        #Proposals{
+            margin-top:1.52vh;
+        }
+        .proposalbtn{
+            width:8.78vw;
+        }
+        #powerbox img{
+            width:7.32vw;
+            height: 15.22vh;
+        }
+        #powerbox p{
+            position: absolute;
+            top:3.04vh;
+            left:9.51vw;
+        }
+        #powerbox h3{
+            position: absolute;
+            top:7.61vh;
+            left:9.51vw;
+        }
+        #powerbox button{
+            position: absolute;
+            right:0.73vw;
+            top:6.08vh;
+        }
+        #Proposals{
+            min-height: 80vh;
+            border:1px solid #1D506E;
+            border-radius: 5px;
+            position: relative;
+        }
+        #Proposals img{
+            position: absolute;
+            top:30%;
+            left:38%;
+        }
     </style>
 </head>
 <body>
@@ -294,7 +403,9 @@
         <hr>
         <div class="row">
             <img src="img/profile.png" alt="" id="profileimg" class="profiletop">
-            <button id="connect" class="btn btn-primary profiletop">Connect</button>
+            <!-- <button id="connect" class="btn btn-primary profiletop">Connect</button> -->
+            <h3 style="color:#3FF9E7">UncleDre</h3>
+            <p id="userhash">0x0E55c72781aCD923C4</p>
         </div>
         <div class="row" id="dividends">
             <div class="col-sm">
@@ -307,122 +418,22 @@
             </div>
         </div>
         <div id="powerdummy">
-            <h3 id="Power">Power</h3>
+            <h3 id="Power">KTON Balance</h3>
             <div id="powerbox">
-                <div id="top_powerbox" class="row">
-                    <h1>0.00</h1>
-                    <button>?</button>
-
-                </div>
-                <div class="row" id="powerbox_inner">
-                    <div class="col-sm">
-                        <div id="upperhalf" class="row">
-                            <img src="img/kton.png" alt="">
-                            <p>Kion Power</p>
-                            <h2>0.00</h2>
-                        </div>
-                        <div id="lowerhalf" class="row">
-                            <button class="btn btn-primary" id="alone_col" style="background-color:#3FF9E7;color:#1D506E;border:none;">Authorize</button> 
-                        </div>
-                    </div>
-                    <div class="col-sm">
-                        <div id="upperhalf" class="row">
-                            <img src="img/land.png" alt="">
-                            <p>Land Power      </p>
-                            <h2>0.00</h2>
-                        </div>
-                        <div id="lowerhalf" class="row">
-                            <p>My land: 0</p>
-                            <button class="btn btn-primary" style="background-color:#3FF9E7;color:#1D506E;border:none;">Authorize</button> 
-                        </div>
-                    </div>
-                    <div class="col-sm">
-                        <div id="upperhalf" class="row">
-                            <img src="img/apostle.png" alt="">
-                            <p>Apostle Power</p>
-                            <h2>0.00</h2>
-                        </div>
-                        <div id="lowerhalf" class="row"> 
-                            <p>My Apostle: 0</p>
-                            <button class="btn btn-primary" style="background-color:#3FF9E7;color:#1D506E;border:none;">Authorize</button> 
-                        </div>
-                    </div>
-                </div>
+                <img src="img/kton.png" alt="">
+                <p>Balance</p>
+                <h3>0.00</h3>
+                <button class="btn btn-primary" style="background-color:#3FF9E7;color: #1B182F;border:none">Authorize</button>
+                
             </div>
         </div>
         <div id="dummyproposal">
-            <h1>Proposal List</h1>
+            <h1>History</h1>
+            
             <div id="Proposals">
-                <ul id="proposallist">
-                    <li>
-                        <div class="proposal">
+             
 
-                            <p style="display: block;margin-bottom:0px;margin-top:10px;font-size: 20px;">Test poll wit link test poll</p>
-                            
-                            <p>Available Power:1000</p>
-                            <p>Time: 2020/12/20 18:24</p>
-                            <button class='btn btn-primar'>Vote</button>
-                        </div>
-                        
-                    </li>
-                    <li>
-                        <div class="proposal">
-
-                            <p style="display: block;margin-bottom:0px;margin-top:10px;font-size: 20px;">Test poll wit link test poll</p>
-                            
-                            <p style>Available Power:1000</p>
-                            <p>Time: 2020/12/20 18:24</p>
-                            <button class='btn btn-primar'>Vote</button>
-                        </div>
-                        
-                    </li>
-                    <li>
-                        <div class="proposal">
-
-                            <p style="display: block;margin-bottom:0px;margin-top:10px;font-size: 20px;">Test poll wit link test poll</p>
-                            
-                            <p>Available Power:1000</p>
-                            <p>Time: 2020/12/20 18:24</p>
-                            <button class='btn btn-primar'>Vote</button>
-                        </div>
-                        
-                    </li>
-                    <li>
-                        <div class="proposal">
-
-                            <p style="display: block;margin-bottom:0px;margin-top:10px;font-size: 20px;">Test poll wit link test poll</p>
-                            
-                            <p>Available Power:1000</p>
-                            <p>Time: 2020/12/20 18:24</p>
-                            <button class='btn btn-primar'>Vote</button>
-                        </div>
-                        
-                    </li>
-                    <li>
-                        <div class="proposal">
-
-                            <p style="display: block;margin-bottom:0px;margin-top:10px;font-size: 20px;">Test poll wit link test poll</p>
-                            
-                            <p>Available Power:1000</p>
-                            <p>Time: 2020/12/20 18:24</p>
-                            <button class='btn btn-primar'>Vote</button>
-                        </div>
-                        
-                    </li>
-                    <li>
-                        <div class="proposal">
-
-                            <p style="display: block;margin-bottom:0px;margin-top:10px;font-size: 20px;">Test poll wit link test poll</p>
-                            
-                            <p>Available Power:1000</p>
-                            <p>Time: 2020/12/20 18:24</p>
-                            <button class='btn btn-primar'>Vote</button>
-                        </div>
-                        
-                    </li>
-                    
-                </ul>
-
+                <img src="img/box.png" alt="">
             </div>
         </div>
         <hr>
