@@ -488,8 +488,8 @@ window.Approve = function() {
 };
 
 window.UpdateInfo = async function() {
-  var lockButtons = '<button class="btn btn-primary" id="lock" onClick="Lock()">Lock</button>'
-        + '<button class="btn btn-primary" id="Unlock" onClick="Approve()">Unlock</button>';
+  var lockButtons = '<button class="btn btn-primary" id="lock" onClick="Lock(1)">Lock</button>'
+        + '<button class="btn btn-primary" id="Unlock" onClick="Unlock(1)">Unlock</button>';
 
   tellerContract.balanceOfStaking(web3.eth.coinbase).then(function(result) {
     el('#user').innerHTML = web3.eth.coinbase;
@@ -520,12 +520,47 @@ window.UpdateInfo = async function() {
   });
 };
 
+window.Lock = function(value) {
+  tellerContract.stake(
+    value * 1e18,
+    { from: web3.eth.coinbase },
+    function(error, result) {
+      if (error) {
+        console.log(error);
+        return;
+      }
+      console.log(result);
+    }
+  );
+};
+
+window.Unlock = function(value) {
+  tellerContract.withdraw(
+    value * 1e18,
+    { from: web3.eth.coinbase },
+    function(error, result) {
+      if (error) {
+        console.log(error);
+        return;
+      }
+      console.log(result);
+    }
+  );
+};
+
+window.goToVote = function(key) {
+  const url = 'http://107.167.191.203:8008/#/evolutionland/proposal/' + key;
+  console.log(url);
+  window.open(url);
+};
 
 // http://107.167.191.203:8880/api/evolutionland/proposals
 window.ProposalList = async function() {
-  var proposalli = function(title, end) {
+  var proposalli = function(key, title, end) {
     return '<li> <div class="proposal"> <p style="display: block;margin-bottom:0px;margin-top:10px;font-size: 20px;">'
-          + title + '</p>' + 'Time: <p>' + end + '</p> <button class="btn btn-primar">Vote</button> </div> </li>';
+          + title + '</p>' + 'Time: <p>' + end + '</p>' +
+          '<a href = "http://107.167.191.203:8008/#/evolutionland/proposal/'
+          + key + '" target= "_blank">Vote</a> </div> </li>';
   };
   const url = 'http://107.167.191.203:8880/api/evolutionland/proposals';
   var xmlHttp = new XMLHttpRequest();
@@ -533,15 +568,14 @@ window.ProposalList = async function() {
   xmlHttp.send(null);
   var proposals = xmlHttp.responseText;
   proposals = JSON.parse(proposals);
-  el('#proposallist').innerHTML = "";
+  el('#proposallist').innerHTML = '';
   for (var key in proposals) {
     var proposal = proposals[key].msg.payload;
     console.log(proposal.name);
     console.log(proposal.start);
     console.log(proposal.end);
-    // var start = new Date(proposal.start * 1000).toJSON().replace('T', ' ').substring(0, 19);
     var end = new Date(proposal.end * 1000).toJSON().replace('T', ' ').substring(0, 19);
-    el('#proposallist').innerHTML += proposalli(proposal.name, end);
+    el('#proposallist').innerHTML += proposalli(key, proposal.name, end);
   }
 };
 
