@@ -5,16 +5,11 @@ var ktonContract;
 var tellerContract;
 startApp();
 
-window.test = function() {
-    console.log("xxxxxxxxx");
-}
-
 async function startApp() {
-    console.log(detectEthereumProvider);
   const provider = await detectEthereumProvider();
   if (!provider) {
-      alert('No currentProvider for web3');
-      return;
+    alert('No currentProvider for web3');
+    return;
   }
   eth = new Eth(provider);
   contract = new EthContract(eth);
@@ -476,48 +471,75 @@ function listenForClicks(teller) {
 }
 
 window.Approve = function() {
-    ktonContract.approve(
-      '0x38EF245FABf02e412a0DD8833fE15D0b0B50d2F0',
-      '0x52b7d2dcc80cd400000000',
-      { from: web3.eth.coinbase },
-      function(error, result) {
-        if (error) {
-          console.log(error);
-          return;
-        }
-        // will return txHash as result
-        console.log(result);
+  ktonContract.approve(
+    '0x38EF245FABf02e412a0DD8833fE15D0b0B50d2F0',
+    '0x52b7d2dcc80cd400000000',
+    { from: web3.eth.coinbase },
+    function(error, result) {
+      if (error) {
+        console.log(error);
+        return;
       }
-    );
-}
+      // will return txHash as result
+      console.log(result);
+    }
+  );
+};
 
 window.UpdateInfo = async function() {
-    tellerContract.balanceOfStaking(web3.eth.coinbase).then(function(result) {
-        el('#user').innerHTML = web3.eth.coinbase;
-        el('#kton-power').innerHTML = (result[0] / 1e18).toFixed(2) * 10
-    });
-    tellerContract.balanceOfLandOwner(web3.eth.coinbase).then(function(result) {
-        el('#land-power').innerHTML = (result[0]) * 100
-    });
-    tellerContract.balanceOfApostleOwner(web3.eth.coinbase).then(function(result) {
-        el('#apostle-power').innerHTML = (result[0]) * 1
-    });
-    tellerContract.balanceOf(web3.eth.coinbase).then(function(result) {
-        console.log("xxxxxxxx", result[0]);
-        el('#total-power').innerHTML = (result[0] / 1e18).toFixed(2);
-    });
-    ktonContract.allowance(
-      web3.eth.coinbase,
-      '0x38EF245FABf02e412a0DD8833fE15D0b0B50d2F0',
-    ).then(function(result) {
-        if (result[0] > 0) {
-            console.log("has been approved");
-        } else {
-            console.log("not been approved");
-        }
-    });
-}
+  var lockButtons = '<button class="btn btn-primary" id="lock" onClick="Lock()">Lock</button>'
+        + '<button class="btn btn-primary" id="Unlock" onClick="Approve()">Unlock</button>';
 
-module.exports = {
-    test
+  tellerContract.balanceOfStaking(web3.eth.coinbase).then(function(result) {
+    el('#user').innerHTML = web3.eth.coinbase;
+    el('#kton-power').innerHTML = (result[0] / 1e18).toFixed(2) * 10;
+  });
+  tellerContract.balanceOfLandOwner(web3.eth.coinbase).then(function(result) {
+    console.log('balanceOfLandOwner', result[0]);
+    el('#land-power').innerHTML = (result[0]) * 100;
+  });
+  tellerContract.balanceOfApostleOwner(web3.eth.coinbase).then(function(result) {
+    console.log('balanceOfApostleOwner', result[0]);
+    el('#apostle-power').innerHTML = (result[0]) * 1;
+  });
+  tellerContract.balanceOf(web3.eth.coinbase).then(function(result) {
+    console.log('xxxxxxxx', result[0]);
+    el('#total-power').innerHTML = (result[0] / 1e18).toFixed(2);
+  });
+  ktonContract.allowance(
+    web3.eth.coinbase,
+    '0x38EF245FABf02e412a0DD8833fE15D0b0B50d2F0',
+  ).then(function(result) {
+    if (result[0] > 0) {
+      console.log('has been approved');
+      el('#lowerhalf').innerHTML = lockButtons;
+    } else {
+      console.log('not been approved');
+    }
+  });
 };
+
+
+// http://107.167.191.203:8880/api/evolutionland/proposals
+window.ProposalList = async function() {
+  var proposalli = function(title, end) {
+    return '<li> <div class="proposal"> <p style="display: block;margin-bottom:0px;margin-top:10px;font-size: 20px;">'
+          + title + '</p>' + 'Time: <p>' + end + '</p> <button class="btn btn-primar">Vote</button> </div> </li>';
+  };
+  const url = 'http://107.167.191.203:8880/api/evolutionland/proposals';
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.open('GET', url, false);
+  xmlHttp.send(null);
+  var proposals = xmlHttp.responseText;
+  proposals = JSON.parse(proposals);
+  for (var key in proposals) {
+    var proposal = proposals[key].msg.payload;
+    console.log(proposal.name);
+    console.log(proposal.start);
+    console.log(proposal.end);
+    // var start = new Date(proposal.start * 1000).toJSON().replace('T', ' ').substring(0, 19);
+    var end = new Date(proposal.end * 1000).toJSON().replace('T', ' ').substring(0, 19);
+    el('#proposallist').innerHTML += proposalli(proposal.name, end);
+  }
+};
+
