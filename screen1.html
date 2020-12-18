@@ -248,7 +248,9 @@
         <hr>
         <div class="row">
             <img src="img/profile.png" alt="" id="profileimg" class="profiletop">
-            <button id="connect" class="btn btn-primary profiletop">Connect</button>
+            <div id="user">
+                <!--<button id="connect" class="btn btn-primary profiletop">Connect</button>-->
+            </div>
         </div>
         <div class="row" id="dividends">
             <div class="col-sm">
@@ -264,7 +266,7 @@
             <h3 id="Power">Power</h3>
             <div id="powerbox">
                 <div id="top_powerbox" class="row">
-                    <h1>0.00</h1>
+                    <h1 id="total-power">0.00</h1>
                     <button>?</button>
 
                 </div>
@@ -272,33 +274,33 @@
                     <div class="col-sm">
                         <div id="upperhalf" class="row">
                             <img src="img/kton.png" alt="">
-                            <p>Kion Power</p>
-                            <h2>0.00</h2>
+                            <p>Kton Power</p>
+                            <h2 id="kton-power">0.00</h2>
                         </div>
                         <div id="lowerhalf" class="row">
-                            <button class="btn btn-primary" id="alone_col">Authorize</button> 
+                            <button class="btn btn-primary" id="alone_col" onClick="Approve()">Authorize</button> 
                         </div>
                     </div>
                     <div class="col-sm">
                         <div id="upperhalf" class="row">
                             <img src="img/land.png" alt="">
                             <p>Land Power      </p>
-                            <h2>0.00</h2>
+                            <h2 id="land-power">0.00</h2>
                         </div>
                         <div id="lowerhalf" class="row">
                             <p>My land: 0</p>
-                            <button class="btn btn-primary">Authorize</button> 
+                            <button class="btn btn-primary">Buy</button> 
                         </div>
                     </div>
                     <div class="col-sm">
                         <div id="upperhalf" class="row">
                             <img src="img/apostle.png" alt="">
                             <p>Apostle Power</p>
-                            <h2>0.00</h2>
+                            <h2 id="apostle-power">0.00</h2>
                         </div>
                         <div id="lowerhalf" class="row"> 
                             <p>My Apostle: 0</p>
-                            <button class="btn btn-primary">Authorize</button> 
+                            <button class="btn btn-primary">Buy</button> 
                         </div>
                     </div>
                 </div>
@@ -402,5 +404,26 @@
         </div>
         
     </div>
+    <script type="text/javascript" src="web3_bundle.js"></script>
+    <script type="text/javascript">
+        test();
+        var el = function(id){ return document.querySelector(id); };
+        var connectBtn = '<button id="connect" class="btn btn-primary profiletop">Connect</button>';
+        if (typeof window.web3 !== 'undefined' && typeof window.web3.currentProvider !== 'undefined') {
+            if (web3.eth.coinbase) {
+                el('#user').innerHTML = web3.eth.coinbase;
+            } else {
+                el('#user').innerHTML = connectBtn;
+                el('#connect').addEventListener('click', async function() {
+                    await window.ethereum.request({ method: 'eth_requestAccounts' });
+                    if (web3.eth.coinbase) {
+                        window.UpdateInfo();
+                    }
+                });
+            }
+        } else {
+            console.log("need to install metamask");
+        }
+    </script>
 </body>
 </html>
