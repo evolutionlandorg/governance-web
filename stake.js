@@ -482,6 +482,7 @@ window.Approve = function() {
       }
       // will return txHash as result
       console.log(result);
+      window.UpdateInfo();
     }
   );
 };
@@ -532,6 +533,7 @@ window.ProposalList = async function() {
   xmlHttp.send(null);
   var proposals = xmlHttp.responseText;
   proposals = JSON.parse(proposals);
+  el('#proposallist').innerHTML = "";
   for (var key in proposals) {
     var proposal = proposals[key].msg.payload;
     console.log(proposal.name);
