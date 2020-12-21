@@ -1,35 +1,38 @@
 {
-	"name": "governance-web",
-	"version": "0.1.0",
-	"author": "evolution land",
-	"description": "governance-web for evolution land",
-	"keywords": [
-		"node.js",
-		"javascript"
-	],
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/evolutionlandorg/governance-web.git"
-	},
-	"license": "MIT",
-	"engines": {
-		"node": "14.0.x"
-	},
-	"devDependencies": {
-		"ethjs-contract": "0.2.3",
-		"ethjs-query": "0.3.8",
-		"web3": "1.2.11"
-	},
-	"scripts": {
-		"lint-new-works": "./lint-new-work.sh",
-		"lint-all": "eslint . --fix",
-		"build": "browserify init_web3.js -o web3_bundle.js",
-		"start": "npm run build && http-server --port 5000"
-	},
-	"dependencies": {
-		"browserify": "^17.0.0",
-		"eslint": "^7.15.0",
-		"eslint-config-strongloop": "^2.1.0",
-		"http-server": "^0.12.3"
-	}
+  "name": "governance-web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "test:unit": "vue-cli-service test:unit",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "core-js": "^3.6.5",
+    "register-service-worker": "^1.7.1",
+    "vue": "^2.6.11",
+    "vue-router": "^3.2.0",
+    "vuex": "^3.4.0",
+    "element-ui": "^2.14.1",
+    "bignumber.js": "^9.0.1",
+    "dayjs": "^1.9.7"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-plugin-router": "~4.5.0",
+    "@vue/cli-plugin-unit-mocha": "~4.5.0",
+    "@vue/cli-plugin-vuex": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "@vue/test-utils": "^1.0.3",
+    "babel-eslint": "^10.1.0",
+    "chai": "^4.1.2",
+    "eslint": "^6.7.2",
+    "eslint-plugin-vue": "^6.2.2",
+    "sass": "^1.26.5",
+    "sass-loader": "^8.0.2",
+    "vue-template-compiler": "^2.6.11",
+    "babel-plugin-component": "^1.1.1"
+  }
 }
