@@ -12,14 +12,22 @@
             overflow-x: hidden;
             background-color: #1B182F;
             color:white;
-            font-size: 3vmin;
+            font-size: 2.2vmin;
+            position: relative;
         }
-        
+        .container{
+            position: absolute;
+            margin-left: 10%;
+            margin-right: 10%;
+            width: 80vw;
+        }
         nav{
             /* border: 1px solid black; */
-            /* width:100vw; */
+            /* width:200vw; */
+            
             height:10vh;
             padding:3.04vh 1.46vw ;
+            width:75vw;
             
         }
         .right{
@@ -28,32 +36,35 @@
             color:#3FF9E7;
         }
         hr{
-            position: relative;
-            width:100vw;
-            margin-left: -10%;
+            position: absolute;
+            width:200vw;
+            margin-left: -100%;
             border:1px solid  #1D506E;
+            left:0px;
         }
         .profiletop{
             display: inline-block;
             margin:1.52vh 0.73vh;
         }
         #profileimg{
-            width:5vw;
-            height:11vh;
+            width:4vw;
+            height:8vh;
             border-radius: 50%;
             /* border: 1px solid black; */
         }
         #connect{
-            width:10.98vw;
-            height:6.08vh;
+            width:8vw;
+            height:5vh;
             margin-top: 3.04vh;
             background-color: #3FF9E7;
+            font-weight: 600;
             border:none;
+            color:#1B182F;
         }
         #dividends{
             /* padding:10px; */
             /* border: 1px solid black; */
-            width:99%;
+            width:75vw;
             margin-left: 0.5%;
         }
         #dividends .col-sm{
@@ -61,17 +72,17 @@
             border:1px solid #1D506E;
             border-radius: 3px;
             margin: 0px;
-            padding: 3.04vh 0px;
+            padding: 1vh 0px;
             
         }
         #dividends .col-sm img,h3{
-            width:5vw;
-            height:10vh;
+            width:4vw;
+            height:7vh;
             display: inline;
             
         }
         #dividends .col-sm h3{
-            font-size: 5vmin;
+            font-size: 3vmin;
             color:#3FF9E7;
         }
         #powerbox{
@@ -96,6 +107,7 @@
         }
         #top_powerbox h1{
             display: inline-block;
+            font-size: 6vmin;
             
         }
         #top_powerbox {
@@ -104,9 +116,10 @@
         }
          #powerbox #powerbox_inner{
              display: flex;
-            padding:3.04vh 0px;
+            /* padding:3.04vh 0px; */
             margin-left:0.73vw;
             margin-right: 0.73vw;
+            margin-top: -4vh;
         }
         #powerbox #powerbox_inner .col-sm{
             margin:7.61vh 0.73vw;
@@ -118,6 +131,7 @@
             border-radius: 10px;
             height:38.05vh;
             position: relative;
+            margin-bottom: 3vh;
         }
         
         #lowerhalf{
@@ -208,14 +222,15 @@
             color:#3FF9E7;
         }
        #Power{
-           font-size: 5vmin;
+           font-size: 3vmin;
            /* margin-left: 5px; */
            color:#3FF9E7;
            /* padding: 5px; */
            
        }
        #powerdummy{
-           margin-top: 5%;
+           margin-top: 2%;
+           width:75vw;
            
        }
        #top_powerbox h1{
@@ -229,9 +244,10 @@
        }
        #dummyproposal{
            margin-top: 5%;
+           width:75vw;
        }
        #dummyproposal h1{
-           font-size:5vmin;
+           font-size:3vmin;
            color:#3FF9E7;
        }
        footer{
@@ -292,7 +308,7 @@
 
         </nav>
         <hr>
-        <div class="row">
+        <div class="row" style="margin-top: 50px;">
             <img src="img/profile.png" alt="" id="profileimg" class="profiletop">
             <button id="connect" class="btn btn-primary profiletop">Connect</button>
         </div>
@@ -426,7 +442,7 @@
             </div>
         </div>
         <hr>
-        <footer>
+        <footer style="margin-top: 70px;">
             <a href="">&copy; 2020 Evolution All Rights Reserved</a>
             <a href="" class="footerright"><img src="img/language.png" alt="">English</a>
             <a href="" class="footerright"><img src="img/mail.png" alt=""></a>
