@@ -5,28 +5,28 @@
     </div>
     <div class="social-box">
       <div class="links">
-        <a target="_blank"
-          ><img src="../assets/components/footer/icon-wechat.png"
+        <a target="_blank" 
+          ><img src="../assets/components/footer/icon-wechat.png" 
         /></a>
-        <a target="_blank"
+        <a href="http://weibo.com/evolutionland" target="_blank"
           ><img src="../assets/components/footer/icon-weibo.png"
         /></a>
-        <a target="_blank"
+        <a href="https://github.com/evolutionlandorg/" target="_blank"
           ><img src="../assets/components/footer/icon-github.png"
         /></a>
-        <a target="_blank"
+        <a href="https://discord.gg/NfvyV69" target="_blank"
           ><img src="../assets/components/footer/icon-discord.png"
         /></a>
-        <a target="_blank"
+        <a href="https://t.me/evolutionland9" target="_blank"
           ><img src="../assets/components/footer/icon-telegram.png"
         /></a>
-        <a target="_blank"
+        <a href="https://twitter.com/evolutionland9" target="_blank"
           ><img src="../assets/components/footer/icon-twitter.png"
         /></a>
-        <a target="_blank"
+        <a href="https://medium.com/@evolutionland9" target="_blank"
           ><img src="../assets/components/footer/icon-medium.png"
         /></a>
-        <a target="_blank"
+        <a href="mailto:hello@evolution.land" target="_blank"
           ><img src="../assets/components/footer/icon-mail.png"
         /></a>
       </div>
