@@ -9,6 +9,7 @@ import TokenBalance from './TokenBalance.vue';
 import DividendHistory from './DividendHistory.vue';
 import UnlockKtonDialog from './UnlockKtonDialog.vue';
 import Footer from './Footer.vue';
+import Web3Modal from './Web3Modal';
 
 export {
   Connect,
@@ -21,5 +22,6 @@ export {
   TokenBalance,
   DividendHistory,
   UnlockKtonDialog,
-  Footer
+  Footer,
+  Web3Modal
 }

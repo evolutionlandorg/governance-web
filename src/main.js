@@ -3,6 +3,7 @@ import App from './App.vue'
 // import './registerServiceWorker'
 import router from './router'
 import store from './store'
+import {Web3Modal} from './components'
 
 import {
   Pagination,
@@ -161,6 +162,9 @@ Vue.use(PageHeader);
 Vue.use(CascaderPanel);
 
 Vue.use(Loading.directive);
+Vue.use(Web3Modal);
+
+Vue.prototype.$store = store;
 
 Vue.prototype.$loading = Loading.service;
 Vue.prototype.$msgbox = MessageBox;

@@ -5,19 +5,23 @@
     </div>
     <div class="power-info">
       <p class="title">Total Power</p>
-      <p class="value">{{ power.toString() }}</p>
+      <p class="value">{{ convertFixedAmountFromRawNumber(power) }}</p>
     </div>
   </div>
 </template>
 
 <script>
 import BigNumber from "bignumber.js";
+import { convertFixedAmountFromRawNumber } from '@/helpers/bignumber'
 
 export default {
   name: "Power",
   props: {
     power: BigNumber,
   },
+  methods: {
+    convertFixedAmountFromRawNumber,
+  }
 };
 </script>
 
