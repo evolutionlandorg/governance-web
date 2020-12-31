@@ -13,9 +13,9 @@
             </div>
             <div class="info-box">
               <p class="title">Total dividends</p>
-              <p class="value">2342.65 RING</p>
+              <p class="value">{{convertFixedAmountFromRawNumber(getTotalDividends())}} RING</p>
               <div class="claim-info">
-                <p class="subtitle">Unclaimed : 374.38 RING</p>
+                <p class="subtitle">Unclaimed : {{convertFixedAmountFromRawNumber(_evolutionTeller_get_value.reward)}} RING</p>
                 <el-button size="mini">Claim</el-button>
               </div>
             </div>
@@ -36,7 +36,7 @@
       </el-col>
     </el-row>
 
-    <UnlockKtonDialog :visiable="true"/>
+    <UnlockKtonDialog :visible="false"/>
   </div>
 </template>
 
@@ -50,6 +50,12 @@ import {
   DividendHistory,
   UnlockKtonDialog
 } from "@/components/index";
+import { mapActions, mapGetters } from "vuex";
+import {
+  convertFixedAmountFromRawNumber,
+  formatFixedDecimals,
+  toWei
+} from "@/helpers/bignumber";
 
 export default {
   name: "Home",
@@ -65,6 +71,17 @@ export default {
     return {
     };
   },
+  computed: {
+    ...mapGetters([
+      "_evolutionTeller_get_value",
+    ]),
+  },
+  methods: {
+    getTotalDividends: function() {
+      return this._evolutionTeller_get_value.earned.plus(this._evolutionTeller_get_value.reward);
+    },
+    convertFixedAmountFromRawNumber
+  }
 };
 </script>
 

@@ -1,7 +1,8 @@
-import axios from 'axios'
+import axios from 'axios';
+import {getApi, API_SNAPSHOT_DOMAIN, API_GRAPH_DOMAIN} from '@/helpers/constants';
 
 const api = axios.create({
-  baseURL: 'https://ethereum-api.xyz',
+  baseURL: getApi(API_SNAPSHOT_DOMAIN).domain,
   timeout: 60000,
   headers: {
     Accept: 'application/json',
@@ -9,41 +10,26 @@ const api = axios.create({
   }
 })
 
-export async function apiGetAccountAssets(
-  address,
-  chainId
-){
+const graphApi = axios.create({
+  baseURL: getApi(API_GRAPH_DOMAIN).domain,
+  timeout: 60000,
+  headers: {
+    Accept: 'application/json',
+    'Content-Type': 'application/json'
+  }
+})
+
+export async function apiGetProposals(){
   const response = await api.get(
-    `/account-assets?address=${address}&chainId=${chainId}`
-  )
-  const { result } = response.data
-  return result
+    `/api/evolutionland/proposals`
+  );
+  return response.data;
 }
 
-export async function apiGetAccountTransactions(
-  address,
-  chainId
-) {
-  const response = await api.get(
-    `/account-transactions?address=${address}&chainId=${chainId}`
-  )
-  const { result } = response.data
-  return result
-}
 
-export const apiGetAccountNonce = async (
-  address,
-  chainId
-) => {
-  const response = await api.get(
-    `/account-nonce?address=${address}&chainId=${chainId}`
-  )
-  const { result } = response.data
-  return result
-}
-
-export const apiGetGasPrices = async () => {
-  const response = await api.get(`/gas-prices`)
-  const { result } = response.data
-  return result
+export async function apiGetStakeHistory(){
+  const response = await graphApi.post(
+    `/subgraphs/name/freehere107/alphaevo`
+  );
+  return response.data;
 }

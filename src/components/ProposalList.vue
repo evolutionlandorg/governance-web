@@ -12,11 +12,10 @@ export default {
     ProposalItem,
   },
   props: {
-    data: {
-      type: Array,
-      default: () => [],
-    },
+    data: Array,
   },
+  mounted: function() {
+  }
 };
 </script>
 

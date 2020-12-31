@@ -50,14 +50,18 @@ export default {
 
     this.$web3Modal.init({}, {}, emitter);
   },
+  mounted: function() {
+    this._proposal_fetch_info();
+  },
   beforeDestroy: function() {
     emitter.all.clear();
     // emitter.off(SUBSCRIBE_HAS_CHANGED, this.web3ChangeHandle)
   },
   methods: {
-    ...mapActions(["_common_init_address_info"]),
+    ...mapActions(["_common_init_address_info", "_proposal_fetch_info"]),
     web3ChangeHandle() {
-      this._common_init_address_info({$web3Modal: this.$web3Modal, params: this._web3Modal_get_value.address});
+
+      this._common_init_address_info({$web3Modal: this.$web3Modal, params: [this._web3Modal_get_value.address]});
     },
   },
 };

@@ -71,7 +71,7 @@ export default {
         cacheProvider: true,
         disableInjectedProvider: false,
         theme: "dark",
-        mixinProviderOptions,
+        providerOptions: mixinProviderOptions,
         ...web3ModalOptions
       });
 
@@ -96,8 +96,6 @@ export default {
       const networkId = await web3.eth.net.getId();
 
       const chainId = await web3.eth.chainId();
-
-      this._test_set_value(1);
 
       this._web3Modal_set_value({
         connected: true,
@@ -167,6 +165,7 @@ export default {
       };
     },
     resetApp: async function() {
+      
       if (
         this.web3 &&
         this.web3.currentProvider &&
@@ -204,9 +203,9 @@ export default {
           action: functionSig,
           result,
         };
-
+        console.log('web3Modal:: contractcall: ', formattedResult)
         if(contractCall.type === 'tx') {
-          this._web3Modal_before_txqueue(formattedResult);
+          this._web3Modal_before_txqueue([formattedResult]);
         }
 
         // display result

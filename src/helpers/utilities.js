@@ -1,7 +1,8 @@
 import * as ethUtil from "ethereumjs-util";
 import supportedChains from "./chains";
-import { apiGetGasPrices, apiGetAccountNonce } from "./api";
+import { apiGetGasPrices, apiGetAccountNonce } from "./ethereumApi";
 import { convertAmountToRawNumber, convertStringToHex } from "./bignumber";
+import dayjs from 'dayjs';
 
 export function capitalize(string) {
   return string
@@ -113,7 +114,7 @@ export function getChainData(chainId) {
     throw new Error("ChainId missing or not supported");
   }
 
-  const API_KEY = process.env.REACT_APP_INFURA_ID;
+  const API_KEY = process.env.VUE_APP_INFURA_ID;
 
   if (
     chainData.rpc_url.includes("infura.io") &&
@@ -202,4 +203,12 @@ export async function formatTestTransaction(address, chainId) {
 
 export function isObject(obj) {
   return typeof obj === "object" && !!Object.keys(obj).length;
+}
+
+export function openUrl(url, options = '_blank') {
+  window.open(url, options);
+}
+
+export function dateFormat(time) {
+  return dayjs(time*1000).format('YYYY MM-DD HH:mm:ss')
 }

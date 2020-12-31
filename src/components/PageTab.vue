@@ -1,10 +1,10 @@
 <template>
   <div class="pagetab">
-    <router-link tag="div" class="tab-item active" to="/">
+    <router-link tag="div" :class="{'tab-item': true, 'active': isGovernance}" to="/">
       <img src="../assets/home-tab-icon-1.png" alt="" />
       <span>Governance</span>
     </router-link>
-    <router-link tag="div" class="tab-item " to="/dividends">
+    <router-link tag="div" :class="{'tab-item': true, 'active': isDividends}" to="/dividends">
       <img src="../assets/home-tab-icon-2.png" alt="" />
       <span>Dividends</span>
     </router-link>
@@ -16,6 +16,17 @@ export default {
   name: "PageTab",
   props: {
   },
+  computed: {
+    isGovernance: function() {
+      return this.$route.path === '/'
+    },
+    isDividends: function() {
+      return this.$route.path === '/dividends'
+    },
+  },
+  mounted: function (){
+
+  }
 };
 </script>
 

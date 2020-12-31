@@ -8,6 +8,7 @@ import Nav from './Nav.vue';
 import TokenBalance from './TokenBalance.vue';
 import DividendHistory from './DividendHistory.vue';
 import UnlockKtonDialog from './UnlockKtonDialog.vue';
+import LockKtonDialog from './LockKtonDialog.vue';
 import Footer from './Footer.vue';
 import Web3Modal from './Web3Modal';
 
@@ -21,6 +22,7 @@ export {
   Nav,
   TokenBalance,
   DividendHistory,
+  LockKtonDialog,
   UnlockKtonDialog,
   Footer,
   Web3Modal

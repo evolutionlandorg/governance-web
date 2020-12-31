@@ -12,12 +12,8 @@ export default {
 
     document.getElementById('app').appendChild(instance.$el);
 
-    if (options) {
-      if (options.icon)
-        instance.icon = options.icon;
-      if (options.progressColor)
-        instance.progressColor = options.progressColor;
-    }
+    // if (options) {
+    // }
 
     const web3ModalMethod = {
       init(...params) {

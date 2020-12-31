@@ -1,7 +1,7 @@
 <template>
   <div class="content">
     <el-dialog
-      title="Unlock KTON"
+      title="Lock KTON"
       :visible="visible"
       width="35%"
       :before-close="handleClose"
@@ -12,14 +12,17 @@
         size="small"
         :label-position="labelPosition"
         label-width="120px"
-        :model="unlockForm"
+        :model="lockForm"
       >
         <div class="line"></div>
+        <el-form-item class="form-content" label="Balance:">
+          <p>{{convertFixedAmountFromRawNumber(_kton_get_value.balanceOf)}} KTON</p>
+        </el-form-item>
         <el-form-item class="form-content" label="Locked:">
           <p>{{convertFixedAmountFromRawNumber(_evolutionTeller_get_value.balanceOfStaking)}} KTON</p>
         </el-form-item>
-        <el-form-item class="form-content" label="Unlock:">
-          <el-input v-model="unlockForm.unlockValue" type="number">
+        <el-form-item class="form-content" label="Lock:">
+          <el-input v-model="lockForm.lockValue" type="number">
             <span slot="suffix" class="input-suffix">KTON</span>
           </el-input>
         </el-form-item>
@@ -27,7 +30,7 @@
       </el-form>
       <span slot="footer" class="dialog-footer">
         <el-button @click="handleCancel" size="small">Cancel</el-button>
-        <el-button type="primary" @click="handleConfirm" size="small">Unlock</el-button>
+        <el-button type="primary" @click="handleConfirm" size="small">Lock</el-button>
       </span>
     </el-dialog>
   </div>
@@ -42,7 +45,7 @@ import {
 } from "@/helpers/bignumber";
 
 export default {
-  name: "UnlockKtonDialog",
+  name: "LockKtonDialog",
   props: {
     visible: Boolean,
     cancel: Function,
@@ -52,8 +55,8 @@ export default {
   data() {
     return {
       labelPosition: "left",
-      unlockForm: {
-        unlockValue: "",
+      lockForm: {
+        lockValue: "",
       },
     };
   },
@@ -65,12 +68,12 @@ export default {
   },
   watch: {
     visible: function() {
-      this.unlockForm.unlockValue = ""
+      this.lockForm.lockValue = ""
     }
   },
   methods: {
      ...mapActions([
-      "_evolutionTeller_withdraw"
+      "_evolutionTeller_stake"
     ]),
     handleCancel() {
       this.cancel && this.cancel();
@@ -85,7 +88,7 @@ export default {
       done();
     },
     evolutionTellerStake: function() {
-      this._evolutionTeller_withdraw({$web3Modal: this.$web3Modal, params: [toWei(this.unlockForm.unlockValue)]});
+      this._evolutionTeller_stake({$web3Modal: this.$web3Modal, params: [toWei(this.lockForm.lockValue)]});
     },
     convertFixedAmountFromRawNumber,
   },

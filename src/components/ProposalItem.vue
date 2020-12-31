@@ -1,18 +1,20 @@
 <template>
   <div class="content">
     <div class="proposal-info">
-      <p class="title">{{ proposal.title }}</p>
+      <p class="title">{{ proposal.msg.payload.name }}</p>
       <p class="subtitle">
-        Avaliable Power: {{ proposal.power }} Time: {{ proposal.time }}
+        Time: {{ dateFormat(proposal.msg.payload.start) }} ~ {{ dateFormat(proposal.msg.payload.end) }}
       </p>
     </div>
     <div class="proposal-buttons">
-      <el-button size="mini">Vote</el-button>
+      <el-button size="mini" @click="goVote(proposal.authorIpfsHash)">Vote</el-button>
     </div>
   </div>
 </template>
 
 <script>
+import { dateFormat, openUrl } from '@/helpers/utilities';
+import { getApi, API_SNAPSHOT_DOMAIN } from '@/helpers/constants'
 export default {
   name: "ProposalItem",
   props: {
@@ -21,6 +23,14 @@ export default {
       default: () => {},
     },
   },
+
+  methods: {
+    goVote: function(hash) {
+      openUrl(`${getApi(API_SNAPSHOT_DOMAIN).page}/#/evolutionland/proposal/${hash}`);
+    },
+    dateFormat,
+    
+  }
 };
 </script>
 
@@ -35,6 +45,7 @@ export default {
   .proposal-info {
     min-width: 0;
     margin-right: 20px;
+    flex: 1;
     p {
       margin: 0;
     }
