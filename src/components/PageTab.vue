@@ -49,6 +49,7 @@ export default {
   cursor: pointer;
   span {
     color: $--color-primary;
+    font-weight: 600;
   }
   img {
     margin-left: 10px;

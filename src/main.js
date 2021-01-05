@@ -5,6 +5,7 @@ import router from './router'
 import store from './store'
 import {Web3Modal} from './components'
 import VueApollo from 'vue-apollo'
+import Clipboard from 'v-clipboard'
 
 import {
   Pagination,
@@ -165,6 +166,7 @@ Vue.use(CascaderPanel);
 Vue.use(Loading.directive);
 Vue.use(Web3Modal);
 Vue.use(VueApollo)
+Vue.use(Clipboard)
 
 Vue.prototype.$store = store;
 

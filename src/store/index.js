@@ -1,12 +1,18 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import BigNumber from 'bignumber.js'
-import { ZERO } from '@/helpers/bignumber';
+import VuexPersistence from 'vuex-persist'
+
+import { ZERO, greaterThan, toBigNumber } from '@/helpers/bignumber';
 import * as Mutation from './mutation-type';
 import * as Methods from '@/helpers/constants';
 import * as Config from './config';
 import * as Api from '@/helpers/api';
-import ApolloQuery from '@/helpers/apollo/queries';
+import * as GraphApi from '@/helpers/graphApi';
+
+const vuexLocal = new VuexPersistence({
+  storage: window.localStorage
+})
 
 Vue.use(Vuex)
 
@@ -24,22 +30,28 @@ const INITIAL_STATE = {
 };
 
 const INITIAL_EVOLUTION_TELLER = {
-  balanceOf: ZERO,
-  balanceOfStaking: ZERO,
-  balanceOfLandOwner: ZERO,
-  balanceOfApostleOwner: ZERO,
+  balanceOf: "0",
+  balanceOfStaking: "0",
+  balanceOfLandOwner: "0",
+  balanceOfApostleOwner: "0",
   
-  tokenVoteRate: ZERO,
-  landVoteRate: ZERO,
-  apostleVoteRate: ZERO,
+  tokenVoteRate: "0",
+  landVoteRate: "0",
+  apostleVoteRate: "0",
 
-  earned: ZERO,
-  reward: ZERO
+  earned: "0",
+  reward: "0"
 }
 
 const INITIAL_EVOLUTION_KTON = {
-  balanceOf: ZERO,
-  allowance: ZERO
+  balanceOf: "0",
+  allowance: "0"
+}
+
+const INITIAL_STAKED_HISTORY = {
+  Locked: [],
+  Unlocked: [],
+  Dividend: []
 }
 
 // ----- proposal----- //
@@ -66,6 +78,7 @@ const INITIAL_EVOLUTION_KTON = {
 // }
 
 export default new Vuex.Store({
+  plugins: [vuexLocal.plugin],
   state: {
     count: 2,
     web3Modal: { ...INITIAL_STATE },
@@ -75,13 +88,17 @@ export default new Vuex.Store({
     kton: {
       ...INITIAL_EVOLUTION_KTON
     },
-    proposals: []
+    proposals: [],
+    stakedHistory: INITIAL_STAKED_HISTORY
   },
   getters: {
 
     // ---------------------- Web3Modal --------------------- //
     _web3Modal_get_value: (state, getters) => {
       return state.web3Modal
+    },
+    _web3Modal_get_tx_queue: (state, getters) => {
+      return [...state.web3Modal.txQueue]
     },
     // ------------------ Evolution Teller ------------------ //
     _evolutionTeller_get_value: (state, getters) => {
@@ -92,13 +109,16 @@ export default new Vuex.Store({
 
       return {
         totalPower: evolutionTeller.balanceOf,
-        stakingPower: evolutionTeller.balanceOfStaking.times(evolutionTeller.tokenVoteRate),
-        landPower: evolutionTeller.balanceOfLandOwner.times(evolutionTeller.landVoteRate),
-        apostlePower: evolutionTeller.balanceOfApostleOwner.times(evolutionTeller.apostleVoteRate),
+        stakingPower: toBigNumber(evolutionTeller.balanceOfStaking).times(evolutionTeller.tokenVoteRate),
+        landPower: toBigNumber(evolutionTeller.balanceOfLandOwner).times(evolutionTeller.landVoteRate),
+        apostlePower: toBigNumber(evolutionTeller.balanceOfApostleOwner).times(evolutionTeller.apostleVoteRate),
       }
     },
     _evolutionTeller_is_approve_kton:(state, getters) => {
-      return state.kton.allowance.isGreaterThan(Config.KTON_EVOLUTIONTELLER_APPROVE_VALUE_THRESHOLD);
+      return greaterThan(state.kton.allowance, Config.KTON_EVOLUTIONTELLER_APPROVE_VALUE_THRESHOLD);
+    },
+    _evolutionTeller_staked_history:(state, getters) => {
+      return state.stakedHistory;
     },
     // ------------------------ Kton ------------------------ //
     _kton_get_value: (state, getters) => {
@@ -121,6 +141,15 @@ export default new Vuex.Store({
     [Mutation.WEB3MODAL_RESET_VALUE](state, payload) {
       state.web3Modal = {
         ...INITIAL_STATE
+      },
+      state.stakedHistory = {
+        ...INITIAL_STAKED_HISTORY
+      },
+      state.evolutionTeller = {
+        ...INITIAL_EVOLUTION_TELLER
+      },
+      state.kton = {
+        ...INITIAL_EVOLUTION_KTON
       }
     },
     [Mutation.WEB3MODAL_BEFORE_TXQUEUE](state, payload) {
@@ -135,6 +164,12 @@ export default new Vuex.Store({
       state.evolutionTeller = {
         ...state.evolutionTeller,
         ...payload.data
+      }
+    },
+    [Mutation.EVOLUTIONTELLER_HISTORY_SET_VALUE](state, payload) {
+      state.stakedHistory = {
+        ...state.stakedHistory,
+        [payload.data.type]: [...payload.data.value]
       }
     },
 
@@ -191,17 +226,17 @@ export default new Vuex.Store({
       commit({
         type: Mutation.EVOLUTIONTELLER_SET_VALUE,
         data: {
-          balanceOf: new BigNumber(balanceOf.result),
-          balanceOfLandOwner: new BigNumber(balanceOfLandOwner.result),
-          balanceOfApostleOwner: new BigNumber(balanceOfApostleOwner.result),
-          balanceOfStaking: new BigNumber(balanceOfStaking.result),
+          balanceOf: balanceOf.result,
+          balanceOfLandOwner: balanceOfLandOwner.result,
+          balanceOfApostleOwner: balanceOfApostleOwner.result,
+          balanceOfStaking: balanceOfStaking.result,
           
-          tokenVoteRate: new BigNumber(voteRates.result[0]),
-          landVoteRate: new BigNumber(voteRates.result[1]),
-          apostleVoteRate: new BigNumber(voteRates.result[2]),
+          tokenVoteRate: voteRates.result[0],
+          landVoteRate: voteRates.result[1],
+          apostleVoteRate: voteRates.result[2],
 
-          earned: new BigNumber(dividends.result[0]),
-          reward: new BigNumber(dividends.result[1]),
+          earned: dividends.result[0],
+          reward: dividends.result[1],
         }
       })
     },
@@ -215,6 +250,7 @@ export default new Vuex.Store({
       //   $web3Modal: payload.$web3Modal,
       //   params: [getters._web3Modal_get_value.address]
       // })
+      return result;
     },
 
     async _evolutionTeller_withdraw({ commit, dispatch, getters }, payload) {
@@ -231,7 +267,7 @@ export default new Vuex.Store({
     async _evolutionTeller_getReward({ commit, dispatch, getters }, payload) {
       const result = await payload.$web3Modal.contractCall(
         Methods.EVO_TELLER_GET_REWARD, 
-        payload.params);
+        []);
     },
 
     // ------------------------ Kton ------------------------ //
@@ -243,8 +279,8 @@ export default new Vuex.Store({
       commit({
         type: Mutation.KTON_SET_VALUE,
         data: {
-          balanceOf: new BigNumber(balanceOf.result),
-          allowance: new BigNumber(allowance.result),
+          balanceOf: balanceOf.result,
+          allowance: allowance.result,
         }
       })
     },
@@ -278,12 +314,20 @@ export default new Vuex.Store({
     
     // ---------------------- Dividends --------------------- //
     async _dividends_fetch_history({ commit, dispatch, getters }, payload) {
-      // ApolloQuery.
-      const result = await Api.apiGetStakeHistory();
-      const proposals = Object.keys(result).map((item) => {
-        return result[item];
-      }) || [];
+      // ApolloQuery
+      if(!payload[0]){
+        return null;
+      }
 
+      const result = await GraphApi.apiGetStakeHistory(...payload);
+
+      commit({
+        type: Mutation.EVOLUTIONTELLER_HISTORY_SET_VALUE,
+        data:{
+          type: payload[1] || 'Locked',
+          value: result.data.stakedHistories
+        }
+      })
     },
 
     // ----------------------- Common ----------------------- //

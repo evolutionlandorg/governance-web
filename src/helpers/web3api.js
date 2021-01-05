@@ -212,17 +212,13 @@ export function callEvolutionTellerStake(address, chainId, web3, params = [], op
 }
 
 export function callEvolutionTellerWithdraw(address, chainId, web3, params = [], options = {}) {
-  return new Promise(async (resolve, reject) => {
     const contract = getEvoTellerContract(chainId, web3)
     return send(address, contract, 'withdraw', params, options)
-  })
 }
 
 export function callEvolutionTellerGetReward(address, chainId, web3, params = [], options = {}) {
-  return new Promise(async (resolve, reject) => {
     const contract = getEvoTellerContract(chainId, web3)
     return send(address, contract, 'getReward', params, options)
-  })
 }
 
 export const Web3ApiMapping = {
@@ -271,7 +267,7 @@ export const Web3ApiMapping = {
     func: callEvolutionTellerDividends
   },
   [EVO_TELLER_GET_REWARD]:{
-    type: 'call',
+    type: 'tx',
     func: callEvolutionTellerGetReward
   }
 }

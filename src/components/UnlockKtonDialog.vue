@@ -116,6 +116,12 @@ export default {
     border-bottom: $--border-dark;
     margin-bottom: 15px;
   }
+
+  .dialog-footer{
+    button {
+      width: 130px;
+    }
+  }
 }
 
 ::v-deep .el-dialog--center .el-dialog__body {

@@ -26,12 +26,12 @@
                   <div class="asset-buttons">
                     <div class="item">
                       <p>Balance: {{convertFixedAmountFromRawNumber(_kton_get_value.balanceOf)}}</p>
-                      <el-button size="small" type="primary" v-if="!_evolutionTeller_is_approve_kton" @click="approveKtonToEvolutionTeller">Authorize</el-button>
-                      <el-button size="small" type="primary" v-else @click="toggleLockKtonDialogVisible">Lock</el-button>
+                      <el-button class="fixed-button" size="small" type="primary" v-if="!_evolutionTeller_is_approve_kton" @click="approveKtonToEvolutionTeller">Approve</el-button>
+                      <el-button class="fixed-button" size="small" type="primary" v-else @click="toggleLockKtonDialogVisible">Lock</el-button>
                     </div>
                     <div class="item">
                       <p>Locked: {{convertFixedAmountFromRawNumber(_evolutionTeller_get_value.balanceOfStaking)}}</p>
-                      <el-button size="small" type="primary" @click="toggleUnlockKtonDialogVisible">Unlock</el-button>
+                      <el-button class="fixed-button" size="small" type="primary" @click="toggleUnlockKtonDialogVisible">Unlock</el-button>
                     </div>
                   </div>
                 </div>
@@ -52,7 +52,7 @@
                   <div class="asset-buttons">
                     <div class="item">
                       <p>My Land: {{formatFixedDecimals(_evolutionTeller_get_value.balanceOfLandOwner)}}</p>
-                      <el-button size="small" type="primary" @click="openUrl('https://www.evolution.land.l2me.com/land/1?goUrl=%2Flandmarket%2Fsearch')">Buy</el-button>
+                      <el-button class="fixed-button" size="small" type="primary" @click="openUrl('https://www.evolution.land.l2me.com/land/1?goUrl=%2Flandmarket%2Fsearch')">Buy</el-button>
                     </div>
                   </div>
                 </div>
@@ -73,7 +73,7 @@
                   <div class="asset-buttons">
                     <div class="item">
                       <p>My Apostle: {{formatFixedDecimals(_evolutionTeller_get_value.balanceOfApostleOwner)}}</p>
-                      <el-button size="small" type="primary" @click="openUrl('https://www.evolution.land.l2me.com/land/1?goUrl=%2Fapostle')">Buy</el-button>
+                      <el-button class="fixed-button" size="small" type="primary" @click="openUrl('https://www.evolution.land.l2me.com/land/1?goUrl=%2Fapostle')">Buy</el-button>
                     </div>
                   </div>
                 </div>
@@ -122,7 +122,6 @@ import {
 } from "@/helpers/bignumber";
 import { mapActions, mapGetters } from "vuex";
 import { openUrl } from "@/helpers/utilities";
-import { getStakeHistory } from '@/helpers/graphApi';
 
 export default {
   name: "Home",
@@ -152,7 +151,7 @@ export default {
     ]),
   },
   mounted: async function() {
-    console.log('graph', await getStakeHistory('0x4ad6e21bef59268f2ccf10bfa18c20c8c13ed859'))
+    // console.log('graph', await getStakeHistory('0x4ad6e21bef59268f2ccf10bfa18c20c8c13ed859'))
   },
   updated: async function() {},
   methods: {
@@ -192,6 +191,10 @@ export default {
   }
 }
 
+.fixed-button {
+  width: 95px;
+}
+
 .asset-item {
   display: flex;
   flex-direction: column;
@@ -216,8 +219,12 @@ export default {
     .asset-info {
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: flex-start;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding-top: 7px;
+
       p {
         margin: 0;
       }

@@ -1,11 +1,14 @@
 <template>
   <div class="content">
     <div class="logo-box">
+      <router-link to="/">
       <img src="../assets/evolution-land-logo.png" alt="evo logo" />
+      </router-link>
     </div>
     <div class="nav">
       <a target="_blank" rel="noopener noreferrer" href="https://www.evolution.land/">Game</a>
-      <router-link to="/">Vote</router-link>
+      <a target="_blank" rel="noopener noreferrer" :href="renderVoteUrl()">Vote</a>
+      <!-- <router-link :to="renderVoteUrl()">Vote</router-link> -->
       <a target="_blank" rel="noopener noreferrer" href="https://talk.darwinia.network/">Forum</a>
       <a target="_blank" rel="noopener noreferrer" href="https://docs.evolution.land/">Docs</a>
     </div>
@@ -13,9 +16,16 @@
 </template>
 
 <script>
+import { getApi, API_SNAPSHOT_DOMAIN } from '@/helpers/constants'
+
 export default {
   name: "Nav",
   props: {},
+  methods: {
+    renderVoteUrl() {
+      return `${getApi(API_SNAPSHOT_DOMAIN).page}/#/evolutionland`;
+    }
+  }
 };
 </script>
 

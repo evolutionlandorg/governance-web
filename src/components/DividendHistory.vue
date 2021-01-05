@@ -2,71 +2,124 @@
   <div class="content">
     <el-tabs v-model="activeName" @tab-click="handleClick">
       <el-tab-pane label="Locked" name="locked">
-        <el-table class="history-table" :data="tableData" style="width: 100%">
-          <el-table-column prop="hash" label="Txhash" width="550">
+        <el-table class="history-table" :data="_evolutionTeller_staked_history.Locked" style="width: 100%">
+          <el-table-column prop="id" label="Txhash">
             <template slot-scope="scope">
-              <a :href="renderTxLink( scope.row.hash )" target="_blank">{{scope.row.hash}}</a>
+              <a :href="handleExplorerURL( scope.row.id )" target="_blank">{{ellipseAddress(scope.row.id, 25)}}</a>
             </template>
           </el-table-column>
-          <el-table-column prop="value" label="Value" width="180">
+          <el-table-column prop="amount" label="Value (KTON)" width="150">
+            <template slot-scope="scope">
+              <span>{{fromWei(scope.row.amount)}}</span>
+            </template>
           </el-table-column>
-          <el-table-column prop="date" label="Time" width="150"> </el-table-column>
+          <el-table-column prop="createTime" label="Time" width="150">
+            <template slot-scope="scope">
+              <span>{{dateFormat(scope.row.createTime)}}</span>
+            </template>
+          </el-table-column>
         </el-table>
       </el-tab-pane>
-      <el-tab-pane label="Unlocked" name="unlocked">unlocked</el-tab-pane>
-      <el-tab-pane label="Dividend" name="dividend">dividend</el-tab-pane>
+      <el-tab-pane label="Unlocked" name="unlocked">
+        <el-table class="history-table" :data="_evolutionTeller_staked_history.Unlocked" style="width: 100%">
+          <el-table-column prop="id" label="Txhash">
+            <template slot-scope="scope">
+              <a :href="handleExplorerURL( scope.row.id )" target="_blank">{{ellipseAddress(scope.row.id, 25)}}</a>
+            </template>
+          </el-table-column>
+          <el-table-column prop="amount" label="Value (KTON)" width="150">
+            <template slot-scope="scope">
+              <span>{{fromWei(scope.row.amount)}}</span>
+            </template>
+          </el-table-column>
+          <el-table-column prop="createTime" label="Time" width="150">
+            <template slot-scope="scope">
+              <span>{{dateFormat(scope.row.createTime)}}</span>
+            </template>
+          </el-table-column>
+        </el-table>
+      </el-tab-pane>
+      <el-tab-pane label="Dividend" name="dividend">
+        <el-table class="history-table" :data="_evolutionTeller_staked_history.Dividend" style="width: 100%">
+          <el-table-column prop="id" label="Txhash">
+            <template slot-scope="scope">
+              <a :href="handleExplorerURL( scope.row.id )" target="_blank">{{ellipseAddress(scope.row.id, 25)}}</a>
+            </template>
+          </el-table-column>
+          <el-table-column prop="amount" label="Value (RING)" width="150">
+            <template slot-scope="scope">
+              <span>{{fromWei(scope.row.amount)}}</span>
+            </template>
+          </el-table-column>
+          <el-table-column prop="createTime" label="Time" width="150">
+            <template slot-scope="scope">
+              <span>{{dateFormat(scope.row.createTime)}}</span>
+            </template>
+          </el-table-column>
+        </el-table>
+      </el-tab-pane>
     </el-tabs>
   </div>
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
+import emitter from "@/helpers/eventBus";
+import { SUBSCRIBE_HAS_CHANGED } from "@/components/Web3Modal/constants";
+import { handleExplorerURL, dateFormat, ellipseAddress } from "@/helpers/utilities";
+import {
+  convertFixedAmountFromRawNumber,
+  fromWei,
+} from "@/helpers/bignumber";
+
 export default {
   name: "DividendHistory",
   props: {},
   data() {
     return {
       activeName: "locked",
-      tableData: [
-        {
-          date: "2016-05-02",
-          hash:
-            "0xff5fe1d8ca8e107382cbec346eba1cb6adc310386bbbaa8428a08f3f19294d4c",
-          value: "45828.57",
-        },
-        {
-          date: "2016-05-05",
-          hash:
-            "0xff5fe1d8ca8e107382cbec346eba1cb6adc310386bbbaa8428a08f3f19294d4c",
-          value: "45828.57",
-        },
-        {
-          date: "2016-05-06",
-          hash:
-            "0xff5fe1d8ca8e107382cbec346eba1cb6adc310386bbbaa8428a08f3f19294d4c",
-          value: "45828.57",
-        },
-        {
-          date: "2016-05-07",
-          hash:
-            "0xff5fe1d8ca8e107382cbec346eba1cb6adc310386bbbaa8428a08f3f19294d4c",
-          value: "45828.57",
-        },
-        {
-          date: "2016-05-02",
-          hash:
-            "0xff5fe1d8ca8e107382cbec346eba1cb6adc310386bbbaa8428a08f3f19294d4c",
-          value: "45828.57",
-        },
-      ],
     };
   },
+  computed: {
+    ...mapGetters([
+      "_evolutionTeller_get_value",
+      "_evolutionTeller_staked_history",
+      "_web3Modal_get_value"
+    ]),
+  },
+  mounted: function() {
+    emitter.on(SUBSCRIBE_HAS_CHANGED, this.web3ChangeHandle);
+    this._dividends_fetch_history([this._web3Modal_get_value.address, 'Locked']);
+  },
+  beforeDestroy: function() {
+    console.log('DividendHistory::beforeDestroy')
+    emitter.off(SUBSCRIBE_HAS_CHANGED, this.web3ChangeHandle)
+  },
   methods: {
+    ...mapActions([
+      "_dividends_fetch_history"
+    ]),
     handleClick(tab, event) {
-      console.log(tab, event);
+
     },
     renderTxLink(hash) {
       return  `https://etherscan.io/tx/${hash}`
-    }
+    },
+    web3ChangeHandle() {
+        this._dividends_fetch_history([this._web3Modal_get_value.address, 'Locked']);
+        this._dividends_fetch_history([this._web3Modal_get_value.address, 'Unlocked']);
+        this._dividends_fetch_history([this._web3Modal_get_value.address, 'Dividend']);
+    },
+    handleExplorerURL(hash) {
+      const {
+        chainId
+      } = this._web3Modal_get_value;
+      return handleExplorerURL(chainId, hash);
+    },
+    convertFixedAmountFromRawNumber,
+    dateFormat,
+    fromWei,
+    ellipseAddress
   },
 };
 </script>

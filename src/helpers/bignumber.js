@@ -1,6 +1,10 @@
 import BigNumber from 'bignumber.js'
 import web3 from 'web3';
 
+export function toBigNumber(number) {
+  return new BigNumber(number);
+}
+
 export function isNaN(value) {
   return new BigNumber(`${value}`).isNaN()
 }

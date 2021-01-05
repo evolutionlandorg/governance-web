@@ -147,6 +147,9 @@
     @include when(circle) {
       padding: $--button-small-padding-vertical;
     }
+    @include when(fixed) {
+      width: $--button-small-fixed-width;
+    }
   }
   @include m(mini) {
     @include button-size($--button-mini-padding-vertical, $--button-mini-padding-horizontal, $--button-mini-font-size, $--button-mini-border-radius);

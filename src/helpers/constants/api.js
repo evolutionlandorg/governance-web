@@ -6,7 +6,6 @@ export const API_SNAPSHOT_DOMAIN = {
   }
 }
 
-
 export const API_GRAPH_DOMAIN = {
   dev: {
     domain: 'https://api.thegraph.com/subgraphs/name/freehere107/alphaevo',

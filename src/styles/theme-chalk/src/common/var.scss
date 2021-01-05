@@ -539,7 +539,7 @@ $--button-medium-padding-horizontal: 20px !default;
 $--button-small-font-size: 12px !default;
 $--button-small-border-radius: #{$--border-radius-base - 1} !default;
 /// padding||Spacing|3
-$--button-small-padding-vertical: 9px !default;
+$--button-small-padding-vertical: 8px !default;
 /// padding||Spacing|3
 $--button-small-padding-horizontal: 15px !default;
 /// fontSize||Font|1
@@ -598,6 +598,7 @@ $--button-info-background-color: $--color-info !default;
 $--button-hover-tint-percent: 20% !default;
 $--button-active-shade-percent: 10% !default;
 
+$--button-small-fixed-width: 95px !default;
 
 /* cascader
 -------------------------- */
@@ -645,7 +646,7 @@ $--table-header-font-color: $--color-text-secondary !default;
 $--table-row-hover-background-color: $--background-color-base !default;
 $--table-current-row-background-color: $--color-primary-light-9 !default;
 /// color||Color|0
-$--table-header-background-color: $--color-white !default;
+$--table-header-background-color: #282442 !default;
 $--table-fixed-box-shadow: 0 0 10px rgba(0, 0, 0, .12) !default;
 
 /* Pagination
@@ -675,7 +676,7 @@ $--pagination-hover-color: $--color-primary !default;
 /// color||Color|0
 $--popup-modal-background-color: $--color-black !default;
 /// opacity||Other|1
-$--popup-modal-opacity: 0.5 !default;
+$--popup-modal-opacity: 0.8 !default;
 
 /* Popover
 -------------------------- */

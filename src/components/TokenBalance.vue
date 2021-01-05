@@ -16,12 +16,13 @@
       </div>
       <div class="buttons-box">
         <el-button
-          size="mini"
+          class="is-fixed"
+          size="small"
           v-if="!_evolutionTeller_is_approve_kton"
           @click="approveKtonToEvolutionTeller"
-        >Lock</el-button>
-        <el-button size="mini" v-else @click="toggleLockKtonDialogVisible">Lock</el-button>
-        <el-button size="mini" @click="toggleUnlockKtonDialogVisible">Unlock</el-button>
+        >Approve</el-button>
+        <el-button class="is-fixed" size="small" v-else @click="toggleLockKtonDialogVisible">Lock</el-button>
+        <el-button class="is-fixed" size="small" @click="toggleUnlockKtonDialogVisible">Unlock</el-button>
       </div>
     </div>
     <div>

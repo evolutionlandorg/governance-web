@@ -32,7 +32,7 @@ import { mapActions, mapGetters } from "vuex";
 import { SUBSCRIBE_HAS_CHANGED } from "@/components/Web3Modal/constants";
 
 export default {
-  name: "Home",
+  name: "App",
   components: {
     Nav,
     Footer,

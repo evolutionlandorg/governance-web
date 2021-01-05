@@ -6,7 +6,7 @@ export const WEB3MODAL_BEFORE_TXQUEUE = 'WEB3MODAL_BEFORE_TXQUEUE'
 
 // ------------------ Evolution Teller ------------------ //
 export const EVOLUTIONTELLER_SET_VALUE = 'EVOLUTIONTELLER_SET_VALUE'
-
+export const EVOLUTIONTELLER_HISTORY_SET_VALUE = 'EVOLUTIONTELLER_HISTORY_SET_VALUE'
 
 // ------------------------ Kton ------------------------ //
 export const KTON_SET_VALUE = 'KTON_SET_VALUE'

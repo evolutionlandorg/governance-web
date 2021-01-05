@@ -10,7 +10,9 @@ export default {
       el: document.createElement('div')
     });
 
-    document.getElementById('app').appendChild(instance.$el);
+    // document.getElementById('app').appendChild(instance.$el);
+    document.body.appendChild(instance.$el)
+
 
     // if (options) {
     // }
@@ -19,11 +21,11 @@ export default {
       init(...params) {
         instance.init(...params);
       },
-      connect() {
-        instance.onConnect();
+      async connect() {
+        await instance.onConnect();
       },
-      disconnect() {
-        instance.resetApp();
+      async disconnect() {
+        await instance.resetApp();
       },
       getWeb3() {
         return instance.getWeb3();

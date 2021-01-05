@@ -16,7 +16,7 @@
               <p class="value">{{convertFixedAmountFromRawNumber(getTotalDividends())}} RING</p>
               <div class="claim-info">
                 <p class="subtitle">Unclaimed : {{convertFixedAmountFromRawNumber(_evolutionTeller_get_value.reward)}} RING</p>
-                <el-button size="mini">Claim</el-button>
+                <el-button class="is-fixed" size="small" @click="handleCliam()">Claim</el-button>
               </div>
             </div>
           </div>
@@ -35,8 +35,6 @@
         </Content>
       </el-col>
     </el-row>
-
-    <UnlockKtonDialog :visible="false"/>
   </div>
 </template>
 
@@ -48,13 +46,13 @@ import {
   Content,
   TokenBalance,
   DividendHistory,
-  UnlockKtonDialog
 } from "@/components/index";
 import { mapActions, mapGetters } from "vuex";
 import {
   convertFixedAmountFromRawNumber,
   formatFixedDecimals,
-  toWei
+  toWei,
+  toBigNumber
 } from "@/helpers/bignumber";
 
 export default {
@@ -65,7 +63,6 @@ export default {
     Content,
     TokenBalance,
     DividendHistory,
-    UnlockKtonDialog
   },
   data: () => {
     return {
@@ -74,11 +71,25 @@ export default {
   computed: {
     ...mapGetters([
       "_evolutionTeller_get_value",
+      "_web3Modal_get_value"
     ]),
   },
+  mounted: function() {
+  },
   methods: {
+    ...mapActions([
+      "_evolutionTeller_getReward",
+    ]),
     getTotalDividends: function() {
-      return this._evolutionTeller_get_value.earned.plus(this._evolutionTeller_get_value.reward);
+      return toBigNumber(this._evolutionTeller_get_value.earned).plus(toBigNumber(this._evolutionTeller_get_value.reward));
+    },
+    handleCliam: async function() {
+      try {
+        await this._evolutionTeller_getReward({ $web3Modal: this.$web3Modal });
+      } catch(e) {
+        console.log('error handleConfirm: ', e);
+      }
+      console.log('close');
     },
     convertFixedAmountFromRawNumber
   }

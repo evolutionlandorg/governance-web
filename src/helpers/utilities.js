@@ -210,5 +210,15 @@ export function openUrl(url, options = '_blank') {
 }
 
 export function dateFormat(time) {
-  return dayjs(time*1000).format('YYYY MM-DD HH:mm:ss')
+  return dayjs(time*1000).format('YYYY-MM-DD HH:mm:ss')
+}
+
+export function handleExplorerURL(chainId, hash) {
+  const chainData = getChainData(chainId);
+
+  if (!hash) {
+    return chainData.explorer;
+  }
+
+  return `${chainData.explorer}/tx/${hash}`;
 }
