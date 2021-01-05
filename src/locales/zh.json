@@ -1,0 +1,63 @@
+{
+  "nav": {
+    "game": "游戏",
+    "vote": "投票",
+    "forum": "论坛",
+    "docs": "文档",
+    "governance": "治理",
+    "dividends": "分红"
+  },
+  "module": {
+    "power": "Power",
+    "proposal list": "提案列表",
+    "dividends": "分红",
+    "kton balance": "KTON 余额",
+    "history": "历史记录"
+  },
+  "connect": {
+    "connect": "连接",
+    "change": "切换",
+    "account": "当前账号",
+    "connect with": "已连接至",
+    "copy address": "复制地址",
+    "view on ethereum": "去 Etherscan 查看",
+    "disconnect": "退出",
+    "recent transaction": "当前交易",
+    "clear all": "清空"
+  },
+  "common": {
+    "cancel": "取消"
+  },
+  "total power": "Power 总计",
+  "approve": "授权",
+  "land power": "地块 Power",
+  "apostle power": "使徒 Power",
+  "buy": "购买",
+  "vote": "投票",
+  "time": "时间",
+  "lock": "锁定",
+  "unlock": "解锁",
+  "discuss": "讨论",
+  "proposal all": "全部提案",
+  "unlock kton": "解锁 KTON",
+  "current locked": "当前锁定",
+  "Note: The lock period is at least 14 days. Each lock will reset the lock period. KTON locked for more than 14 days will enter the unlockable state.": "提示：锁定期限为14天，每次进行新的锁定操作后，所有 KTON 的锁定期限将被重置。14天锁定期结束后，KTON 将变为“可解锁”状态",
+  "lock kton": "锁定 KTON",
+  "balance": "余额",
+  "locked": "已锁定",
+  "total dividends": "总计分红",
+  "unclaimed": "待领取",
+  "claim": "领取",
+  "txhash": "交易哈希",
+  "history value": "数量 ( {token} )",
+  "my land": "我的地块",
+  "my apostle": "我的使徒",
+  "unlocked": "已解锁",
+  "dividend": "分红",
+  "power tip": [
+    "每锁定 1 KTON，可获得 10 Power；",
+    "每持有 1 块土地，可获得 100 Power；",
+    "每持有 1 个使徒，可获得 1 Power。",
+    "每个提案发起时，会对当时持有的 Power进行快照，作为该提案的 有效 Power。因此，如果资产持有状况产生变化，不同提案的有效 Power可能是不同的。"
+  ]
+}

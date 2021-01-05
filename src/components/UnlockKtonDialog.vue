@@ -1,7 +1,7 @@
 <template>
   <div class="content">
     <el-dialog
-      title="Unlock KTON"
+      :title="$t('unlock kton')"
       :visible="visible"
       width="35%"
       :before-close="handleClose"
@@ -15,10 +15,10 @@
         :model="unlockForm"
       >
         <div class="line"></div>
-        <el-form-item class="form-content" label="Locked:">
+        <el-form-item class="form-content" :label="`${$t('locked')}:`">
           <p>{{convertFixedAmountFromRawNumber(_evolutionTeller_get_value.balanceOfStaking)}} KTON</p>
         </el-form-item>
-        <el-form-item class="form-content" label="Unlock:">
+        <el-form-item class="form-content" :label="`${$t('unlock')}:`">
           <el-input v-model="unlockForm.unlockValue" type="number">
             <span slot="suffix" class="input-suffix">KTON</span>
           </el-input>
@@ -26,8 +26,8 @@
         <div class="line"></div>
       </el-form>
       <span slot="footer" class="dialog-footer">
-        <el-button @click="handleCancel" size="small">Cancel</el-button>
-        <el-button type="primary" @click="handleConfirm" size="small">Unlock</el-button>
+        <el-button @click="handleCancel" size="small">{{$t('common.cancel')}}</el-button>
+        <el-button type="primary" @click="handleConfirm" size="small">{{$t('unlock')}}</el-button>
       </span>
     </el-dialog>
   </div>

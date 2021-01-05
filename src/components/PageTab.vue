@@ -2,11 +2,11 @@
   <div class="pagetab">
     <router-link tag="div" :class="{'tab-item': true, 'active': isGovernance}" to="/">
       <img src="../assets/home-tab-icon-1.png" alt="" />
-      <span>Governance</span>
+      <span>{{$t('nav.governance')}}</span>
     </router-link>
     <router-link tag="div" :class="{'tab-item': true, 'active': isDividends}" to="/dividends">
       <img src="../assets/home-tab-icon-2.png" alt="" />
-      <span>Dividends</span>
+      <span>{{$t('nav.dividends')}}</span>
     </router-link>
   </div>
 </template>

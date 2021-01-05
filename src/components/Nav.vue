@@ -6,11 +6,11 @@
       </router-link>
     </div>
     <div class="nav">
-      <a target="_blank" rel="noopener noreferrer" href="https://www.evolution.land/">Game</a>
-      <a target="_blank" rel="noopener noreferrer" :href="renderVoteUrl()">Vote</a>
+      <a target="_blank" rel="noopener noreferrer" href="https://www.evolution.land/">{{$t('nav.game')}}</a>
+      <a target="_blank" rel="noopener noreferrer" :href="renderVoteUrl()">{{$t('nav.vote')}}</a>
       <!-- <router-link :to="renderVoteUrl()">Vote</router-link> -->
-      <a target="_blank" rel="noopener noreferrer" href="https://talk.darwinia.network/">Forum</a>
-      <a target="_blank" rel="noopener noreferrer" href="https://docs.evolution.land/">Docs</a>
+      <a target="_blank" rel="noopener noreferrer" href="https://talk.darwinia.network/">{{$t('nav.forum')}}</a>
+      <a target="_blank" rel="noopener noreferrer" href="https://docs.evolution.land/">{{$t('nav.docs')}}</a>
     </div>
   </div>
 </template>

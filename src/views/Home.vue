@@ -17,7 +17,7 @@
                       <img src="../assets/kton.png" alt="kton">
                     </div>
                     <div class="asset-info">
-                      <p class="title">KTON Power</p>
+                      <p class="title">{{$t('kton power')}}</p>
                       <p
                         class="value"
                       >{{convertFixedAmountFromRawNumber(_evolutionTeller_get_power.stakingPower)}}</p>
@@ -25,13 +25,13 @@
                   </div>
                   <div class="asset-buttons">
                     <div class="item">
-                      <p>Balance: {{convertFixedAmountFromRawNumber(_kton_get_value.balanceOf)}}</p>
-                      <el-button class="fixed-button" size="small" type="primary" v-if="!_evolutionTeller_is_approve_kton" @click="approveKtonToEvolutionTeller">Approve</el-button>
-                      <el-button class="fixed-button" size="small" type="primary" v-else @click="toggleLockKtonDialogVisible">Lock</el-button>
+                      <p>{{$t('balance')}}: {{convertFixedAmountFromRawNumber(_kton_get_value.balanceOf)}}</p>
+                      <el-button class="fixed-button" size="small" type="primary" v-if="!_evolutionTeller_is_approve_kton" @click="approveKtonToEvolutionTeller">{{$t('approve')}}</el-button>
+                      <el-button class="fixed-button" size="small" type="primary" v-else @click="toggleLockKtonDialogVisible">{{$t('lock')}}</el-button>
                     </div>
                     <div class="item">
-                      <p>Locked: {{convertFixedAmountFromRawNumber(_evolutionTeller_get_value.balanceOfStaking)}}</p>
-                      <el-button class="fixed-button" size="small" type="primary" @click="toggleUnlockKtonDialogVisible">Unlock</el-button>
+                      <p>{{$t('locked')}}: {{convertFixedAmountFromRawNumber(_evolutionTeller_get_value.balanceOfStaking)}}</p>
+                      <el-button class="fixed-button" size="small" type="primary" @click="toggleUnlockKtonDialogVisible">{{$t('unlock')}}</el-button>
                     </div>
                   </div>
                 </div>
@@ -43,7 +43,7 @@
                       <img src="../assets/land.png" alt="land">
                     </div>
                     <div class="asset-info">
-                      <p class="title">Land Power</p>
+                      <p class="title">{{$t('land power')}}</p>
                       <p
                         class="value"
                       >{{formatFixedDecimals(_evolutionTeller_get_power.landPower)}}</p>
@@ -51,8 +51,8 @@
                   </div>
                   <div class="asset-buttons">
                     <div class="item">
-                      <p>My Land: {{formatFixedDecimals(_evolutionTeller_get_value.balanceOfLandOwner)}}</p>
-                      <el-button class="fixed-button" size="small" type="primary" @click="openUrl('https://www.evolution.land.l2me.com/land/1?goUrl=%2Flandmarket%2Fsearch')">Buy</el-button>
+                      <p>{{$t('my land')}}: {{formatFixedDecimals(_evolutionTeller_get_value.balanceOfLandOwner)}}</p>
+                      <el-button class="fixed-button" size="small" type="primary" @click="openUrl('https://www.evolution.land.l2me.com/land/1?goUrl=%2Flandmarket%2Fsearch')">{{$t('buy')}}</el-button>
                     </div>
                   </div>
                 </div>
@@ -64,7 +64,7 @@
                       <img src="../assets/apostle.png" alt="apostle">
                     </div>
                     <div class="asset-info">
-                      <p class="title">Apostle Power</p>
+                      <p class="title">{{$t('apostle power')}}</p>
                       <p
                         class="value"
                       >{{formatFixedDecimals(_evolutionTeller_get_power.apostlePower)}}</p>
@@ -72,8 +72,8 @@
                   </div>
                   <div class="asset-buttons">
                     <div class="item">
-                      <p>My Apostle: {{formatFixedDecimals(_evolutionTeller_get_value.balanceOfApostleOwner)}}</p>
-                      <el-button class="fixed-button" size="small" type="primary" @click="openUrl('https://www.evolution.land.l2me.com/land/1?goUrl=%2Fapostle')">Buy</el-button>
+                      <p>{{$t('my apostle')}}: {{formatFixedDecimals(_evolutionTeller_get_value.balanceOfApostleOwner)}}</p>
+                      <el-button class="fixed-button" size="small" type="primary" @click="openUrl('https://www.evolution.land.l2me.com/land/1?goUrl=%2Fapostle')">{{$t('buy')}}</el-button>
                     </div>
                   </div>
                 </div>
@@ -81,7 +81,7 @@
             </el-row>
           </div>
         </Content>
-        <Content title="Proposal List">
+        <Content :title="$t('module.proposal list')">
           <div class="proposal-box" slot="content">
             <ProposalList :data="_proposal_get_value"/>
           </div>

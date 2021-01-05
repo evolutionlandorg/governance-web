@@ -5,7 +5,7 @@
         <img class="default-avatar" src="../assets/components/connect/profile.png" />
       </div>
       <div class="connect-info">
-        <el-button size="small" type="primary" @click="connect">Connect</el-button>
+        <el-button size="small" type="primary" @click="connect">{{$t('connect.connect')}}</el-button>
       </div>
     </div>
     <div class="connected" v-else>
@@ -15,32 +15,32 @@
       <div class="connect-info">
         <p class="name-info">
           <span>Test Name</span>
-          <el-button size="mini" @click="change">Change</el-button>
+          <el-button size="mini" @click="change">{{$t('connect.change')}}</el-button>
         </p>
         <p>{{ _web3Modal_get_value.address }}</p>
       </div>
     </div>
-    <el-dialog title="Account" class="account-dialog" :visible="visible" width="500px" :before-close="handleClose" center>
+    <el-dialog :title="$t('connect.account')" class="account-dialog" :visible="visible" width="500px" :before-close="handleClose" center>
       <el-form size="small" :label-position="labelPosition" label-width="120px">
         <div class="line"></div>
         <div class="account-box">
-          <p class="connect-tip">Connected with</p>
+          <p class="connect-tip">{{$t('connect.connect with')}}</p>
           <div class="account-info">
             <div class="address">
               <img src="@/assets/components/connect/profile.png" />
               <p>{{ ellipseAddress(_web3Modal_get_value.address, 7) }}</p>
             </div>
-            <el-button size="mini" v-if="_web3Modal_get_value.address" @click="disconnect">Disconnect</el-button>
-            <el-button size="mini" v-else @click="connect">Connect</el-button>
+            <el-button size="mini" v-if="_web3Modal_get_value.address" @click="disconnect">{{$t('connect.disconnect')}}</el-button>
+            <el-button size="mini" v-else @click="connect">{{$t('connect.connect')}}</el-button>
           </div>
           <div>
             <div class="explorer">
               <div v-clipboard="_web3Modal_get_value.address" class="copy"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                <span style="margin-left: 4px;">Copy Address</span>
+                <span style="margin-left: 4px;">{{$t('connect.copy address')}}</span>
               </div>
               <a target="_blank" rel="noopener noreferrer" href="https://ropsten.etherscan.io/address/0x735182c782CB8e7806F8903dE7913e6880CbF82E" class="explorer-link">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                <span style="margin-left: 4px;">View on Etherscan</span>
+                <span style="margin-left: 4px;">{{$t('connect.view on ethereum')}}</span>
               </a>
             </div>
           </div>
@@ -48,8 +48,8 @@
         <div class="line"></div>
         <div class="tx-queue">
           <div class="queue-header">
-            <span>Recent Transaction</span>
-            <a>clean all</a>
+            <span>{{$t('connect.recent transaction')}}</span>
+            <a @click="clearAll()">{{$t('connect.clear all')}}</a>
           </div>
           <div class="queue">
             <div class="queue-item" v-for="item in _web3Modal_get_tx_queue" :key="item.result">
@@ -65,6 +65,7 @@
 
 <script>
   import {
+    mapActions,
     mapGetters
   } from 'vuex'
   import {
@@ -85,10 +86,13 @@
     computed: {
       ...mapGetters([
         '_web3Modal_get_value',
-        '_web3Modal_get_tx_queue'
+        '_web3Modal_get_tx_queue',
       ])
     },
     methods: {
+      ...mapActions([
+        '_web3Modal_clear_txqueue'
+      ]),
       connect() {
         this.$web3Modal.connect();
       },
@@ -106,6 +110,9 @@
           chainId
         } = this._web3Modal_get_value;
         return handleExplorerURL(chainId, hash);
+      },
+      clearAll: function() {
+        this._web3Modal_clear_txqueue();
       },
       ellipseAddress
     },
@@ -197,6 +204,10 @@
       justify-content: space-between;
       font-size: 14px;
       margin: 15px 0;
+      a {
+        cursor: pointer;
+        color: $--color-primary;
+      }
     }
     .queue-item {
       display: flex;

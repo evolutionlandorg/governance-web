@@ -3,11 +3,11 @@
     <div class="proposal-info">
       <p class="title">{{ proposal.msg.payload.name }}</p>
       <p class="subtitle">
-        Time: {{ dateFormat(proposal.msg.payload.start) }} ~ {{ dateFormat(proposal.msg.payload.end) }}
+        {{$t('time')}}: {{ dateFormat(proposal.msg.payload.start) }} ~ {{ dateFormat(proposal.msg.payload.end) }}
       </p>
     </div>
     <div class="proposal-buttons">
-      <el-button size="mini" @click="goVote(proposal.authorIpfsHash)">Vote</el-button>
+      <el-button size="mini" @click="goVote(proposal.authorIpfsHash)">{{$t('vote')}}</el-button>
     </div>
   </div>
 </template>

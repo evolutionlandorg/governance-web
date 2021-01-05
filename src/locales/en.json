@@ -1,0 +1,63 @@
+{
+  "nav": {
+    "game": "Game",
+    "vote": "Vote",
+    "forum": "Forum",
+    "docs": "Docs",
+    "governance": "Governance",
+    "dividends": "Dividends"
+  },
+  "module": {
+    "power": "Power",
+    "proposal list": "Proposal List",
+    "dividends": "Dividends",
+    "kton balance": "Kton Balance",
+    "history": "History"
+  },
+  "connect": {
+    "connect": "Connect",
+    "change": "Change",
+    "account": "Account",
+    "connect with": "Connect with",
+    "copy address": "Copy Address",
+    "view on ethereum": "View on Ethereum",
+    "disconnect": "Disconnect",
+    "recent transaction": "Recent Transaction",
+    "clear all": "clear all"
+  },
+  "common": {
+    "cancel": "Cancel"
+  },
+  "total power": "Total Power",
+  "approve": "Approve",
+  "land power": "Land Power",
+  "apostle power": "Apostle Power",
+  "buy": "Buy",
+  "vote": "Vote",
+  "time": "Time",
+  "lock": "Lock",
+  "unlock": "Unlock",
+  "discuss": "Discuss",
+  "proposal all": "Proposal all",
+  "unlock kton": "Unlock KTON",
+  "current locked": "Current locked",
+  "Note: The lock period is at least 14 days. Each lock will reset the lock period. KTON locked for more than 14 days will enter the unlockable state.": "Note: The lock period is at least 14 days. Each lock will reset the lock period. KTON locked for more than 14 days will enter the unlockable state.",
+  "lock kton": "Lock KTON",
+  "balance": "Balance",
+  "locked": "Locked",
+  "total dividends": "Total Dividends",
+  "unclaimed": "Unclaimed",
+  "claim": "Claim",
+  "txhash": "Txhash",
+  "value": "Value ( {token} )",
+  "my land": "My Land",
+  "my apostle": "My Apostle",
+  "unlocked": "Unlocked",
+  "dividend": "Dividend",
+  "power tip": [
+    "Lock 1 KTON can get 10 Power,",
+    "Holding 1 land can get 100 Power,",
+    "Holding 1 apostle can get 1 Power,",
+    "Each proposal will take a snapshot of Power when it is proposed, so the available Power for each proposal may be different."
+  ]
+}

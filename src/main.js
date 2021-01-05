@@ -6,6 +6,7 @@ import store from './store'
 import {Web3Modal} from './components'
 import VueApollo from 'vue-apollo'
 import Clipboard from 'v-clipboard'
+import i18n from "./i18n";
 
 import {
   Pagination,
@@ -120,14 +121,11 @@ Vue.use(TimeSelect);
 Vue.use(TimePicker);
 Vue.use(Popover);
 Vue.use(Tooltip);
-Vue.use(Breadcrumb);
-Vue.use(BreadcrumbItem);
 Vue.use(Form);
 Vue.use(FormItem);
 Vue.use(Tabs);
 Vue.use(TabPane);
 Vue.use(Tag);
-Vue.use(Tree);
 Vue.use(Alert);
 Vue.use(Slider);
 Vue.use(Icon);
@@ -153,14 +151,10 @@ Vue.use(Header);
 Vue.use(Aside);
 Vue.use(Main);
 Vue.use(Footer);
-Vue.use(Timeline);
-Vue.use(TimelineItem);
 Vue.use(Link);
 Vue.use(Divider);
 Vue.use(Image);
-Vue.use(Calendar);
 Vue.use(Backtop);
-Vue.use(PageHeader);
 Vue.use(CascaderPanel);
 
 Vue.use(Loading.directive);
@@ -183,5 +177,6 @@ Vue.config.productionTip = false
 new Vue({
   router,
   store,
+  i18n,
   render: h => h(App)
 }).$mount('#app')

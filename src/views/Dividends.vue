@@ -6,29 +6,29 @@
 
         <PageTab />
 
-        <Content title="Dividends">
+        <Content :title="$t('module.dividends')">
           <div class="dividends-box" slot="content">
             <div class="image-box">
               <img src="../assets/dividends-banner-1.png" alt="" />
             </div>
             <div class="info-box">
-              <p class="title">Total dividends</p>
+              <p class="title">{{$t('total dividends')}}</p>
               <p class="value">{{convertFixedAmountFromRawNumber(getTotalDividends())}} RING</p>
               <div class="claim-info">
-                <p class="subtitle">Unclaimed : {{convertFixedAmountFromRawNumber(_evolutionTeller_get_value.reward)}} RING</p>
-                <el-button class="is-fixed" size="small" @click="handleCliam()">Claim</el-button>
+                <p class="subtitle">{{$t('unclaimed')}}: {{convertFixedAmountFromRawNumber(_evolutionTeller_get_value.reward)}} RING</p>
+                <el-button class="is-fixed" size="small" @click="handleCliam()">{{$t('claim')}}</el-button>
               </div>
             </div>
           </div>
         </Content>
 
-        <Content title="KTON Balance">
+        <Content :title="$t('module.kton balance')">
           <div class="balance-box" slot="content">
             <TokenBalance />
           </div>
         </Content>
 
-        <Content title="History">
+        <Content :title="$t('module.history')">
           <div class="history-box" slot="content">
             <DividendHistory/>
           </div>

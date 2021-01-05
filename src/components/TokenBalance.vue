@@ -6,11 +6,11 @@
           <img src="../assets/kton.png" alt="">
         </div>
         <div class="balance-box">
-          <p>Balance</p>
+          <p>{{$t('balance')}}</p>
           <h2>{{convertFixedAmountFromRawNumber(_kton_get_value.balanceOf)}}</h2>
         </div>
         <div class="balance-box">
-          <p>Locked</p>
+          <p>{{$t('locked')}}</p>
           <h2>{{convertFixedAmountFromRawNumber(_evolutionTeller_get_value.balanceOfStaking)}}</h2>
         </div>
       </div>
@@ -20,9 +20,9 @@
           size="small"
           v-if="!_evolutionTeller_is_approve_kton"
           @click="approveKtonToEvolutionTeller"
-        >Approve</el-button>
-        <el-button class="is-fixed" size="small" v-else @click="toggleLockKtonDialogVisible">Lock</el-button>
-        <el-button class="is-fixed" size="small" @click="toggleUnlockKtonDialogVisible">Unlock</el-button>
+        >{{$t('approve')}}</el-button>
+        <el-button class="is-fixed" size="small" v-else @click="toggleLockKtonDialogVisible">{{$t('lock')}}</el-button>
+        <el-button class="is-fixed" size="small" @click="toggleUnlockKtonDialogVisible">{{$t('unlock')}}</el-button>
       </div>
     </div>
     <div>

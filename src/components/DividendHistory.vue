@@ -1,57 +1,57 @@
 <template>
   <div class="content">
     <el-tabs v-model="activeName" @tab-click="handleClick">
-      <el-tab-pane label="Locked" name="locked">
+      <el-tab-pane :label="$t('locked')" name="locked">
         <el-table class="history-table" :data="_evolutionTeller_staked_history.Locked" style="width: 100%">
-          <el-table-column prop="id" label="Txhash">
+          <el-table-column prop="id" :label="$t('txhash')">
             <template slot-scope="scope">
               <a :href="handleExplorerURL( scope.row.id )" target="_blank">{{ellipseAddress(scope.row.id, 25)}}</a>
             </template>
           </el-table-column>
-          <el-table-column prop="amount" label="Value (KTON)" width="150">
+          <el-table-column prop="amount" :label="$t('history value', { token: 'KTON' })" width="150">
             <template slot-scope="scope">
               <span>{{fromWei(scope.row.amount)}}</span>
             </template>
           </el-table-column>
-          <el-table-column prop="createTime" label="Time" width="150">
+          <el-table-column prop="createTime" :label="$t('time')" width="150">
             <template slot-scope="scope">
               <span>{{dateFormat(scope.row.createTime)}}</span>
             </template>
           </el-table-column>
         </el-table>
       </el-tab-pane>
-      <el-tab-pane label="Unlocked" name="unlocked">
+      <el-tab-pane :label="$t('unlocked')" name="unlocked">
         <el-table class="history-table" :data="_evolutionTeller_staked_history.Unlocked" style="width: 100%">
-          <el-table-column prop="id" label="Txhash">
+          <el-table-column prop="id" :label="$t('txhash')">
             <template slot-scope="scope">
               <a :href="handleExplorerURL( scope.row.id )" target="_blank">{{ellipseAddress(scope.row.id, 25)}}</a>
             </template>
           </el-table-column>
-          <el-table-column prop="amount" label="Value (KTON)" width="150">
+          <el-table-column prop="amount" :label="$t('history value', { token: 'KTON' })" width="150">
             <template slot-scope="scope">
               <span>{{fromWei(scope.row.amount)}}</span>
             </template>
           </el-table-column>
-          <el-table-column prop="createTime" label="Time" width="150">
+          <el-table-column prop="createTime" :label="$t('time')" width="150">
             <template slot-scope="scope">
               <span>{{dateFormat(scope.row.createTime)}}</span>
             </template>
           </el-table-column>
         </el-table>
       </el-tab-pane>
-      <el-tab-pane label="Dividend" name="dividend">
+      <el-tab-pane :label="$t('dividend')" name="dividend">
         <el-table class="history-table" :data="_evolutionTeller_staked_history.Dividend" style="width: 100%">
-          <el-table-column prop="id" label="Txhash">
+          <el-table-column prop="id" :label="$t('txhash')">
             <template slot-scope="scope">
               <a :href="handleExplorerURL( scope.row.id )" target="_blank">{{ellipseAddress(scope.row.id, 25)}}</a>
             </template>
           </el-table-column>
-          <el-table-column prop="amount" label="Value (RING)" width="150">
+          <el-table-column prop="amount" :label="$t('history value', { token: 'RING' })" width="150">
             <template slot-scope="scope">
               <span>{{fromWei(scope.row.amount)}}</span>
             </template>
           </el-table-column>
-          <el-table-column prop="createTime" label="Time" width="150">
+          <el-table-column prop="createTime" :label="$t('time')" width="150">
             <template slot-scope="scope">
               <span>{{dateFormat(scope.row.createTime)}}</span>
             </template>

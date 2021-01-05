@@ -7,16 +7,21 @@
         <img v-else-if="greaterThanOrEqual(power, '1000000000000000000000')" src="../assets/components/power/power-3.png" alt="power" />
       </div>
       <div class="power-info">
-        <p class="title">Total Power</p>
+        <p class="title">{{$t('total power')}}</p>
         <p class="value">{{ convertFixedAmountFromRawNumber(power) }}</p>
       </div>
     </div>
     <div>
       <el-popover
-        title="Total Power"
-        width="300"
-        trigger="hover"
-        content="Total Power Total PowerTotal PowerTotal PowerTotal PowerTotal Power,Total PowerTotal Power">
+        title=""
+        width="320"
+        trigger="hover">
+        <div>
+          <p>{{$t('power tip[0]')}}</p>
+          <p>{{$t('power tip[1]')}}</p>
+          <p>{{$t('power tip[2]')}}</p>
+          <p>{{$t('power tip[3]')}}</p>
+        </div>
         <img slot="reference" width="22px" height="22px" src="@/assets/help-icon.png"/>
       </el-popover>
     </div>

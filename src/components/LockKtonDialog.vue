@@ -1,15 +1,15 @@
 <template>
   <div class="content">
-    <el-dialog title="Lock KTON" :visible="visible" width="35%" :before-close="handleClose" :show-close="false" center>
+    <el-dialog :title="$t('lock kton')" :visible="visible" width="35%" :before-close="handleClose" :show-close="false" center>
       <el-form size="small" :label-position="labelPosition" label-width="120px" :model="lockForm">
         <div class="line"></div>
-        <el-form-item class="form-content" label="Balance:">
+        <el-form-item class="form-content" :label="`${$t('balance')}:`">
           <p>{{convertFixedAmountFromRawNumber(_kton_get_value.balanceOf)}} KTON</p>
         </el-form-item>
-        <el-form-item class="form-content" label="Locked:">
+        <el-form-item class="form-content" :label="`${$t('locked')}:`">
           <p>{{convertFixedAmountFromRawNumber(_evolutionTeller_get_value.balanceOfStaking)}} KTON</p>
         </el-form-item>
-        <el-form-item class="form-content" label="Lock:">
+        <el-form-item class="form-content" :label="`${$t('lock')}:`">
           <el-input v-model="lockForm.lockValue" type="number">
             <span slot="suffix" class="input-suffix">KTON</span>
           </el-input>
@@ -17,8 +17,8 @@
         <div class="line"></div>
       </el-form>
       <span slot="footer" class="dialog-footer">
-          <el-button @click="handleCancel" size="small">Cancel</el-button>
-          <el-button type="primary" @click="handleConfirm" size="small">Lock</el-button>
+          <el-button @click="handleCancel" size="small">{{$t('common.cancel')}}</el-button>
+          <el-button type="primary" @click="handleConfirm" size="small">{{$t('lock')}}</el-button>
         </span>
     </el-dialog>
   </div>

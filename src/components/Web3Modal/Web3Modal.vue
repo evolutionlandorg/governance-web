@@ -14,7 +14,7 @@
         <span>Transaction rejected.</span>
       </div>
       <div class="dialog-body-broadcast" v-if="status === 'broadcast'">
-        <svg xmlns="http://www.w3.org/2000/svg" width="90" height="90" viewBox="0 0 24 24" fill="none" stroke="#2172E5" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="16 12 12 8 8 12"></polyline><line x1="12" y1="16" x2="12" y2="8"></line></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="90" height="90" viewBox="0 0 24 24" fill="none" stroke="#3FF9E7" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="16 12 12 8 8 12"></polyline><line x1="12" y1="16" x2="12" y2="8"></line></svg>
         <span>Transaction Submitted.</span>
         <a target="_blank" rel="noopener noreferrer" :href="this.handleExplorerURL(txHash)" class="sc-dxgOiQ ejZAHb">
           <div class="css-1opzynv">View on Etherscan</div>

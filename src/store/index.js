@@ -26,7 +26,7 @@ const INITIAL_STATE = {
   showModal: false,
   pendingRequest: false,
   result: null,
-  txQueue: []
+  txQueue: [],
 };
 
 const INITIAL_EVOLUTION_TELLER = {
@@ -89,7 +89,8 @@ export default new Vuex.Store({
       ...INITIAL_EVOLUTION_KTON
     },
     proposals: [],
-    stakedHistory: INITIAL_STAKED_HISTORY
+    stakedHistory: INITIAL_STAKED_HISTORY,
+    language: ""
   },
   getters: {
 
@@ -127,6 +128,11 @@ export default new Vuex.Store({
     // ---------------------- Proposal ---------------------- //
     _proposal_get_value: (state, getters) => {
       return state.proposals
+    },
+
+    // ----------------------- Common ----------------------- //
+    _i18n_get_value: (state, getters) => {
+      return state.language
     }
   },
   mutations: {
@@ -156,6 +162,12 @@ export default new Vuex.Store({
       state.web3Modal = {
         ...state.web3Modal,
         txQueue: [...payload.data, ...state.web3Modal.txQueue]
+      }
+    },
+    [Mutation.WEB3MODAL_CLEAR_TXQUEUE](state, payload) {
+      state.web3Modal = {
+        ...state.web3Modal,
+        txQueue: []
       }
     },
 
@@ -191,8 +203,12 @@ export default new Vuex.Store({
     // ------------------------ Test ------------------------ //
     [Mutation.TEST_SET_VALUE](state, payload) {
       state.count = payload.data
-    }
+    },
 
+    // ----------------------- Common ----------------------- //
+    [Mutation.I18N_SET_LANGUAGE](state, payload) {
+      state.language = payload.data
+    },
   },
   actions: {
     // ---------------------- Web3Modal --------------------- //
@@ -211,6 +227,12 @@ export default new Vuex.Store({
       commit({
         type: Mutation.WEB3MODAL_BEFORE_TXQUEUE,
         data: payload
+      })
+    },
+    _web3Modal_clear_txqueue({ commit }, payload) {
+      commit({
+        type: Mutation.WEB3MODAL_CLEAR_TXQUEUE,
+        data: []
       })
     },
 
@@ -257,11 +279,6 @@ export default new Vuex.Store({
       const result = await payload.$web3Modal.contractCall(
         Methods.EVO_TELLER_WITHDRAW, 
         payload.params);
-
-      // dispatch('_common_init_address_info', {
-      //   $web3Modal: payload.$web3Modal,
-      //   params: [getters._web3Modal_get_value.address]
-      // })
     },
 
     async _evolutionTeller_getReward({ commit, dispatch, getters }, payload) {
@@ -334,6 +351,12 @@ export default new Vuex.Store({
     async _common_init_address_info({ commit, dispatch }, payload) {
       dispatch('_evolutionTeller_fetch_info', payload);
       dispatch('_kton_fetch_info', payload);
+    },
+    _i18n_set_language({ commit, dispatch }, payload) {
+      commit({
+        type: Mutation.I18N_SET_LANGUAGE,
+        data: payload
+      })
     },
 
     // ------------------------ Test ------------------------ //
