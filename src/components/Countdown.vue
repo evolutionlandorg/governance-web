@@ -1,7 +1,7 @@
 <template>
   <div>
     <p v-if="msTime.show">
-      <span v-if="tipShow">{{tipText}}:</span>
+      <span v-if="tipShow">{{tipText}}</span>
       <span v-if="msTime.day>0"><span>{{msTime.day}}</span><i>{{dayTxt}}</i></span>
       <span>{{msTime.hour}}</span><i>{{hourTxt}}</i>
       <span>{{msTime.minutes}}</span><i>{{minutesTxt}}</i>
@@ -36,11 +36,11 @@
     props: {
       tipText: {
         type: String,
-        default: '距离开始'
+        default: ''
       },
       tipTextEnd: {
         type: String,
-        default: '距离结束'
+        default: ''
       },
       id: {
         type: String,
@@ -51,10 +51,6 @@
       },
       startTime: {
         type: Number
-      },
-      endText: {
-        type: String,
-        default: '已结束'
       },
       dayTxt: {
         type: String,
@@ -78,7 +74,6 @@
       },
     },
     mounted() {
-      console.log(this)
       this.go();
     },
     methods: {

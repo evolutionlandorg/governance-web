@@ -21,9 +21,8 @@
         </el-form-item>
         <count-down
           v-on:start_callback="countDownS_cb(1)"
-          v-on:end_callback="countDownE_cb(1)"
-          :currentTime="1481450106"
-          :startTime="1481450110"
+          :currentTime="parseInt(currentBlockTimestamp)"
+          :startTime="parseInt(stakeLock)"
           :tipText="$t('unlockable countdown')"
           :dayTxt="':'"
           :hourTxt="':'"
@@ -34,7 +33,7 @@
       <div class="line"></div>
       <span slot="footer" class="dialog-footer">
         <el-button @click="handleCancel" size="small">{{$t('common.cancel')}}</el-button>
-        <el-button type="primary" @click="handleConfirm" size="small">{{$t('unlock')}}</el-button>
+        <el-button :disabled="!isUnlock" type="primary" @click="handleConfirm" size="small">{{$t('unlock')}}</el-button>
       </span>
     </el-dialog>
   </div>
@@ -68,8 +67,8 @@ export default {
       unlockForm: {
         unlockValue: "",
       },
-      stakeLock: 0,
-      currentBlockTimestamp: 0,
+      stakeLock: '0',
+      currentBlockTimestamp: '0',
     };
   },
   computed: {
@@ -78,6 +77,9 @@ export default {
       "_kton_get_value",
       "_web3Modal_get_value",
     ]),
+    isUnlock: function() {
+      return greaterThan(this.currentBlockTimestamp, this.stakeLock);
+    }
   },
   watch: {
     visible: function(newValue, oldValue) {
@@ -154,10 +156,8 @@ export default {
       return true;
     },
     countDownS_cb: function(x) {
-      console.log(x);
-    },
-    countDownE_cb: function(x) {
-      console.log(x);
+      this.getStakeLock();
+      this.getCurrentTimestamp();
     },
     convertFixedAmountFromRawNumber,
   },
