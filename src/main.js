@@ -3,10 +3,10 @@ import App from './App.vue'
 // import './registerServiceWorker'
 import router from './router'
 import store from './store'
-import {Web3Modal} from './components'
 import VueApollo from 'vue-apollo'
 import Clipboard from 'v-clipboard'
 import i18n from "./i18n";
+import {Web3Modal} from './components'
 
 import {
   Pagination,
@@ -85,11 +85,18 @@ import {
   Loading,
   MessageBox,
   Message,
-  Notification
+  Notification,
+  Drawer
 } from 'element-ui';
 import './element-variables.scss'
 import './main.scss'
+import 'element-ui/lib/theme-chalk/display.css';
 
+import {
+  TableEmpty
+} from "@/components/index"
+
+Vue.use(TableEmpty);
 Vue.use(Pagination);
 Vue.use(Dialog);
 Vue.use(Autocomplete);
@@ -156,9 +163,10 @@ Vue.use(Divider);
 Vue.use(Image);
 Vue.use(Backtop);
 Vue.use(CascaderPanel);
+Vue.use(Drawer);
 
 Vue.use(Loading.directive);
-Vue.use(Web3Modal);
+Vue.use(Web3Modal, {i18n});
 Vue.use(VueApollo)
 Vue.use(Clipboard)
 

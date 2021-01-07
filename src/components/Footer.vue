@@ -14,17 +14,7 @@
         <a href="https://medium.com/@evolutionland9" target="_blank" rel="noopener noreferrer"><img src="../assets/components/footer/icon-medium.png" /></a>
         <a href="mailto:hello@evolution.land" target="_blank" rel="noopener noreferrer"><img src="../assets/components/footer/icon-mail.png" /></a>
       </div>
-      <el-dropdown class="language" trigger="click" @command="changeLanguage">
-        <div class="language-select">
-          <img class="language-icon" src="../assets/components/footer/icon-language.png" />
-          <span class="el-dropdown-link">
-              {{getCurrentLanguage()}}<i class="el-icon-caret-bottom el-icon--right"></i>
-            </span>
-        </div>
-        <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item v-for="item in supportedLocales" :key="item.code" :command="item.code">{{item.name}}</el-dropdown-item>
-        </el-dropdown-menu>
-      </el-dropdown>
+      <div class="hidden-xs-only" ><Language/></div>
     </div>
   </div>
 </template>
@@ -35,34 +25,18 @@
     mapGetters
   } from "vuex";
   import {
-    getSupportedLocales, supportedLocalesInclude
+    getSupportedLocales,
+    supportedLocalesInclude
   } from "@/helpers/i18n/supported-locales";
   import supportedLocales from "@/helpers/i18n/supported";
-
+  import Language from "@/components/Language"
   export default {
     name: "Footer",
     props: {},
-    computed: {
-      ...mapGetters(["_i18n_get_value"]),
-      supportedLocales: function() {
-        return getSupportedLocales();
-      }
+    components: {
+      Language
     },
     methods: {
-      ...mapActions([
-        "_i18n_set_language",
-      ]),
-      changeLanguage(lng) {
-        this._i18n_set_language(lng);
-        this.$i18n.locale = lng;
-      },
-      getCurrentLanguage() {
-        if (supportedLocalesInclude(this._i18n_get_value)) {
-          return supportedLocales[this._i18n_get_value]
-        } else {
-          return "English"
-        }
-      }
     }
   };
 </script>
@@ -74,6 +48,9 @@
     display: flex;
     justify-content: space-between;
     align-self: center;
+    p{
+      margin: 0;
+    }
   }
   .rights-box {
     color: #a3a3a3;
@@ -98,22 +75,11 @@
       }
     }
   }
-  .language {
-    .language-select {
+  @media screen and (max-width: $--md) {
+    .content {
       display: flex;
-      align-self: center;
-      .language-icon {
-        width: 20px;
-        height: 20px;
-        padding: 0 5px;
-        img {
-          width: 20px;
-          height: 20px;
-        }
-      }
-    }
-    .el-dropdown-link {
-      cursor: pointer;
+      flex-direction: column-reverse;
+      align-items: center;
     }
   }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-    <el-dialog :title="$t('lock kton')" :visible="visible" width="35%" :before-close="handleClose" :show-close="false" center>
+    <el-dialog class="dialog" :title="$t('lock kton')" :visible="visible" width="320" :before-close="handleClose" :show-close="false" center>
       <el-form size="small" :label-position="labelPosition" label-width="120px" :model="lockForm">
         <div class="line"></div>
         <el-form-item class="form-content" :label="`${$t('balance')}:`">
@@ -9,17 +9,17 @@
         <el-form-item class="form-content" :label="`${$t('locked')}:`">
           <p>{{convertFixedAmountFromRawNumber(_evolutionTeller_get_value.balanceOfStaking)}} KTON</p>
         </el-form-item>
-        <el-form-item class="form-content" :label="`${$t('lock')}:`">
+        <el-form-item class="form-content input-content" :label="`${$t('lock')}:`">
           <el-input v-model="lockForm.lockValue" type="number">
             <span slot="suffix" class="input-suffix">KTON</span>
           </el-input>
         </el-form-item>
         <div class="line"></div>
       </el-form>
-      <span slot="footer" class="dialog-footer">
-          <el-button @click="handleCancel" size="small">{{$t('common.cancel')}}</el-button>
-          <el-button type="primary" @click="handleConfirm" size="small">{{$t('lock')}}</el-button>
-        </span>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="handleCancel" size="small">{{$t('common.cancel')}}</el-button>
+        <el-button type="primary" @click="handleConfirm" size="small">{{$t('lock')}}</el-button>
+      </div>
     </el-dialog>
   </div>
 </template>
@@ -32,7 +32,8 @@
   import {
     convertFixedAmountFromRawNumber,
     formatFixedDecimals,
-    toWei
+    toWei,
+    greaterThan
   } from "@/helpers/bignumber";
   export default {
     name: "LockKtonDialog",
@@ -70,14 +71,16 @@
       },
       async handleConfirm() {
         try {
+          if(!this.checkForm()) {
+            return;
+          }
           const result = await this.evolutionTellerStake();
-          if(result) {
+          if (result) {
             this.confirm && this.confirm();
           }
         } catch (e) {
           console.log('error handleConfirm: ', e);
         }
-        // console.log('close');
       },
       handleClose(done) {
         this.beforeClose && this.beforeClose();
@@ -88,6 +91,26 @@
           $web3Modal: this.$web3Modal,
           params: [toWei(this.lockForm.lockValue)]
         });
+      },
+      checkForm: function() {
+        try {
+          toWei(this.lockForm.lockValue)
+        } catch(e) {
+           this.$message({
+            message: this.$t('form.form input error'),
+            type: 'error'
+          });
+          return false;
+        }
+
+        if(greaterThan(toWei(this.lockForm.lockValue), this._kton_get_value.balanceOf )) {
+           this.$message({
+            message: this.$t('form.kton\'s balance is insufficient'),
+            type: 'error'
+          });
+          return false;
+        }
+        return true;
       },
       convertFixedAmountFromRawNumber,
     },
@@ -103,8 +126,10 @@
       margin: 0;
     }
     .form-content {
-      text-align: right;
       font-weight: bold;
+      p {
+        text-align: right;
+      }
     }
     .input-suffix {
       font-weight: bold;
@@ -120,7 +145,32 @@
       }
     }
   }
-  ::v-deep .el-dialog--center .el-dialog__body {
+   ::v-deep .el-dialog--center .el-dialog__body {
     padding: 0px 25px 0px;
+  }
+  @media screen and (max-width: $--sm) {
+     ::v-deep .el-dialog {
+      width: 90%;
+    }
+
+    ::v-deep .dialog .input-content .el-form-item__content{
+      margin-left: 0 !important;
+    }
+
+    .content {
+      .dialog-footer {
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: stretch;
+       
+        button {
+          width: auto;
+          margin-top: 10px;
+        }
+        button+button {
+          margin-left: 0
+        }
+      }
+    }
   }
 </style>

@@ -14,10 +14,10 @@
       </div>
       <div class="connect-info">
         <p class="name-info">
-          <span>Test Name</span>
+          <span class="hidden-sm-and-down">{{  _web3Modal_get_value.address }}</span>
+          <span class="hidden-md-and-up">{{ ellipseAddress(_web3Modal_get_value.address, 5) }}</span>
           <el-button size="mini" @click="change">{{$t('connect.change')}}</el-button>
         </p>
-        <p>{{ _web3Modal_get_value.address }}</p>
       </div>
     </div>
     <el-dialog :title="$t('connect.account')" class="account-dialog" :visible="visible" width="500px" :before-close="handleClose" center>
@@ -53,8 +53,10 @@
           </div>
           <div class="queue">
             <div class="queue-item" v-for="item in _web3Modal_get_tx_queue" :key="item.result">
-              <p><a target="_blank" rel="noopener noreferrer" :href="handleExplorerURL(item.result)">{{ellipseAddress(item.result, 10)}}</a> {{item.action}}</p>
-              <img class="status-pending" src="@/assets/components/connect/pending.svg" />
+              <p><a target="_blank" rel="noopener noreferrer" :href="handleExplorerURL(item.result)">{{ellipseAddress(item.result, 10)}}</a> <span class="hidden-xs-only">{{item.action}}</span></p>
+              <img v-if="item.status === 'pending'" class="status status-pending" src="@/assets/components/connect/pending.svg" alt="Pending transaction"/>
+              <img v-else-if="item.status === 'success'" class="status" src="@/assets/components/connect/success.svg" alt="Confirmed transaction"/>
+              <img v-else class="status" src="@/assets/components/connect/fail.svg" alt="Failed transaction"/>
             </div>
           </div>
         </div>
@@ -128,8 +130,8 @@
     }
   }
   .avatar-box {
-    width: 54px;
-    height: 54px;
+    width: 44px;
+    height: 44px;
   }
   .default-avatar {
     width: 100%;
@@ -137,7 +139,7 @@
   }
   .connect-info {
     flex: 1;
-    margin-left: 20px;
+    margin-left: 10px;
     .name-info {
       display: flex;
       justify-content: space-between;
@@ -219,10 +221,12 @@
         color: $--color-primary;
       }
     }
-    .status-pending {
-      animation: 2s linear 0s infinite normal none running GoRound;
+    .status {
       height: 18px;
       width: 18px;
+    }
+    .status-pending {
+      animation: 2s linear 0s infinite normal none running GoRound;
     }
     padding-bottom: 15px;
   }
@@ -240,6 +244,22 @@
     }
     100% {
       transform: rotate(360deg);
+    }
+  }
+  @media screen and (max-width: $--sm) {
+     ::v-deep .el-dialog {
+      width: 90% !important;
+    }
+    .account-dialog{
+      .account-box {
+        .account-info {
+          .address {
+            p {
+              font-size: 15px;
+            }
+          }
+        }
+      }
     }
   }
 </style>

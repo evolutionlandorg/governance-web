@@ -10,6 +10,8 @@ import DividendHistory from './DividendHistory.vue';
 import UnlockKtonDialog from './UnlockKtonDialog.vue';
 import LockKtonDialog from './LockKtonDialog.vue';
 import Footer from './Footer.vue';
+import Language from './Language.vue';
+import TableEmpty from './TableEmpty.vue';
 import Web3Modal from './Web3Modal';
 
 export {
@@ -25,5 +27,7 @@ export {
   LockKtonDialog,
   UnlockKtonDialog,
   Footer,
-  Web3Modal
+  Web3Modal,
+  Language,
+  TableEmpty
 }

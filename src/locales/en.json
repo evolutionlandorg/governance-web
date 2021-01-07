@@ -23,13 +23,20 @@
     "view on ethereum": "View on Ethereum",
     "disconnect": "Disconnect",
     "recent transaction": "Recent Transaction",
-    "clear all": "clear all"
+    "clear all": "clear all",
+    "waiting for confirmation": "Waiting For Confirmation",
+    "confirm this transaction in your wallet": "Confirm this transaction in your wallet",
+    "transaction rejected": "Transaction rejected.",
+    "transaction submitted": "Transaction Submitted.",
+    "confirmed transaction": "Confirmed transaction",
+    "failed transaction": "Failed transaction"
   },
   "common": {
     "cancel": "Cancel"
   },
   "total power": "Total Power",
   "approve": "Approve",
+  "kton power": "KTON Power",
   "land power": "Land Power",
   "apostle power": "Apostle Power",
   "buy": "Buy",
@@ -49,7 +56,7 @@
   "unclaimed": "Unclaimed",
   "claim": "Claim",
   "txhash": "Txhash",
-  "value": "Value ( {token} )",
+  "history value": "Value ( {token} )",
   "my land": "My Land",
   "my apostle": "My Apostle",
   "unlocked": "Unlocked",
@@ -59,5 +66,11 @@
     "Holding 1 land can get 100 Power,",
     "Holding 1 apostle can get 1 Power,",
     "Each proposal will take a snapshot of Power when it is proposed, so the available Power for each proposal may be different."
-  ]
+  ],
+  "nodata": "No Data",
+  "form": {
+    "form input error": "The entered value is wrong",
+    "kton's balance is insufficient": "KTON's balance is insufficient"
+  },
+  "unlockable countdown": "Unlockable countdown: "
 }

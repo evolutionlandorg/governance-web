@@ -23,6 +23,7 @@ const startingLocale = getStartingLocale()
 
 const i18n = new VueI18n({
   locale: startingLocale,
+  sync: false,
   fallbackLocale: process.env.VUE_APP_I18N_FALLBACK_LOCALE || "zh",
   messages: {
     'en': enJSON,

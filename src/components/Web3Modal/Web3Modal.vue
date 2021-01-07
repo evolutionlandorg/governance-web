@@ -1,23 +1,23 @@
 <template>
   <div class="web3-modal">
-    <el-dialog title="" :visible.sync="centerDialogVisible" width="30%" center>
+    <el-dialog class="web3-dialog" title="" :visible.sync="centerDialogVisible" width="400" center>
       <div class="dialog-body-before-send" v-if="status === 'send'">
         <div class="status-icon-box">
           <img class="status-icon" src="./static/blue-loader.svg" alt="loader" />
         </div>
-        <span class="status-text">Waiting For Confirmation</span>
+        <span class="status-text">{{$t('connect.waiting for confirmation')}}</span>
         <span class="functionsig-text">{{functionSig}}</span>
-        <span class="sub-text">Confirm this transaction in your wallet</span>
+        <span class="sub-text">{{$t('connect.confirm this transaction in your wallet')}}</span>
       </div>
       <div class="dialog-body-reject" v-if="status === 'reject'">
         <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#FF6871" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="stroke-width: 1.5;"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
-        <span>Transaction rejected.</span>
+        <span>{{$t('connect.transaction rejected')}}</span>
       </div>
       <div class="dialog-body-broadcast" v-if="status === 'broadcast'">
         <svg xmlns="http://www.w3.org/2000/svg" width="90" height="90" viewBox="0 0 24 24" fill="none" stroke="#3FF9E7" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="16 12 12 8 8 12"></polyline><line x1="12" y1="16" x2="12" y2="8"></line></svg>
-        <span>Transaction Submitted.</span>
+        <span>{{$t('connect.transaction submitted')}}</span>
         <a target="_blank" rel="noopener noreferrer" :href="this.handleExplorerURL(txHash)" class="sc-dxgOiQ ejZAHb">
-          <div class="css-1opzynv">View on Etherscan</div>
+          <div class="">{{$t('connect.view on ethereum')}}</div>
         </a>
       </div>
     </el-dialog>
@@ -44,12 +44,15 @@
     SUBSCRIBE_ACCOUNTS_CHANGED,
     SUBSCRIBE_CHAIN_CHANGED,
     SUBSCRIBE_NETWORK_CHANGED,
-    SUBSCRIBE_HAS_CHANGED
+    SUBSCRIBE_HAS_CHANGED,
+    SUBSCRIBE_TX_CONFIRMED
   } from './constants';
+  import {
+    setTimeout,
+    clearTimeout
+  } from 'timers';
   const INITIAL_STATE = {
     fetching: false,
-    address: "",
-    web3: null,
     provider: null,
     connected: false,
     chainId: 1,
@@ -61,7 +64,9 @@
   };
   export default {
     name: "Web3Modal",
-    props: {},
+    props: {
+      // t: Function
+    },
     data() {
       return {
         context: INITIAL_STATE,
@@ -72,18 +77,27 @@
         // send , pending , reject, fail, success, broadcast
         status: "send",
         functionSig: "",
-        txHash: ""
+        txHash: "",
+        checkTxQueueStatusTimer: null
       };
     },
     computed: {
-      ...mapGetters(["_web3Modal_get_value"]),
+      ...mapGetters([
+        "_web3Modal_get_value",
+        "_web3Modal_get_tx_queue"
+      ]),
     },
-    mounted: function() {},
+    mounted() {
+    },
+    beforeDestroy: function() {
+      this.checkTxQueueStatusTimer && clearTimeout(this.checkTxQueueStatusTimer);
+    },
     methods: {
       ...mapActions([
         "_web3Modal_set_value",
         "_web3Modal_reset_value",
-        "_web3Modal_before_txqueue"
+        "_web3Modal_before_txqueue",
+        "_web3Modal_set_tx_queue_status"
       ]),
       init: function(providerOptions = {}, web3ModalOptions = {}, emitter) {
         console.log("web3Modal - mounted");
@@ -134,6 +148,7 @@
         this.provider = provider;
         this.emitter && this.emitter.emit(SUBSCRIBE_HAS_CHANGED);
         // await this.getAccountAssets();
+        this.startCheckQueueStatus();
       },
       initWeb3: function(provider) {
         const web3 = new Web3(provider);
@@ -198,7 +213,7 @@
       getWeb3Modal: function() {
         return {
           provider: this.provider,
-          web3: this.provider,
+          web3: this.web3,
           web3Modal: this.web3Modal,
         };
       },
@@ -235,13 +250,12 @@
             this.functionSig = functionSig;
             this.status = "send";
           }
-
           const result = await contractCall.func(address, chainId, this.web3, params, options);
-
           // format displayed result
           const formattedResult = {
             action: functionSig,
             result,
+            status: 'pending'
           };
           console.log('web3Modal:: contractcall: ', formattedResult)
           if (contractCall.type === 'tx') {
@@ -257,7 +271,6 @@
           // });
           return formattedResult;
         } catch (error) {
-
           this.status = "reject";
           this.functionSig = "";
           console.error('web3Modal::contractCall:', error); // tslint:disable-line
@@ -270,6 +283,67 @@
           chainId
         } = this._web3Modal_get_value;
         return handleExplorerURL(chainId, hash);
+      },
+      getTransactionReceipt: function(hash, callback) {
+        this.web3.eth.getTransactionReceipt(hash, (err, result) => {
+          if (err) {
+            console.log('web3Modal:: getTransactionReceipt: err ', err);
+            callback && callback(null);
+            return;
+          }
+          callback && callback(result);
+        });
+      },
+      checkTxQueueStatus: function() {
+        const txqueue = this._web3Modal_get_tx_queue;
+        // console.log('web3Modal:: checkTxQueueStatus', txqueue);
+        if (!txqueue || txqueue.length === 0) {
+          this.checkTxQueueStatusTimer && clearTimeout(this.checkTxQueueStatusTimer);
+          this.checkTxQueueStatusTimer = setTimeout(() => {
+            this.startCheckQueueStatus();
+          }, 30000);
+          return;
+        }
+        txqueue.forEach((item) => {
+          if (item.status === 'pending') {
+            this.getTransactionReceipt(item.result, (res) => {
+
+              if (!res) {
+                return;
+              }
+              this._web3Modal_set_tx_queue_status({
+                hash: item.result,
+                status: res.status ? 'success' : 'fail'
+              });
+              this.txStatusNotice(item, res.status);
+            });
+          }
+        })
+        this.checkTxQueueStatusTimer && clearTimeout(this.checkTxQueueStatusTimer);
+        this.checkTxQueueStatusTimer = setTimeout(() => {
+          this.startCheckQueueStatus();
+        }, 30000);
+      },
+      startCheckQueueStatus: function() {
+        this.checkTxQueueStatus();
+      },
+      txStatusNotice: function(formattedResult, status) {
+        if (status) {
+          this.$notify({
+            title: this.$t('connect.confirmed transaction'),
+            dangerouslyUseHTMLString: true,
+            message: `<a target="_blank" rel="noopener noreferrer" href="${this.handleExplorerURL(formattedResult.result)}">${formattedResult.action}</a>`,
+            type: 'success'
+          });
+           this.emitter && this.emitter.emit(SUBSCRIBE_TX_CONFIRMED);
+        } else {
+          this.$notify({
+            title: this.$t('connect.failed transaction'),
+            dangerouslyUseHTMLString: true,
+            message: `<a target="_blank" rel="noopener noreferrer" href="${this.handleExplorerURL(formattedResult.result)}">${formattedResult.action}</a>`,
+            type: 'error'
+          });
+        }
       }
     },
   };
@@ -369,6 +443,11 @@
       }
       100% {
         transform: rotate(360deg);
+      }
+    }
+    @media screen and (max-width: $--sm) {
+       ::v-deep .el-dialog {
+        width: 90% !important;
       }
     }
   }

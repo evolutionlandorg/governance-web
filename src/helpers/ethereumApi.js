@@ -42,6 +42,17 @@ export const apiGetAccountNonce = async (
   return result
 }
 
+export const apiGetBlockNumber = async (
+  address,
+  chainId
+) => {
+  const response = await api.get(
+    `/block-number?address=${address}&chainId=${chainId}`
+  )
+  const { result } = response.data
+  return result
+}
+
 export const apiGetGasPrices = async () => {
   const response = await api.get(`/gas-prices`)
   const { result } = response.data

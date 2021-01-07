@@ -4,7 +4,7 @@ import {
   KTON_BALANCE_OF, EVO_TELLER_BALANCE_OF, EVO_TELLER_BALANCE_OF_STAKING, EVO_TELLER_BALANCE_OF_APOSTLEOWNER,
   EVO_TELLER_BALANCE_OF_LANDOWNER, 
   KTON_ALLOWANCE, EVO_TELLER_VOTE_RATE, EVO_TELLER_STAKE, KTON_APPROVE, EVO_TELLER_WITHDRAW, EVO_TELLER_DIVIDENDS,
-  EVO_TELLER_GET_REWARD
+  EVO_TELLER_GET_REWARD, EVO_TELLER_GET_STAKING_LOCK
 } from './constants';
 
 export function getKtonContract(chainId, web3) {
@@ -221,6 +221,11 @@ export function callEvolutionTellerGetReward(address, chainId, web3, params = []
     return send(address, contract, 'getReward', params, options)
 }
 
+export function callEvolutionTellerStakingLock(address, chainId, web3, params = [], options = {}) {
+  const contract = getEvoTellerContract(chainId, web3)
+  return call(contract, 'stakingLock', params, options)
+}
+
 export const Web3ApiMapping = {
   [KTON_BALANCE_OF]: {
     type: 'call',
@@ -269,5 +274,9 @@ export const Web3ApiMapping = {
   [EVO_TELLER_GET_REWARD]:{
     type: 'tx',
     func: callEvolutionTellerGetReward
+  },
+  [EVO_TELLER_GET_STAKING_LOCK]: {
+    type: 'call',
+    func: callEvolutionTellerStakingLock
   }
 }

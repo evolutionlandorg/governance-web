@@ -17,4 +17,5 @@ export const EVO_TELLER_STAKE = 'evoteller.stake()'
 export const EVO_TELLER_WITHDRAW = 'evoteller.withdraw()'
 export const EVO_TELLER_DIVIDENDS = 'evoteller.dividends'
 export const EVO_TELLER_GET_REWARD = 'evoteller.getReward()'
+export const EVO_TELLER_GET_STAKING_LOCK = 'evoteller.stakingLock'
 

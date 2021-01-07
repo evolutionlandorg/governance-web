@@ -3,7 +3,7 @@
     <el-tabs v-model="activeName" @tab-click="handleClick">
       <el-tab-pane :label="$t('locked')" name="locked">
         <el-table class="history-table" :data="_evolutionTeller_staked_history.Locked" style="width: 100%">
-          <el-table-column prop="id" :label="$t('txhash')">
+          <el-table-column prop="id" :label="$t('txhash')" min-width="450">
             <template slot-scope="scope">
               <a :href="handleExplorerURL( scope.row.id )" target="_blank">{{ellipseAddress(scope.row.id, 25)}}</a>
             </template>
@@ -18,11 +18,14 @@
               <span>{{dateFormat(scope.row.createTime)}}</span>
             </template>
           </el-table-column>
+          <div slot="empty">
+            <TableEmpty/>
+          </div>
         </el-table>
       </el-tab-pane>
       <el-tab-pane :label="$t('unlocked')" name="unlocked">
         <el-table class="history-table" :data="_evolutionTeller_staked_history.Unlocked" style="width: 100%">
-          <el-table-column prop="id" :label="$t('txhash')">
+          <el-table-column prop="id" :label="$t('txhash')" min-width="450">
             <template slot-scope="scope">
               <a :href="handleExplorerURL( scope.row.id )" target="_blank">{{ellipseAddress(scope.row.id, 25)}}</a>
             </template>
@@ -37,11 +40,14 @@
               <span>{{dateFormat(scope.row.createTime)}}</span>
             </template>
           </el-table-column>
+          <div slot="empty">
+            <TableEmpty/>
+          </div>
         </el-table>
       </el-tab-pane>
       <el-tab-pane :label="$t('dividend')" name="dividend">
         <el-table class="history-table" :data="_evolutionTeller_staked_history.Dividend" style="width: 100%">
-          <el-table-column prop="id" :label="$t('txhash')">
+          <el-table-column prop="id" :label="$t('txhash')" min-width="450">
             <template slot-scope="scope">
               <a :href="handleExplorerURL( scope.row.id )" target="_blank">{{ellipseAddress(scope.row.id, 25)}}</a>
             </template>
@@ -56,6 +62,9 @@
               <span>{{dateFormat(scope.row.createTime)}}</span>
             </template>
           </el-table-column>
+          <div slot="empty">
+            <TableEmpty/>
+          </div>
         </el-table>
       </el-tab-pane>
     </el-tabs>
@@ -63,9 +72,11 @@
 </template>
 
 <script>
+import TableEmpty from "@/components/TableEmpty"
 import { mapActions, mapGetters } from "vuex";
 import emitter from "@/helpers/eventBus";
-import { SUBSCRIBE_HAS_CHANGED } from "@/components/Web3Modal/constants";
+
+import { SUBSCRIBE_HAS_CHANGED, SUBSCRIBE_TX_CONFIRMED } from "@/components/Web3Modal/constants";
 import { handleExplorerURL, dateFormat, ellipseAddress } from "@/helpers/utilities";
 import {
   convertFixedAmountFromRawNumber,
@@ -74,6 +85,9 @@ import {
 
 export default {
   name: "DividendHistory",
+  components: {
+    TableEmpty
+  },
   props: {},
   data() {
     return {
@@ -89,11 +103,14 @@ export default {
   },
   mounted: function() {
     emitter.on(SUBSCRIBE_HAS_CHANGED, this.web3ChangeHandle);
+    emitter.on(SUBSCRIBE_TX_CONFIRMED, this.web3ChangeHandle);
     this._dividends_fetch_history([this._web3Modal_get_value.address, 'Locked']);
+    this._dividends_fetch_history([this._web3Modal_get_value.address, 'Unlocked']);
+    this._dividends_fetch_history([this._web3Modal_get_value.address, 'Dividend']);
   },
   beforeDestroy: function() {
-    console.log('DividendHistory::beforeDestroy')
     emitter.off(SUBSCRIBE_HAS_CHANGED, this.web3ChangeHandle)
+    emitter.off(SUBSCRIBE_TX_CONFIRMED, this.web3ChangeHandle)
   },
   methods: {
     ...mapActions([
@@ -101,9 +118,6 @@ export default {
     ]),
     handleClick(tab, event) {
 
-    },
-    renderTxLink(hash) {
-      return  `https://etherscan.io/tx/${hash}`
     },
     web3ChangeHandle() {
         this._dividends_fetch_history([this._web3Modal_get_value.address, 'Locked']);
@@ -131,7 +145,10 @@ export default {
   a{
     color: $--color-primary;
   }
-
+  span {
+    /* min-width: 150px; */
+   
+  }
   color: #f9f9f9;
 }
 </style>

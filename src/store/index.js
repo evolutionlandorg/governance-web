@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import BigNumber from 'bignumber.js'
 import VuexPersistence from 'vuex-persist'
-
+import _ from 'lodash';
 import { ZERO, greaterThan, toBigNumber } from '@/helpers/bignumber';
 import * as Mutation from './mutation-type';
 import * as Methods from '@/helpers/constants';
@@ -170,6 +170,20 @@ export default new Vuex.Store({
         txQueue: []
       }
     },
+    [Mutation.WEB3MODAL_SET_STATUS_BY_HASH](state, payload) {
+
+      const _index = _.findIndex(state.web3Modal.txQueue, {result: payload.data.hash});
+
+      if(_index != -1) {
+        const newTxQueue = [...state.web3Modal.txQueue];
+
+        newTxQueue[_index].status = payload.data.status;
+        state.web3Modal = {
+          ...state.web3Modal,
+          txQueue: newTxQueue
+        }
+      }
+    },
 
     // ------------------ Evolution Teller ------------------ //
     [Mutation.EVOLUTIONTELLER_SET_VALUE](state, payload) {
@@ -235,6 +249,15 @@ export default new Vuex.Store({
         data: []
       })
     },
+    _web3Modal_set_tx_queue_status({ commit }, payload) {
+      this.commit({
+        type: Mutation.WEB3MODAL_SET_STATUS_BY_HASH,
+        data: {
+          hash: payload.hash,
+          status: payload.status
+        }
+      })
+    },
 
     // ------------------ Evolution Teller ------------------ //
     async _evolutionTeller_fetch_info({ commit }, payload) {
@@ -279,6 +302,7 @@ export default new Vuex.Store({
       const result = await payload.$web3Modal.contractCall(
         Methods.EVO_TELLER_WITHDRAW, 
         payload.params);
+      return result;
     },
 
     async _evolutionTeller_getReward({ commit, dispatch, getters }, payload) {

@@ -6,7 +6,7 @@
         {{$t('time')}}: {{ dateFormat(proposal.msg.payload.start) }} ~ {{ dateFormat(proposal.msg.payload.end) }}
       </p>
     </div>
-    <div class="proposal-buttons">
+    <div class="proposal-buttons hidden-sm-and-down">
       <el-button size="mini" @click="goVote(proposal.authorIpfsHash)">{{$t('vote')}}</el-button>
     </div>
   </div>

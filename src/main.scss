@@ -16,8 +16,26 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
+.el-notification a{
+  color: #3FF9E7;
+}
+
 #WEB3_CONNECT_MODAL_ID{
   div{
     z-index: 3000;
   }
+}
+
+div:focus, span:focus {
+  outline: none;
+}
+
+.el-drawer__header {
+  align-items: center;
+  color: #72767b;
+  display: flex;
+  margin-bottom: 32px;
+  padding: 13px;
+  color: #fff;
+  background: #1B182F;
 }

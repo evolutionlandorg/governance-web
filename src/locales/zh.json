@@ -23,13 +23,20 @@
     "view on ethereum": "去 Etherscan 查看",
     "disconnect": "退出",
     "recent transaction": "当前交易",
-    "clear all": "清空"
+    "clear all": "清空",
+    "waiting for confirmation": "等待确认",
+    "confirm this transaction in your wallet": "请在你的钱包中确认此交易",
+    "transaction rejected": "交易被拒绝",
+    "transaction submitted": "交易已经被广播",
+    "confirmed transaction": "交易被确认",
+    "failed transaction": "交易失败"
   },
   "common": {
     "cancel": "取消"
   },
   "total power": "Power 总计",
   "approve": "授权",
+  "kton power": "KTON Power",
   "land power": "地块 Power",
   "apostle power": "使徒 Power",
   "buy": "购买",
@@ -59,5 +66,12 @@
     "每持有 1 块土地，可获得 100 Power；",
     "每持有 1 个使徒，可获得 1 Power。",
     "每个提案发起时，会对当时持有的 Power进行快照，作为该提案的 有效 Power。因此，如果资产持有状况产生变化，不同提案的有效 Power可能是不同的。"
-  ]
+  ],
+  "nodata": "暂无数据",
+  "form": {
+    "form input error": "输入的数值有误",
+    "kton's balance is insufficient": "KTON的余额不足"
+  },
+  "unlockable countdown": "可解锁倒计时："
 }
+  
