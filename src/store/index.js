@@ -11,6 +11,7 @@ import * as Api from '@/helpers/api';
 import * as GraphApi from '@/helpers/graphApi';
 
 const vuexLocal = new VuexPersistence({
+  key: 'evolution-land-gov',
   storage: window.localStorage
 })
 
