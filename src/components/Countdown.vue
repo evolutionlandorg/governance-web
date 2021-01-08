@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="countdown">
     <p v-if="msTime.show">
       <span v-if="tipShow">{{tipText}}</span>
       <span v-if="msTime.day>0"><span>{{msTime.day}}</span><i>{{dayTxt}}</i></span>
@@ -29,9 +29,9 @@
       }
     },
     watch: {
-      currentTime: function(val, oldval) {
+      countDownFlag: function(val, oldval) {
         this.go();
-      }
+      },
     },
     props: {
       tipText: {
@@ -72,6 +72,9 @@
         type: Boolean,
         default: false
       },
+      countDownFlag: {
+        type: Number
+      }
     },
     mounted() {
       this.go();
@@ -136,3 +139,9 @@
     }
   }
 </script>
+
+<style scoped lang="scss">
+  .countdown {
+    font-weight: bold
+  }
+</style>

@@ -16,7 +16,7 @@
 <style scoped lang="scss">
   @import "@/styles/theme-chalk/src/common/var.scss";
   .table-empty-content {
-    padding: 30px;
+    padding: 40px 30px 30px 30px;
     display: flex;
     flex-direction: column;
     justify-content: center;

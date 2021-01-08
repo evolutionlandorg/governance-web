@@ -338,7 +338,9 @@ export default new Vuex.Store({
       dispatch('_kton_fetch_info', {
         $web3Modal: payload.$web3Modal,
         params: [getters._web3Modal_get_value.address]
-      })
+      });
+      
+      return result;
     },
 
     // ------------------------ Proposal ------------------------ //

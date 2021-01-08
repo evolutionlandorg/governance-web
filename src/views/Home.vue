@@ -32,7 +32,7 @@
                     </div>
                     <div class="item">
                       <p>{{$t('locked')}}: {{convertFixedAmountFromRawNumber(_evolutionTeller_get_value.balanceOfStaking)}}</p>
-                      <el-button class="fixed-button" size="small" type="primary" @click="toggleUnlockKtonDialogVisible">{{$t('unlock')}}</el-button>
+                      <el-button class="fixed-button" size="small" :disabled="_evolutionTeller_get_value.balanceOfStaking === '0'" type="primary" @click="toggleUnlockKtonDialogVisible">{{$t('unlock')}}</el-button>
                     </div>
                   </div>
                 </div>

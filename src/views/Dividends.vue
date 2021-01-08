@@ -16,7 +16,7 @@
               <p class="title">{{$t('total dividends')}}</p>
               <p class="value">{{convertFixedAmountFromRawNumber(getTotalDividends())}} RING</p>
               <div class="claim-info">
-                <p class="subtitle">{{$t('unclaimed')}}: {{convertFixedAmountFromRawNumber(_evolutionTeller_get_value.reward)}} RING</p>
+                <p class="subtitle">{{$t('unclaimed')}}: {{convertFixedAmountFromRawNumber(_evolutionTeller_get_value.earned)}} RING</p>
                 <el-button class="is-fixed" size="small" @click="handleCliam()">{{$t('claim')}}</el-button>
               </div>
             </div>
@@ -77,13 +77,16 @@
         "_web3Modal_get_value"
       ]),
     },
-    mounted: function() {},
+    mounted: function() {
+      console.log('dividengs mounted!')
+    },
     methods: {
       ...mapActions([
         "_evolutionTeller_getReward",
       ]),
       getTotalDividends: function() {
-        return toBigNumber(this._evolutionTeller_get_value.earned).plus(toBigNumber(this._evolutionTeller_get_value.reward));
+        // TODO: 
+        return toBigNumber(this._evolutionTeller_get_value.earned);
       },
       handleCliam: async function() {
         try {

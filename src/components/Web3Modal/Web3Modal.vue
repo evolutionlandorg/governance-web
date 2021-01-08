@@ -17,7 +17,7 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="90" height="90" viewBox="0 0 24 24" fill="none" stroke="#3FF9E7" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="16 12 12 8 8 12"></polyline><line x1="12" y1="16" x2="12" y2="8"></line></svg>
         <span>{{$t('connect.transaction submitted')}}</span>
         <a target="_blank" rel="noopener noreferrer" :href="this.handleExplorerURL(txHash)" class="sc-dxgOiQ ejZAHb">
-          <div class="">{{$t('connect.view on ethereum')}}</div>
+          <div class="">{{$t('connect.view on etherscan')}}</div>
         </a>
       </div>
     </el-dialog>

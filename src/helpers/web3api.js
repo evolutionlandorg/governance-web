@@ -95,18 +95,14 @@ export function callKtonAllowance(address, chainId, web3, params = [], options =
   })
 }
 
-export function callKtonTransfer(address, chainId, web3, params = [], options = {}) {
-  return new Promise(async (resolve, reject) => {
-    const contract = getKtonContract(chainId, web3);
-    await send(address, contract, 'transfer', params, options);
-  })
+export async function callKtonTransfer(address, chainId, web3, params = [], options = {}) {
+  const contract = getKtonContract(chainId, web3);
+  return await send(address, contract, 'transfer', params, options);
 }
 
-export function callKtonApprove(address, chainId, web3, params = [], options = {}) {
-  return new Promise(async (resolve, reject) => {
-    const contract = getKtonContract(chainId, web3)
-    await send(address, contract, 'approve', params, options)
-  })
+export async function callKtonApprove(address, chainId, web3, params = [], options = {}) {
+  const contract = getKtonContract(chainId, web3)
+  return await send(address, contract, 'approve', params, options)
 }
 
 // ------------------ Evolution Teller ------------------ //

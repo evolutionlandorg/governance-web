@@ -20,6 +20,7 @@
           </el-input>
         </el-form-item>
         <count-down
+          v-if="parseInt(currentBlockTimestamp) < parseInt(stakeLock) && parseInt(currentBlockTimestamp) && parseInt(stakeLock)"
           v-on:start_callback="countDownS_cb(1)"
           :currentTime="parseInt(currentBlockTimestamp)"
           :startTime="parseInt(stakeLock)"
@@ -28,6 +29,7 @@
           :hourTxt="':'"
           :minutesTxt="':'"
           :secondsTxt="''"
+          :countDownFlag="countDownFlag"
         ></count-down>
       </el-form>
       <div class="line"></div>
@@ -46,6 +48,7 @@ import {
   formatFixedDecimals,
   toWei,
   greaterThan,
+  greaterThanOrEqual,
 } from "@/helpers/bignumber";
 import Countdown from "@/components/Countdown.vue";
 import * as Methods from "@/helpers/constants";
@@ -69,6 +72,7 @@ export default {
       },
       stakeLock: '0',
       currentBlockTimestamp: '0',
+      countDownFlag: 1
     };
   },
   computed: {
@@ -78,7 +82,7 @@ export default {
       "_web3Modal_get_value",
     ]),
     isUnlock: function() {
-      return greaterThan(this.currentBlockTimestamp, this.stakeLock);
+      return greaterThanOrEqual(this.currentBlockTimestamp, this.stakeLock);
     }
   },
   watch: {
@@ -87,6 +91,7 @@ export default {
       if (newValue) {
         this.getStakeLock();
         this.getCurrentTimestamp();
+        this.countDownFlag ++;
       }
     },
   },
@@ -104,6 +109,7 @@ export default {
       const { web3 } = this.$web3Modal.getWeb3();
       const blocknumber = await web3.eth.getBlockNumber();
       const block = await web3.eth.getBlock(blocknumber);
+      console.log('getCurrentTimestamp', block.timestamp)
       if (block.timestamp) {
         this.currentBlockTimestamp = block.timestamp;
       }
@@ -158,6 +164,7 @@ export default {
     countDownS_cb: function(x) {
       this.getStakeLock();
       this.getCurrentTimestamp();
+      this.countDownFlag ++;
     },
     convertFixedAmountFromRawNumber,
   },
