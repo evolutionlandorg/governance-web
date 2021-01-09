@@ -25,7 +25,7 @@
           :currentTime="parseInt(currentBlockTimestamp)"
           :startTime="parseInt(stakeLock)"
           :tipText="$t('unlockable countdown')"
-          :dayTxt="':'"
+          :dayTxt="`${$t('day')} `"
           :hourTxt="':'"
           :minutesTxt="':'"
           :secondsTxt="''"

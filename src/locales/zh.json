@@ -72,6 +72,7 @@
     "form input error": "输入的数值有误",
     "kton's balance is insufficient": "KTON的余额不足"
   },
-  "unlockable countdown": "可解锁倒计时："
+  "unlockable countdown": "可解锁倒计时：",
+  "day": "天"
 }
   

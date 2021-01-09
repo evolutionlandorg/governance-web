@@ -72,5 +72,6 @@
     "form input error": "The entered value is wrong",
     "kton's balance is insufficient": "KTON's balance is insufficient"
   },
-  "unlockable countdown": "Unlockable countdown: "
+  "unlockable countdown": "Unlockable countdown: ",
+  "day": "days"
 }
