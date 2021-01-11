@@ -16,7 +16,7 @@
   },
   "connect": {
     "connect": "Connect",
-    "change": "Change",
+    "view more": "View More",
     "account": "Account",
     "connect with": "Connect with",
     "copy address": "Copy Address",
@@ -29,7 +29,8 @@
     "transaction rejected": "Transaction rejected.",
     "transaction submitted": "Transaction Submitted.",
     "confirmed transaction": "Confirmed transaction",
-    "failed transaction": "Failed transaction"
+    "failed transaction": "Failed transaction",
+    "pending": "Pending"
   },
   "common": {
     "cancel": "Cancel"
@@ -73,5 +74,6 @@
     "kton's balance is insufficient": "KTON's balance is insufficient"
   },
   "unlockable countdown": "Unlockable countdown: ",
-  "day": "days"
+  "day": "days",
+  "for atlantis":"For Atlantis"
 }

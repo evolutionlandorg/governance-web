@@ -17,3 +17,16 @@ export const SUBGRAPH_STAKE_HISTORY = (address, stakedHistoryType = 'Locked' ) =
 
   return gql(queryString);
 } 
+
+export const SUBGRAPH_TOTAL_DIVIDENDS = (address) => {
+  const queryString = `
+    query totalDividends {
+      stakedRewards(first: 1,where:{owner: "${address}"}) {
+        id
+        amount
+      }
+    }
+  `;
+
+  return gql(queryString);
+} 

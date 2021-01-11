@@ -16,7 +16,7 @@
   },
   "connect": {
     "connect": "连接",
-    "change": "切换",
+    "view more": "查看更多",
     "account": "当前账号",
     "connect with": "已连接至",
     "copy address": "复制地址",
@@ -29,7 +29,8 @@
     "transaction rejected": "交易被拒绝",
     "transaction submitted": "交易已经被广播",
     "confirmed transaction": "交易被确认",
-    "failed transaction": "交易失败"
+    "failed transaction": "交易失败",
+    "pending": "进行中"
   },
   "common": {
     "cancel": "取消"
@@ -73,6 +74,7 @@
     "kton's balance is insufficient": "KTON的余额不足"
   },
   "unlockable countdown": "可解锁倒计时：",
-  "day": "天"
+  "day": "天",
+  "for atlantis":"亚特兰蒂斯大陆"
 }
   

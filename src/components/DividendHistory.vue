@@ -8,7 +8,7 @@
               <a :href="handleExplorerURL( scope.row.id )" target="_blank">{{ellipseAddress(scope.row.id, 25)}}</a>
             </template>
           </el-table-column>
-          <el-table-column prop="amount" :label="$t('history value', { token: 'KTON' })" width="150">
+          <el-table-column prop="amount" :label="$t('history value', { token: 'KTON' })" width="200">
             <template slot-scope="scope">
               <span>{{fromWei(scope.row.amount)}}</span>
             </template>
@@ -30,7 +30,7 @@
               <a :href="handleExplorerURL( scope.row.id )" target="_blank">{{ellipseAddress(scope.row.id, 25)}}</a>
             </template>
           </el-table-column>
-          <el-table-column prop="amount" :label="$t('history value', { token: 'KTON' })" width="150">
+          <el-table-column prop="amount" :label="$t('history value', { token: 'KTON' })" width="200">
             <template slot-scope="scope">
               <span>{{fromWei(scope.row.amount)}}</span>
             </template>
@@ -52,7 +52,7 @@
               <a :href="handleExplorerURL( scope.row.id )" target="_blank">{{ellipseAddress(scope.row.id, 25)}}</a>
             </template>
           </el-table-column>
-          <el-table-column prop="amount" :label="$t('history value', { token: 'RING' })" width="150">
+          <el-table-column prop="amount" :label="$t('history value', { token: 'RING' })" width="200">
             <template slot-scope="scope">
               <span>{{fromWei(scope.row.amount)}}</span>
             </template>
@@ -114,7 +114,7 @@ export default {
   },
   methods: {
     ...mapActions([
-      "_dividends_fetch_history"
+      "_dividends_fetch_history",
     ]),
     handleClick(tab, event) {
 

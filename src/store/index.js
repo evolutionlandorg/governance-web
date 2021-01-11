@@ -41,7 +41,7 @@ const INITIAL_EVOLUTION_TELLER = {
   apostleVoteRate: "0",
 
   earned: "0",
-  reward: "0"
+  totalDividends: "0"
 }
 
 const INITIAL_EVOLUTION_KTON = {
@@ -268,6 +268,13 @@ export default new Vuex.Store({
       const balanceOfLandOwner = await payload.$web3Modal.contractCall(Methods.EVO_TELLER_BALANCE_OF_LANDOWNER, payload.params);
       const voteRates = await payload.$web3Modal.contractCall(Methods.EVO_TELLER_VOTE_RATE, []);
       const dividends = await payload.$web3Modal.contractCall(Methods.EVO_TELLER_DIVIDENDS, payload.params);
+      const totalDividendsData = await GraphApi.apiGetTotalDividends(...payload.params);
+
+      let totalDividends = '0';
+      
+      if(totalDividendsData && totalDividendsData.data && totalDividendsData.data.stakedRewards && totalDividendsData.data.stakedRewards.length > 0) {
+        totalDividends = totalDividendsData.data.stakedRewards[0].amount
+      }
 
       commit({
         type: Mutation.EVOLUTIONTELLER_SET_VALUE,
@@ -282,7 +289,7 @@ export default new Vuex.Store({
           apostleVoteRate: voteRates.result[2],
 
           earned: dividends.result[0],
-          reward: dividends.result[1],
+          totalDividends: totalDividends || '0',
         }
       })
     },
@@ -373,6 +380,23 @@ export default new Vuex.Store({
         }
       })
     },
+
+    // async _dividends_fetch_total_dividends({ commit, dispatch, getters }, payload) {
+    //   // ApolloQuery
+    //   if(!payload[0]){
+    //     return null;
+    //   }
+
+    //   const result = await GraphApi.apiGetTotalDividends(...payload);
+
+    //   commit({
+    //     type: Mutation.EVOLUTIONTELLER_HISTORY_SET_VALUE,
+    //     data:{
+    //       type: payload[1] || 'Locked',
+    //       value: result.data.stakedHistories
+    //     }
+    //   })
+    // },
 
     // ----------------------- Common ----------------------- //
     async _common_init_address_info({ commit, dispatch }, payload) {

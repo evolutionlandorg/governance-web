@@ -1,9 +1,12 @@
 <template>
   <div class="content">
-    <div class="logo-box">
-      <router-link to="/">
-        <img src="../assets/evolution-land-logo.png" alt="evo logo" />
-      </router-link>
+    <div class="header-left">
+      <div class="logo-box">
+        <router-link to="/">
+          <img src="../assets/evolution-land-logo.png" alt="evo logo" />
+        </router-link>
+      </div>
+      <span>{{$t('for atlantis')}}</span>
     </div>
     <div class="nav hidden-xs-only">
       <a target="_blank" rel="noopener noreferrer" href="https://www.evolution.land/">{{$t('nav.game')}}</a>
@@ -75,6 +78,12 @@
     padding-top: 20px;
     padding-bottom: 20px;
   }
+  .header-left{
+    display: flex;
+    color: $--color-primary;
+    font-size: 14px;
+    align-items: flex-end;
+  }
   .logo-box,
   .menu-box {
     display: flex;
@@ -87,6 +96,7 @@
       width: 100%;
       height: 100%;
     }
+    margin-right: 8px
   }
   .nav {
     a {

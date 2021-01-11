@@ -16,8 +16,15 @@
         <p class="name-info">
           <span class="hidden-sm-and-down">{{  _web3Modal_get_value.address }}</span>
           <span class="hidden-md-and-up">{{ ellipseAddress(_web3Modal_get_value.address, 5) }}</span>
-          <el-button size="mini" @click="change">{{$t('connect.change')}}</el-button>
+          <el-button size="small" @click="change">{{$t('connect.view more')}}</el-button>
         </p>
+      </div>
+      <div class="connect-pending" v-if="this.getPendingAmount()">
+        <el-button size="small" @click="change">
+          <span>{{$t('connect.pending')}} </span>
+          <span>{{this.getPendingAmount()}}</span>
+          <img class="status status-pending" src="@/assets/components/connect/pending.svg" alt="Pending transaction" />
+        </el-button>
       </div>
     </div>
     <el-dialog :title="$t('connect.account')" class="account-dialog" :visible="visible" width="500px" :before-close="handleClose" center>
@@ -54,9 +61,9 @@
           <div class="queue">
             <div class="queue-item" v-for="item in _web3Modal_get_tx_queue" :key="item.result">
               <p><a target="_blank" rel="noopener noreferrer" :href="handleExplorerURL(item.result)">{{ellipseAddress(item.result, 10)}}</a> <span class="hidden-xs-only">{{item.action}}</span></p>
-              <img v-if="item.status === 'pending'" class="status status-pending" src="@/assets/components/connect/pending.svg" alt="Pending transaction"/>
-              <img v-else-if="item.status === 'success'" class="status" src="@/assets/components/connect/success.svg" alt="Confirmed transaction"/>
-              <img v-else class="status" src="@/assets/components/connect/fail.svg" alt="Failed transaction"/>
+              <img v-if="item.status === 'pending'" class="status status-pending" src="@/assets/components/connect/pending.svg" alt="Pending transaction" />
+              <img v-else-if="item.status === 'success'" class="status" src="@/assets/components/connect/success.svg" alt="Confirmed transaction" />
+              <img v-else class="status" src="@/assets/components/connect/fail.svg" alt="Failed transaction" />
             </div>
           </div>
         </div>
@@ -74,6 +81,7 @@
     ellipseAddress,
     handleExplorerURL
   } from "@/helpers/utilities";
+  import _ from 'lodash';
   export default {
     name: "Connect",
     data: () => {
@@ -116,6 +124,12 @@
       clearAll: function() {
         this._web3Modal_clear_txqueue();
       },
+      getPendingAmount: function() {
+        const queue = this._web3Modal_get_tx_queue;
+        return _.filter(queue, {
+          status: 'pending'
+        }).length;
+      },
       ellipseAddress
     },
   };
@@ -142,12 +156,13 @@
     margin-left: 10px;
     .name-info {
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-start;
       align-items: center;
       span {
         font-size: 20px;
         color: $--color-primary;
         font-weight: 600;
+        margin-right: 30px;
       }
     }
   }
@@ -155,6 +170,20 @@
   .connected {
     display: flex;
     align-items: center;
+    .connect-pending {
+      button>span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        img {
+          margin-left: 5px;
+          width: 10px;
+          height: 10px;
+          position: relative;
+          top: 1px;
+        }
+      }
+    }
   }
   .account-dialog {
     .line {
@@ -221,14 +250,21 @@
         color: $--color-primary;
       }
     }
-    .status {
-      height: 18px;
-      width: 18px;
-    }
-    .status-pending {
-      animation: 2s linear 0s infinite normal none running GoRound;
-    }
+    /* .status {
+        height: 18px;
+        width: 18px;
+      }
+      .status-pending {
+        animation: 2s linear 0s infinite normal none running GoRound;
+      } */
     padding-bottom: 15px;
+  }
+  .status {
+    height: 18px;
+    width: 18px;
+  }
+  .status-pending {
+    animation: 2s linear 0s infinite normal none running GoRound;
   }
    ::v-deep .el-dialog--center .el-dialog__body {
     padding: 0px 25px 0px;
@@ -250,7 +286,18 @@
      ::v-deep .el-dialog {
       width: 90% !important;
     }
-    .account-dialog{
+    .avatar-box {
+      width: 30px;
+      height: 30px;
+    }
+    .connect-info {
+      .name-info {
+        span {
+          font-size: 18px;
+        }
+      }
+    }
+    .account-dialog {
       .account-box {
         .account-info {
           .address {

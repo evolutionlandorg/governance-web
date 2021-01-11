@@ -5,7 +5,17 @@
     </div>
     <div class="social-box">
       <div class="links">
-        <a target="_blank" rel="noopener noreferrer"><img src="../assets/components/footer/icon-wechat.png" /></a>
+        <el-popover
+          class="wechat-code"
+          placement="top-start"
+          title=""
+          width="100"
+          trigger="hover">
+          <div class="wechat-code-box">
+            <img src="@/assets/wechat-code.jpg"/>
+          </div>
+            <a slot="reference" target="_blank" rel="noopener noreferrer"><img src="../assets/components/footer/icon-wechat.png" /></a>
+        </el-popover>
         <a href="http://weibo.com/evolutionland" target="_blank" rel="noopener noreferrer"><img src="../assets/components/footer/icon-weibo.png" /></a>
         <a href="https://github.com/evolutionlandorg/" target="_blank" rel="noopener noreferrer"><img src="../assets/components/footer/icon-github.png" /></a>
         <a href="https://discord.gg/NfvyV69" target="_blank" rel="noopener noreferrer"><img src="../assets/components/footer/icon-discord.png" /></a>
@@ -75,6 +85,15 @@
       }
     }
   }
+  .wechat-code-box {
+    display: flex;
+    justify-content: center;
+  }
+
+  .wechat-code {
+    font-size: 0;
+  }
+
   @media screen and (max-width: $--md) {
     .content {
       display: flex;
