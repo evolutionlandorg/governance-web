@@ -66,7 +66,8 @@
     "Lock 1 KTON can get 10 Power,",
     "Holding 1 land can get 100 Power,",
     "Holding 1 apostle can get 1 Power,",
-    "Each proposal will take a snapshot of Power when it is proposed, so the available Power for each proposal may be different."
+    "Each proposal will take a snapshot of Power when it is proposed, so the available Power for each proposal may be different.",
+    "Proposal with power lower than 100 won’t be shown."
   ],
   "nodata": "No Data",
   "form": {
@@ -75,5 +76,6 @@
   },
   "unlockable countdown": "Unlockable countdown: ",
   "day": "days",
-  "for atlantis":"For Atlantis"
+  "for atlantis":"For Atlantis",
+  "proposal list tip": "Proposal with power lower than 100 won’t be shown."
 }

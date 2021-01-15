@@ -10,18 +10,9 @@ import {Web3Modal} from './components'
 
 import {
   Dialog,
-  Autocomplete,
   Dropdown,
-  DropdownMenu,
-  DropdownItem,
-  Menu,
-  MenuItem,
-  MenuItemGroup,
   Input,
-  InputNumber,
   Radio,
-  RadioGroup,
-  RadioButton,
   Checkbox,
   Switch,
   Select,
@@ -35,7 +26,6 @@ import {
   Tooltip,
   Form,
   FormItem,
-  Tabs,
   TabPane,
   Tag,
   Alert,
@@ -50,7 +40,6 @@ import {
   Footer,
   Link,
   Image,
-  CascaderPanel,
   Loading,
   MessageBox,
   Message,
@@ -67,18 +56,9 @@ import {
 
 Vue.use(TableEmpty);
 Vue.use(Dialog);
-Vue.use(Autocomplete);
 Vue.use(Dropdown);
-Vue.use(DropdownMenu);
-Vue.use(DropdownItem);
-Vue.use(Menu);
-Vue.use(MenuItem);
-Vue.use(MenuItemGroup);
 Vue.use(Input);
-Vue.use(InputNumber);
 Vue.use(Radio);
-Vue.use(RadioGroup);
-Vue.use(RadioButton);
 Vue.use(Checkbox);
 Vue.use(Switch);
 Vue.use(Select);
@@ -92,7 +72,6 @@ Vue.use(Popover);
 Vue.use(Tooltip);
 Vue.use(Form);
 Vue.use(FormItem);
-Vue.use(Tabs);
 Vue.use(TabPane);
 Vue.use(Tag);
 Vue.use(Alert);
@@ -107,7 +86,6 @@ Vue.use(Main);
 Vue.use(Footer);
 Vue.use(Link);
 Vue.use(Image);
-Vue.use(CascaderPanel);
 Vue.use(Drawer);
 
 Vue.use(Loading.directive);

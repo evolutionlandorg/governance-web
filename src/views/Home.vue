@@ -78,7 +78,7 @@
             </el-row>
           </div>
         </Content>
-        <Content :title="$t('module.proposal list')">
+        <Content :title="$t('module.proposal list')" :subTitle="$t('proposal list tip')">
           <div class="proposal-box" slot="content">
             <ProposalList :data="_proposal_get_value" />
           </div>

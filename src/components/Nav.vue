@@ -62,7 +62,7 @@
     },
     methods: {
       renderVoteUrl() {
-        return `${getApi(API_SNAPSHOT_DOMAIN).page}/#/evolutionland`;
+        return `${getApi(API_SNAPSHOT_DOMAIN).page}/#/evoland.eth`;
       }
     }
   };
@@ -82,7 +82,16 @@
     display: flex;
     color: $--color-primary;
     font-size: 14px;
-    align-items: flex-end;
+    align-items: center;
+    span {
+      background: linear-gradient(180deg, #ffffff, $--color-primary);
+      color: #000;
+      display: inline-block;
+      padding: 1px 3px;
+      font-size: 12px;
+      font-weight: bold;
+      border-radius: 3px;
+    }
   }
   .logo-box,
   .menu-box {
@@ -96,7 +105,7 @@
       width: 100%;
       height: 100%;
     }
-    margin-right: 8px
+    margin-right: 8px;
   }
   .nav {
     a {

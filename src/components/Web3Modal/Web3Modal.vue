@@ -51,6 +51,7 @@
     setTimeout,
     clearTimeout
   } from 'timers';
+
   const INITIAL_STATE = {
     fetching: false,
     provider: null,
@@ -100,18 +101,21 @@
         "_web3Modal_set_tx_queue_status"
       ]),
       init: function(providerOptions = {}, web3ModalOptions = {}, emitter) {
+        const INFURA_API_KEY = process.env.VUE_APP_INFURA_ID;
+        const FORTMATIC_ID = process.env.VUE_APP_FORTMATIC_ID;
+
         console.log("web3Modal - mounted");
         const mixinProviderOptions = {
           walletconnect: {
             package: WalletConnectProvider,
             options: {
-              infuraId: "8043bb2cf99347b1bfadfb233c5325c0",
+              infuraId: INFURA_API_KEY,
             },
           },
           fortmatic: {
             package: Fortmatic,
             options: {
-              key: "pk_test_391E26A3B43A3350",
+              key: FORTMATIC_ID,
             },
           },
           ...providerOptions

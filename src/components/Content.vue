@@ -2,7 +2,7 @@
   <div class="content">
 
     <div class="title-box">
-      <p class="title-text">{{ title }}</p>
+      <p class="title-text">{{ title }} <span>{{ subTitle }}</span></p>
     </div>
 
     <div class="content-box">
@@ -16,6 +16,7 @@ export default {
   name: "Content",
   props: {
     title: String,
+    subTitle: String
   },
 };
 </script>
@@ -30,6 +31,12 @@ export default {
   font-weight: bold;
   margin-bottom: 10px;
   margin-top: 20px;
+  span {
+    font-size: 14px;
+    color: $--color-info;
+    margin-left: 10px;
+    font-weight: normal;
+  }
 }
 
 .content-box {

@@ -3,8 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "VUE_APP_BUILD_ENV=dev VUE_APP_INFURA_ID= vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "serve": "VUE_APP_BUILD_ENV=dev VUE_APP_INFURA_ID= VUE_APP_FORTMATIC_ID= vue-cli-service serve",
+    "serve-prod": "VUE_APP_BUILD_ENV=prod VUE_APP_INFURA_ID= VUE_APP_FORTMATIC_ID= vue-cli-service serve",
+    "build": "VUE_APP_BUILD_ENV=prod VUE_APP_INFURA_ID= VUE_APP_FORTMATIC_ID= vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint"
   },

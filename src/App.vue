@@ -53,6 +53,8 @@
   import {
     supportedLocalesInclude
   } from "@/helpers/i18n/supported-locales";
+  import { getEnv } from '@/helpers/config';
+
   export default {
     name: "App",
     components: {
@@ -73,7 +75,9 @@
       emitter.on(SUBSCRIBE_TX_CONFIRMED, this.web3ChangeHandle);
       const startingLocale = this.getStartingLocale();
       this.$i18n.locale = startingLocale;
-      this.$web3Modal.init({}, {}, emitter);
+      this.$web3Modal.init({}, {
+        network: getEnv().web3ModalNetwork
+      }, emitter);
     },
     mounted: function() {
     },

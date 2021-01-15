@@ -12,7 +12,15 @@ const api = axios.create({
 
 export async function apiGetProposals(){
   const response = await api.get(
-    `/api/evolutionland/proposals`
+    `api/evoland.eth/proposals`
   );
-  return response.data;
+
+  try {
+    JSON.parse(response.data);
+  } catch (error) {
+    console.log(error);
+    return {}
+  }
+
+  return {} || response.data;
 }
