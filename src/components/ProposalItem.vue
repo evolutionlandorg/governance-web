@@ -1,7 +1,7 @@
 <template>
   <div class="content">
     <div class="proposal-info">
-      <p class="title">{{ proposal.msg.payload.name }}</p>
+      <a class="title" target="_blank" :href="renderProposalUrl(proposal.authorIpfsHash)">{{ proposal.msg.payload.name }}</a>
       <p class="subtitle">
         {{$t('time')}}: {{ dateFormat(proposal.msg.payload.start) }} ~ {{ dateFormat(proposal.msg.payload.end) }}
       </p>
@@ -25,8 +25,11 @@ export default {
   },
 
   methods: {
+    renderProposalUrl: function(hash) {
+      return `${getApi(API_SNAPSHOT_DOMAIN).page}/#/evoland.eth/proposal/${hash}`;
+    },
     goVote: function(hash) {
-      openUrl(`${getApi(API_SNAPSHOT_DOMAIN).page}/#/evolutionland/proposal/${hash}`);
+      openUrl(this.renderProposalUrl(hash));
     },
     dateFormat,
     
@@ -57,6 +60,8 @@ export default {
       white-space: nowrap;
       overflow: hidden;
       margin-bottom: 3px;
+      color: $--color-text-primary;
+      text-decoration: none;
     }
 
     .subtitle {

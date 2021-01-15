@@ -21,6 +21,7 @@
           <p>{{$t('power tip[1]')}}</p>
           <p>{{$t('power tip[2]')}}</p>
           <p>{{$t('power tip[3]')}}</p>
+          <p>{{$t('power tip[4]')}}</p>
         </div>
         <img slot="reference" width="22px" height="22px" src="@/assets/help-icon.png"/>
       </el-popover>

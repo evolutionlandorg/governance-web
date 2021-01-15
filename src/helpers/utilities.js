@@ -222,3 +222,13 @@ export function handleExplorerURL(chainId, hash) {
 
   return `${chainData.explorer}/tx/${hash}`;
 }
+
+export function handleAccountExplorerURL(chainId, address) {
+  const chainData = getChainData(chainId);
+
+  if (!address) {
+    return chainData.explorer;
+  }
+
+  return `${chainData.explorer}/address/${address}`;
+}

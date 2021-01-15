@@ -45,7 +45,7 @@
               <div v-clipboard="_web3Modal_get_value.address" class="copy"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
                 <span style="margin-left: 4px;">{{$t('connect.copy address')}}</span>
               </div>
-              <a target="_blank" rel="noopener noreferrer" href="https://ropsten.etherscan.io/address/0x735182c782CB8e7806F8903dE7913e6880CbF82E" class="explorer-link">
+              <a target="_blank" rel="noopener noreferrer" :href="handleAccountExplorerURL()" class="explorer-link">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
                 <span style="margin-left: 4px;">{{$t('connect.view on etherscan')}}</span>
               </a>
@@ -79,7 +79,8 @@
   } from 'vuex'
   import {
     ellipseAddress,
-    handleExplorerURL
+    handleExplorerURL,
+    handleAccountExplorerURL
   } from "@/helpers/utilities";
   import _ from 'lodash';
   export default {
@@ -120,6 +121,13 @@
           chainId
         } = this._web3Modal_get_value;
         return handleExplorerURL(chainId, hash);
+      },
+      handleAccountExplorerURL: function() {
+        const {
+          chainId,
+          address
+        } = this._web3Modal_get_value;
+        return handleAccountExplorerURL(chainId, address);
       },
       clearAll: function() {
         this._web3Modal_clear_txqueue();

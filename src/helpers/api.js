@@ -16,11 +16,11 @@ export async function apiGetProposals(){
   );
 
   try {
-    JSON.parse(response.data);
+    JSON.stringify(response.data);
   } catch (error) {
     console.log(error);
     return {}
   }
 
-  return {} || response.data;
+  return response.data;
 }

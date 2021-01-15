@@ -6,7 +6,7 @@ export const API_SNAPSHOT_DOMAIN = {
   },
   prod: {
     domain: 'https://hub.snapshot.page',
-    page: 'https://snapshot.page/#/evoland.eth'
+    page: 'https://snapshot.page'
   }
 }
 
