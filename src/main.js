@@ -11,6 +11,8 @@ import {Web3Modal} from './components'
 import {
   Dialog,
   Dropdown,
+  DropdownMenu,	
+  DropdownItem,
   Input,
   Radio,
   Checkbox,
@@ -57,6 +59,8 @@ import {
 Vue.use(TableEmpty);
 Vue.use(Dialog);
 Vue.use(Dropdown);
+Vue.use(DropdownMenu);	
+Vue.use(DropdownItem);
 Vue.use(Input);
 Vue.use(Radio);
 Vue.use(Checkbox);
