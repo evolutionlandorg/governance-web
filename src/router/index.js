@@ -21,7 +21,8 @@ const routes = [
 ]
 
 const router = new VueRouter({
-  mode: 'history',
+  // for github pages
+  // mode: 'history',
   base: process.env.BASE_URL,
   routes
 })
