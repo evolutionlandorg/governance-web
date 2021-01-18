@@ -28,6 +28,7 @@ import {
   Tooltip,
   Form,
   FormItem,
+  Tabs,
   TabPane,
   Tag,
   Alert,
@@ -76,6 +77,7 @@ Vue.use(Popover);
 Vue.use(Tooltip);
 Vue.use(Form);
 Vue.use(FormItem);
+Vue.use(Tabs);
 Vue.use(TabPane);
 Vue.use(Tag);
 Vue.use(Alert);
