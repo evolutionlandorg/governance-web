@@ -80,6 +80,7 @@
       }, emitter);
     },
     mounted: function() {
+      this.web3ChangeHandle()
     },
     beforeDestroy: function() {
       emitter.all.clear();

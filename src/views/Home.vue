@@ -148,7 +148,6 @@
       ]),
     },
     mounted: async function() {
-      // console.log('graph', await getStakeHistory('0x4ad6e21bef59268f2ccf10bfa18c20c8c13ed859'))
     },
     updated: async function() {},
     methods: {
