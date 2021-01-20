@@ -262,6 +262,10 @@ export default new Vuex.Store({
 
     // ------------------ Evolution Teller ------------------ //
     async _evolutionTeller_fetch_info({ commit }, payload) {
+      if(!payload.$web3Modal.isConnected()) {
+        return;
+      }
+
       const balanceOf = await payload.$web3Modal.contractCall(Methods.EVO_TELLER_BALANCE_OF, payload.params);
       const balanceOfStaking = await payload.$web3Modal.contractCall(Methods.EVO_TELLER_BALANCE_OF_STAKING, payload.params);
       const balanceOfApostleOwner = await payload.$web3Modal.contractCall(Methods.EVO_TELLER_BALANCE_OF_APOSTLEOWNER, payload.params);
@@ -321,7 +325,10 @@ export default new Vuex.Store({
 
     // ------------------------ Kton ------------------------ //
     async _kton_fetch_info({ commit, getters }, payload) {
-
+      if(!payload.$web3Modal.isConnected()) {
+        return;
+      }
+      
       const balanceOf = await payload.$web3Modal.contractCall(Methods.KTON_BALANCE_OF, payload.params);
       const allowance = await payload.$web3Modal.contractCall(Methods.KTON_ALLOWANCE, [payload.params[0], Methods.EVO_TELLER_CONTRACT[getters._web3Modal_get_value.chainId].address]);
 

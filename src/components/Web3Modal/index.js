@@ -40,6 +40,15 @@ export default {
       },
       contractCall(functionSig, params = {}, options = {}) {
         return instance.contractCall(functionSig, params, options);
+      },
+      isConnected() {
+        const web3 = instance.getWeb3Modal();
+        
+        if(web3 && web3.web3) {
+          return true;
+        }
+
+        return false;
       }
     };
 
