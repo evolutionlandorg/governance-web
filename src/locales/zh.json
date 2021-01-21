@@ -53,7 +53,7 @@
   "lock kton": "锁定 KTON",
   "balance": "余额",
   "locked": "已锁定",
-  "total dividends": "总计分红",
+  "claimed dividends": "已领取分红",
   "unclaimed": "待领取",
   "claim": "领取",
   "txhash": "交易哈希",

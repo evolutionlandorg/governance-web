@@ -13,7 +13,7 @@
               <img src="../assets/dividends-banner-1.png" alt="" />
             </div>
             <div class="info-box">
-              <p class="title">{{$t('total dividends')}}</p>
+              <p class="title">{{$t('claimed dividends')}}</p>
               <p class="value">{{convertFixedAmountFromRawNumber(getTotalDividends())}} RING</p>
               <div class="claim-info">
                 <p class="subtitle">{{$t('unclaimed')}}: {{convertFixedAmountFromRawNumber(_evolutionTeller_get_value.earned)}} RING</p>

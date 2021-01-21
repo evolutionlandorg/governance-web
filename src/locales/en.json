@@ -53,7 +53,7 @@
   "lock kton": "Lock KTON",
   "balance": "Balance",
   "locked": "Locked",
-  "total dividends": "Total Dividends",
+  "claimed dividends": "Claimed Dividends",
   "unclaimed": "Unclaimed",
   "claim": "Claim",
   "txhash": "Txhash",
