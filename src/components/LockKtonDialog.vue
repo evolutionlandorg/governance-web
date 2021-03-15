@@ -14,6 +14,7 @@
             <span slot="suffix" class="input-suffix">KTON</span>
           </el-input>
         </el-form-item>
+        <p class="form-tip">{{$t('Note: The lock period is at least 14 days. Each lock will reset the lock period. KTON locked for more than 14 days will enter the unlockable state.')}}</p>
         <div class="line"></div>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -134,6 +135,9 @@
     .input-suffix {
       font-weight: bold;
       color: $--color-text-primary;
+    }
+    .form-tip{
+      margin-bottom: 15px;
     }
     .line {
       border-bottom: $--border-dark;
