@@ -1,6 +1,6 @@
 export const ENV = {
   dev: {
-    web3ModalNetwork: 'ropsten'
+    web3ModalNetwork: 'pangolin'
   },
   prod: {
     web3ModalNetwork: 'mainnet'

@@ -192,6 +192,23 @@ const supportedChains = [
       contractAddress: "",
       balance: ""
     }
+  },
+  {
+    name: "Darwinia Pangolin",
+    short_name: "pgl",
+    chain: "pangolin",
+    network: "pangolin",
+    explorer: "https://pangolin.subscan.io/",
+    chain_id: 43,
+    network_id: 43,
+    rpc_url: "https://pangolin-rpc.darwinia.network",
+    native_currency: {
+      symbol: "PRING",
+      name: "PRING",
+      decimals: "18",
+      contractAddress: "",
+      balance: ""
+    }
   }
 ];
 
