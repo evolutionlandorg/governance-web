@@ -11,7 +11,7 @@ export const EVO_TELLER_CONTRACT = {
     abi: TellerABI
   },
   43: {
-    address: '0xcBA4d36532984cbB71EE7E308a5a80D1545C2AE8',
+    address: '0xE233a0E201219f792B878517e840903B8d62B9d3',
     abi: TellerABI
   }
 }
@@ -26,7 +26,7 @@ export const KTON_CONTRACT = {
     abi: Erc20ABI
   },
   43: {
-    address: '0x3553b673A47E66482b6eCFAE5bfc090Cc7eeEd27',
+    address: '0xfA91cA10745A80CcFD83Ad29Aa33Fdc5E8Ba582E',
     abi: Erc20ABI
   }
 }

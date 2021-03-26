@@ -201,7 +201,7 @@ const supportedChains = [
     explorer: "https://pangolin.subscan.io/",
     chain_id: 43,
     network_id: 43,
-    rpc_url: "https://pangolin-rpc.darwinia.network",
+    rpc_url: "https://pangolin-rpc.darwinia.network/",
     native_currency: {
       symbol: "PRING",
       name: "PRING",

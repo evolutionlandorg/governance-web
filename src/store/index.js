@@ -267,9 +267,9 @@ export default new Vuex.Store({
       }
 
       const balanceOf = await payload.$web3Modal.contractCall(Methods.EVO_TELLER_BALANCE_OF, payload.params);
-      const balanceOfStaking = await payload.$web3Modal.contractCall(Methods.EVO_TELLER_BALANCE_OF_STAKING, payload.params);
-      const balanceOfApostleOwner = await payload.$web3Modal.contractCall(Methods.EVO_TELLER_BALANCE_OF_APOSTLEOWNER, payload.params);
-      const balanceOfLandOwner = await payload.$web3Modal.contractCall(Methods.EVO_TELLER_BALANCE_OF_LANDOWNER, payload.params);
+      const balanceOfStaking = await payload.$web3Modal.contractCall(Methods.EVO_TELLER_BALANCE_OF_STAKING, payload.params) || {action: "", result: "0", status: "pending"};
+      const balanceOfApostleOwner = await payload.$web3Modal.contractCall(Methods.EVO_TELLER_BALANCE_OF_APOSTLEOWNER, payload.params) || {action: "", result: "0", status: "pending"};
+      const balanceOfLandOwner = await payload.$web3Modal.contractCall(Methods.EVO_TELLER_BALANCE_OF_LANDOWNER, payload.params) || {action: "", result: "0", status: "pending"};
       const voteRates = await payload.$web3Modal.contractCall(Methods.EVO_TELLER_VOTE_RATE, []);
       const dividends = await payload.$web3Modal.contractCall(Methods.EVO_TELLER_DIVIDENDS, payload.params);
       const totalDividendsData = await GraphApi.apiGetTotalDividends(...payload.params);
@@ -346,7 +346,6 @@ export default new Vuex.Store({
         Methods.KTON_APPROVE, 
         [
           Methods.EVO_TELLER_CONTRACT[getters._web3Modal_get_value.chainId].address, 
-          Config.KTON_EVOLUTIONTELLER_APPROVE_VALUE
         ]);
       
       dispatch('_kton_fetch_info', {
