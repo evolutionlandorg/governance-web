@@ -198,7 +198,7 @@ const supportedChains = [
     short_name: "pgl",
     chain: "pangolin",
     network: "pangolin",
-    explorer: "https://pangolin.subscan.io/",
+    explorer: "https://pangolin.subscan.io",
     chain_id: 43,
     network_id: 43,
     rpc_url: "https://pangolin-rpc.darwinia.network/",

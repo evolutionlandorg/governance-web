@@ -220,7 +220,8 @@ export function handleExplorerURL(chainId, hash) {
     return chainData.explorer;
   }
 
-  return `${chainData.explorer}/tx/${hash}`;
+  // return `${chainData.explorer}/tx/${hash}`;
+  return `${chainData.explorer}/search?q=${hash}`;
 }
 
 export function handleAccountExplorerURL(chainId, address) {
