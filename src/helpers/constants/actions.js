@@ -1,0 +1,21 @@
+export const ETH_SEND_TRANSACTION = 'eth.sendTransaction()'
+export const ETH_SIGN = 'eth.sign()'
+export const PERSONAL_SIGN = 'personal.sign()'
+export const BOX_GET_PROFILE = 'box.getProfile()'
+export const DAI_TRANSFER = 'dai.transfer()'
+
+export const KTON_BALANCE_OF = 'kton.balanceOf()'
+export const KTON_ALLOWANCE = 'kton.allowance()'
+export const KTON_APPROVE = 'kton.approve()'
+
+export const EVO_TELLER_BALANCE_OF = 'evoteller.balanceOf()'
+export const EVO_TELLER_BALANCE_OF_STAKING = 'evoteller.balanceOfStaking()'
+export const EVO_TELLER_BALANCE_OF_APOSTLEOWNER = 'evoteller.balanceOfApostleOwner()'
+export const EVO_TELLER_BALANCE_OF_LANDOWNER = 'evoteller.balanceOfLandOwner()'
+export const EVO_TELLER_VOTE_RATE = 'evoteller.voterate'
+export const EVO_TELLER_STAKE = 'evoteller.stake()'
+export const EVO_TELLER_WITHDRAW = 'evoteller.withdraw()'
+export const EVO_TELLER_DIVIDENDS = 'evoteller.dividends'
+export const EVO_TELLER_GET_REWARD = 'evoteller.getReward()'
+export const EVO_TELLER_GET_STAKING_LOCK = 'evoteller.stakingLock'
+

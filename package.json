@@ -1,36 +1,53 @@
 {
-	"name": "governance-web",
-	"version": "0.1.0",
-	"author": "evolution land",
-	"description": "governance-web for evolution land",
-	"keywords": [
-		"node.js",
-		"javascript"
-	],
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/evolutionlandorg/governance-web.git"
-	},
-	"license": "MIT",
-	"engines": {
-		"node": "14.0.x"
-	},
-	"devDependencies": {
-		"ethjs-contract": "0.2.3",
-		"ethjs-query": "0.3.8",
-		"web3": "1.2.11"
-	},
-	"scripts": {
-		"lint-new-works": "./lint-new-work.sh",
-		"lint-all": "eslint . --fix",
-		"build": "browserify init_web3.js -o web3_bundle.js",
-		"start": "npm run build && http-server --port 5000"
-	},
-	"dependencies": {
-		"browserify": "^17.0.0",
-		"eslint": "^7.15.0",
-		"eslint-config-strongloop": "^2.1.0",
-		"http-server": "^0.12.3",
-		"ecstatic": ">=4.1.3"
-	}
+  "name": "governance-web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "VUE_APP_BUILD_ENV=dev VUE_APP_INFURA_ID= VUE_APP_FORTMATIC_ID= vue-cli-service serve",
+    "serve-prod": "VUE_APP_BUILD_ENV=prod VUE_APP_INFURA_ID= VUE_APP_FORTMATIC_ID= vue-cli-service serve",
+    "build": "VUE_APP_BUILD_ENV=prod VUE_APP_INFURA_ID= VUE_APP_FORTMATIC_ID= vue-cli-service build",
+    "test:unit": "vue-cli-service test:unit",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "@walletconnect/utils": "^1.3.1",
+    "@walletconnect/web3-provider": "^1.3.1",
+    "apollo-boost": "^0.4.9",
+    "axios": "^0.21.1",
+    "bignumber.js": "^9.0.1",
+    "core-js": "^3.6.5",
+    "dayjs": "^1.9.7",
+    "element-ui": "^2.14.1",
+    "fortmatic": "^2.2.1",
+    "graphql": "^15.4.0",
+    "mitt": "^2.1.0",
+    "register-service-worker": "^1.7.1",
+    "vue": "^2.6.11",
+    "vue-apollo": "^3.0.5",
+    "vue-router": "^3.2.0",
+    "vuex": "^3.4.0",
+    "web3": "^1.3.1",
+    "web3modal": "^1.9.2",
+    "v-clipboard": "^2.2.3",
+    "vuex-persist": "^3.1.3",
+    "vue-i18n": "^8.22.2",
+    "lodash": "^4.17.20"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-plugin-router": "~4.5.0",
+    "@vue/cli-plugin-unit-mocha": "~4.5.0",
+    "@vue/cli-plugin-vuex": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "@vue/test-utils": "^1.0.3",
+    "babel-eslint": "^10.1.0",
+    "babel-plugin-component": "^1.1.1",
+    "chai": "^4.1.2",
+    "eslint": "^6.7.2",
+    "eslint-plugin-vue": "^6.2.2",
+    "sass": "^1.26.5",
+    "sass-loader": "^8.0.2",
+    "vue-template-compiler": "^2.6.11"
+  }
 }

@@ -1,12 +1,29 @@
-## governance-web
+# governance-web
 
-The following assumes the use of node@>=v14.10.0.
-
-#### Install & Run 
+## Project setup
 ```
-npm install
-npm start
+yarn install
 ```
 
-### Contributing
-We use eslint to lint our code, if you contribute please make sure to run ```npm run lint-all``` before you commit and make a pull request. <br />To lint _only_ your new work, please run ```npm run lint-new-works```
+### Compiles and hot-reloads for development
+```
+yarn serve
+```
+
+### Compiles and minifies for production
+```
+yarn build
+```
+
+### Run your unit tests
+```
+yarn test:unit
+```
+
+### Lints and fixes files
+```
+yarn lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
