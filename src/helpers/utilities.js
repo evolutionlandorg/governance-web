@@ -3,6 +3,7 @@ import supportedChains from "./chains";
 import { apiGetGasPrices, apiGetAccountNonce } from "./ethereumApi";
 import { convertAmountToRawNumber, convertStringToHex } from "./bignumber";
 import dayjs from 'dayjs';
+import { EVO_LANDS } from '@/helpers/constants'
 
 export function capitalize(string) {
   return string
@@ -231,4 +232,12 @@ export function handleAccountExplorerURL(chainId, address) {
   }
 
   return `${chainData.explorer}/address/${address}`;
+}
+
+export function getLandFromRoute(landId) {
+  if(!EVO_LANDS[landId] || !landId) {
+    return null;
+  }
+
+  return EVO_LANDS[landId];
 }

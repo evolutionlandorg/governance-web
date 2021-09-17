@@ -29,8 +29,8 @@ export default {
       init(...params) {
         instance.init(...params);
       },
-      async connect() {
-        await instance.onConnect();
+      async connect(networks) {
+        await instance.onConnect(networks);
       },
       async disconnect() {
         await instance.resetApp();

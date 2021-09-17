@@ -6,7 +6,9 @@
           <img src="../assets/evolution-land-logo.png" alt="evo logo" />
         </router-link>
       </div>
-      <span>{{$t('for atlantis')}}</span>
+      <span>{{$t(`for lands`, {
+            land: $t(`lands.${getLandInfo().name}`)
+          })}}</span>
     </div>
     <div class="nav hidden-xs-only">
       <a target="_blank" rel="noopener noreferrer" href="https://www.evolution.land/">{{$t('nav.game')}}</a>
@@ -45,13 +47,23 @@
 <script>
   import {
     getApi,
-    API_SNAPSHOT_DOMAIN
+    API_SNAPSHOT_DOMAIN,
   } from '@/helpers/constants'
   import Language from "./Language.vue";
+  import { getLandFromRoute } from "@/helpers/utilities"
   export default {
     name: "Nav",
     components: {
       Language
+    },
+    computed: {
+      landId: function() {
+        if(this.$route.params &&  this.$route.params.landId) {
+          return this.$route.params.landId
+        }
+
+        return '1' 
+      },
     },
     props: {},
     data: function() {
@@ -62,7 +74,15 @@
     },
     methods: {
       renderVoteUrl() {
-        return `${getApi(API_SNAPSHOT_DOMAIN).page}/#/evoland.eth`;
+        return `${getApi(API_SNAPSHOT_DOMAIN, this.landId).page}`;
+      },
+      getLandInfo() {
+        if(!getLandFromRoute(parseInt(this.landId))) {
+          return {
+            name: 'unknown'
+          }
+        }
+        return getLandFromRoute(parseInt(this.landId))
       }
     }
   };

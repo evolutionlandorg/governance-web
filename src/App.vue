@@ -53,7 +53,11 @@
   import {
     supportedLocalesInclude
   } from "@/helpers/i18n/supported-locales";
+  import {
+    getLandFromRoute
+  } from "@/helpers/utilities";
   import { getEnv } from '@/helpers/config';
+  import { providers as web3Providers, networkSupportedProviders } from '@/helpers/web3Providers';
 
   export default {
     name: "App",
@@ -68,16 +72,34 @@
       ...mapGetters([
         '_web3Modal_get_value',
         "_i18n_get_value"
-      ])
+      ]),
+      landId: function() {
+        if(this.$route.params &&  this.$route.params.landId) {
+          return this.$route.params.landId
+        }
+
+        return '1' 
+      },
     },
     created: function() {
       emitter.on(SUBSCRIBE_HAS_CHANGED, this.web3ChangeHandle);
       emitter.on(SUBSCRIBE_TX_CONFIRMED, this.web3ChangeHandle);
       const startingLocale = this.getStartingLocale();
       this.$i18n.locale = startingLocale;
-      this.$web3Modal.init({}, {
-        network: getEnv().web3ModalNetwork
-      }, emitter);
+
+      const land = getLandFromRoute(this.$route.params?.landId || '1');
+
+      let providers = {};
+
+      land?.networks?.forEach((network) => {
+        networkSupportedProviders[network] && networkSupportedProviders[network].map((providerName) => {
+          providers[providerName] = web3Providers[providerName]
+        })
+      })
+      console.log(111111, providers)
+      this.$web3Modal.init(providers, {
+        network: getEnv().web3ModalNetwork,
+      }, land?.networks, emitter);
     },
     mounted: function() {
       this.web3ChangeHandle()
@@ -90,9 +112,10 @@
       web3ChangeHandle() {
         this._common_init_address_info({
           $web3Modal: this.$web3Modal,
-          params: [this._web3Modal_get_value.address]
+          params: [this._web3Modal_get_value.address],
+          landId: this.landId
         });
-        this._proposal_fetch_info()
+        this._proposal_fetch_info(this.$route.params?.landId)
       },
       getStartingLocale() {
         const browserLocale = this._i18n_get_value;

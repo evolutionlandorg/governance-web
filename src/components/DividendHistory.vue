@@ -100,13 +100,20 @@ export default {
       "_evolutionTeller_staked_history",
       "_web3Modal_get_value"
     ]),
+    landId: function() {
+      if(this.$route.params &&  this.$route.params.landId) {
+        return this.$route.params.landId
+      }
+
+      return '1' 
+    },
   },
   mounted: function() {
     emitter.on(SUBSCRIBE_HAS_CHANGED, this.web3ChangeHandle);
     emitter.on(SUBSCRIBE_TX_CONFIRMED, this.web3ChangeHandle);
-    this._dividends_fetch_history([this._web3Modal_get_value.address, 'Locked']);
-    this._dividends_fetch_history([this._web3Modal_get_value.address, 'Unlocked']);
-    this._dividends_fetch_history([this._web3Modal_get_value.address, 'Dividend']);
+    this._dividends_fetch_history([this.landId, this._web3Modal_get_value.address, 'Locked']);
+    this._dividends_fetch_history([this.landId, this._web3Modal_get_value.address, 'Unlocked']);
+    this._dividends_fetch_history([this.landId, this._web3Modal_get_value.address, 'Dividend']);
   },
   beforeDestroy: function() {
     emitter.off(SUBSCRIBE_HAS_CHANGED, this.web3ChangeHandle)
@@ -120,9 +127,9 @@ export default {
 
     },
     web3ChangeHandle() {
-        this._dividends_fetch_history([this._web3Modal_get_value.address, 'Locked']);
-        this._dividends_fetch_history([this._web3Modal_get_value.address, 'Unlocked']);
-        this._dividends_fetch_history([this._web3Modal_get_value.address, 'Dividend']);
+        this._dividends_fetch_history([this.landId, this._web3Modal_get_value.address, 'Locked']);
+        this._dividends_fetch_history([this.landId, this._web3Modal_get_value.address, 'Unlocked']);
+        this._dividends_fetch_history([this.landId, this._web3Modal_get_value.address, 'Dividend']);
     },
     handleExplorerURL(hash) {
       const {

@@ -272,7 +272,7 @@ export default new Vuex.Store({
       const balanceOfLandOwner = await payload.$web3Modal.contractCall(Methods.EVO_TELLER_BALANCE_OF_LANDOWNER, payload.params);
       const voteRates = await payload.$web3Modal.contractCall(Methods.EVO_TELLER_VOTE_RATE, []);
       const dividends = await payload.$web3Modal.contractCall(Methods.EVO_TELLER_DIVIDENDS, payload.params);
-      const totalDividendsData = await GraphApi.apiGetTotalDividends(...payload.params);
+      const totalDividendsData = await GraphApi.apiGetTotalDividends(payload.landId, payload.params[0]);
 
       let totalDividends = '0';
       
@@ -358,8 +358,8 @@ export default new Vuex.Store({
     },
 
     // ------------------------ Proposal ------------------------ //
-    async _proposal_fetch_info({ commit, dispatch, getters }, payload) {
-      const result = await Api.apiGetProposals();
+    async _proposal_fetch_info({ commit, dispatch, getters }, payload = '1') {
+      const result = await Api.apiGetProposals(payload);
       const proposals = Object.keys(result).map((item) => {
         return result[item];
       }) || [];
@@ -372,8 +372,9 @@ export default new Vuex.Store({
     
     // ---------------------- Dividends --------------------- //
     async _dividends_fetch_history({ commit, dispatch, getters }, payload) {
+      
       // ApolloQuery
-      if(!payload[0]){
+      if(!payload[1]){
         return null;
       }
 
@@ -382,7 +383,7 @@ export default new Vuex.Store({
       commit({
         type: Mutation.EVOLUTIONTELLER_HISTORY_SET_VALUE,
         data:{
-          type: payload[1] || 'Locked',
+          type: payload[2] || 'Locked',
           value: result.data.stakedHistories
         }
       })

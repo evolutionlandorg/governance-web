@@ -20,7 +20,7 @@
     "account": "Account",
     "connect with": "Connect with",
     "copy address": "Copy Address",
-    "view on etherscan": "View on Etherscan",
+    "view on expolorer": "View on {explorer}",
     "disconnect": "Disconnect",
     "recent transaction": "Recent Transaction",
     "clear all": "clear all",
@@ -30,7 +30,9 @@
     "transaction submitted": "Transaction Submitted.",
     "confirmed transaction": "Confirmed transaction",
     "failed transaction": "Failed transaction",
-    "pending": "Pending"
+    "pending": "Pending",
+    "error": "Error",
+    "unsupport network": "Unsupported network, please switch wallet network"
   },
   "common": {
     "cancel": "Cancel"

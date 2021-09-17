@@ -1,10 +1,10 @@
 <template>
   <div class="pagetab">
-    <router-link tag="div" :class="{'tab-item': true, 'active': isGovernance}" to="/">
+    <router-link tag="div" :class="{'tab-item': true, 'active': routePath.includes(`/land/${landId}/dao`)}" :to="`/land/${landId}/dao`">
       <img src="../assets/home-tab-icon-1.png" alt="" />
       <span>{{$t('nav.governance')}}</span>
     </router-link>
-    <router-link tag="div" :class="{'tab-item': true, 'active': isDividends}" to="/dividends">
+    <router-link tag="div" :class="{'tab-item': true, 'active': routePath.includes(`/land/${landId}/dividends`)}" :to="`/land/${landId}/dividends`">
       <img src="../assets/home-tab-icon-2.png" alt="" />
       <span>{{$t('nav.dividends')}}</span>
     </router-link>
@@ -16,14 +16,20 @@
     name: "PageTab",
     props: {},
     computed: {
-      isGovernance: function() {
-        return this.$route.path === '/'
+      landId: function() {
+        if(this.$route.params &&  this.$route.params.landId) {
+          return this.$route.params.landId
+        }
+
+        return '1' 
       },
-      isDividends: function() {
-        return this.$route.path === '/dividends'
-      },
+      routePath: function() {
+        return this.$route.path
+      }
     },
-    mounted: function() {}
+    mounted: function() {
+
+    }
   };
 </script>
 
