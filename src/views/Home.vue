@@ -51,7 +51,7 @@
                   <div class="asset-buttons">
                     <div class="item">
                       <p>{{$t('my land')}}: {{formatFixedDecimals(_evolutionTeller_get_value.balanceOfLandOwner)}}</p>
-                      <el-button class="fixed-button" size="small" type="primary" @click="openUrl(`https://www.evolution.land/land/${landId}?goUrl=%2Flandmarket%2Fsearch`)">{{$t('buy')}}</el-button>
+                      <el-button class="fixed-button" size="small" type="primary" @click="openUrl(`https://www.evolution.land/land/${landId}/landmarket/search?model=genesis`)">{{$t('buy')}}</el-button>
                     </div>
                   </div>
                 </div>
@@ -70,7 +70,7 @@
                   <div class="asset-buttons">
                     <div class="item">
                       <p>{{$t('my apostle')}}: {{formatFixedDecimals(_evolutionTeller_get_value.balanceOfApostleOwner)}}</p>
-                      <el-button class="fixed-button" size="small" type="primary" @click="openUrl(`https://www.evolution.land/land/${landId}?goUrl=%2Fapostle`)">{{$t('buy')}}</el-button>
+                      <el-button class="fixed-button" size="small" type="primary" @click="openUrl(`https://www.evolution.land/land/${landId}/apostle/search?model=onsell`)">{{$t('buy')}}</el-button>
                     </div>
                   </div>
                 </div>
