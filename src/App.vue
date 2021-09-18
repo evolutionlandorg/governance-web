@@ -96,7 +96,7 @@
           providers[providerName] = web3Providers[providerName]
         })
       })
-      console.log(111111, providers)
+
       this.$web3Modal.init(providers, {
         network: getEnv().web3ModalNetwork,
       }, land?.networks, emitter);
