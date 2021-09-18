@@ -75,15 +75,20 @@
       ...mapGetters([
         "_evolutionTeller_get_value",
         "_web3Modal_get_value",
-        
-
       ]),
+      landId: function() {
+        if(this.$route.params &&  this.$route.params.landId) {
+          return this.$route.params.landId
+        }
+
+        return '1' 
+      },
     },
     mounted: function() {
-      console.log('mounted')
       this._common_init_address_info({
         $web3Modal: this.$web3Modal,
-        params: [this._web3Modal_get_value.address]
+        params: [this._web3Modal_get_value.address],
+        landId: this.landId
       });
     },
     methods: {

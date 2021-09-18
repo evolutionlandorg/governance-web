@@ -17,7 +17,7 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="90" height="90" viewBox="0 0 24 24" fill="none" stroke="#3FF9E7" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="16 12 12 8 8 12"></polyline><line x1="12" y1="16" x2="12" y2="8"></line></svg>
         <span>{{$t('connect.transaction submitted')}}</span>
         <a target="_blank" rel="noopener noreferrer" :href="this.handleExplorerURL(txHash)" class="sc-dxgOiQ ejZAHb">
-          <div class="">{{$t('connect.view on etherscan')}}</div>
+          <div class="">{{$t('connect.view on expolorer', {explorer: this.getExpolorerName()})}}</div>
         </a>
       </div>
     </el-dialog>
@@ -30,7 +30,7 @@
   import WalletConnectProvider from "@walletconnect/web3-provider";
   import Fortmatic from "fortmatic";
   import {
-    handleExplorerURL
+    handleExplorerURL, getChainData, getLandFromRoute
   } from "@/helpers/utilities";
   import {
     mapActions,
@@ -47,6 +47,7 @@
     SUBSCRIBE_HAS_CHANGED,
     SUBSCRIBE_TX_CONFIRMED
   } from './constants';
+  import { networkSupportedProviders } from '@/helpers/web3Providers';
   import {
     setTimeout,
     clearTimeout
@@ -100,26 +101,27 @@
         "_web3Modal_before_txqueue",
         "_web3Modal_set_tx_queue_status"
       ]),
-      init: function(providerOptions = {}, web3ModalOptions = {}, emitter) {
-        const INFURA_API_KEY = process.env.VUE_APP_INFURA_ID;
-        const FORTMATIC_ID = process.env.VUE_APP_FORTMATIC_ID;
-
+      init: function(providerOptions = {}, web3ModalOptions = {}, supportedNetowk = [], emitter) {
+        // const INFURA_API_KEY = process.env.VUE_APP_INFURA_ID;
+        // const FORTMATIC_ID = process.env.VUE_APP_FORTMATIC_ID;
+        
         console.log("web3Modal - mounted");
         const mixinProviderOptions = {
-          walletconnect: {
-            package: WalletConnectProvider,
-            options: {
-              infuraId: INFURA_API_KEY,
-            },
-          },
-          fortmatic: {
-            package: Fortmatic,
-            options: {
-              key: FORTMATIC_ID,
-            },
-          },
+          // walletconnect: {
+          //   package: WalletConnectProvider,
+          //   options: {
+          //     infuraId: INFURA_API_KEY,
+          //   },
+          // },
+          // fortmatic: {
+          //   package: Fortmatic,
+          //   options: {
+          //     key: FORTMATIC_ID,
+          //   },
+          // },
           ...providerOptions
         };
+
         const web3Modal = new Web3Modal({
           network: "ropsten",
           cacheProvider: true,
@@ -131,10 +133,10 @@
         this.web3Modal = web3Modal;
         this.emitter = emitter;
         if (this.web3Modal.cachedProvider) {
-          this.onConnect();
+          this.onConnect(supportedNetowk);
         }
       },
-      onConnect: async function() {
+      onConnect: async function(supportedNetowk = []) {
         const provider = await this.web3Modal.connect();
         await this.subscribeProvider(provider);
         const web3 = this.initWeb3(provider);
@@ -142,6 +144,19 @@
         const address = accounts[0];
         const networkId = await web3.eth.net.getId();
         const chainId = await web3.eth.chainId();
+
+        console.log('web3Modal - onConnect', supportedNetowk, chainId);
+
+        if(!supportedNetowk.includes(chainId)) {
+          this.$notify({
+            title: this.$t('connect.error'),
+            message: this.$t('connect.unsupport network'),
+            type: 'error'
+          })
+          this.$web3Modal.disconnect()
+          return;
+        }
+
         this._web3Modal_set_value({
           connected: true,
           address,
@@ -287,6 +302,13 @@
           chainId
         } = this._web3Modal_get_value;
         return handleExplorerURL(chainId, hash);
+      },
+      getExpolorerName: function() {
+        const {
+          chainId
+        } = this._web3Modal_get_value;
+        const chainData = getChainData(chainId)
+        return chainData.explorerName
       },
       getTransactionReceipt: function(hash, callback) {
         this.web3.eth.getTransactionReceipt(hash, (err, result) => {

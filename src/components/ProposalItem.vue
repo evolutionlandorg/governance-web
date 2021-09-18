@@ -23,16 +23,24 @@ export default {
       default: () => {},
     },
   },
+  computed: {
+    landId: function() {
+      if(this.$route.params &&  this.$route.params.landId) {
+        return this.$route.params.landId
+      }
 
+      return '1' 
+    },
+  },
   methods: {
     renderProposalUrl: function(hash) {
-      return `${getApi(API_SNAPSHOT_DOMAIN).page}/#/evoland.eth/proposal/${hash}`;
+      const apiInfo = getApi(API_SNAPSHOT_DOMAIN, this.landId);
+      return `${apiInfo.pageDomain}${apiInfo.proposalLink}${hash}`;
     },
     goVote: function(hash) {
       openUrl(this.renderProposalUrl(hash));
     },
     dateFormat,
-    
   }
 };
 </script>

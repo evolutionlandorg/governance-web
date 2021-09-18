@@ -1,8 +1,8 @@
 import axios from 'axios';
 import {getApi, API_SNAPSHOT_DOMAIN} from '@/helpers/constants';
 
-const api = axios.create({
-  baseURL: getApi(API_SNAPSHOT_DOMAIN).domain,
+export const api = axios.create({
+  // baseURL: getApi(API_SNAPSHOT_DOMAIN).domain,
   timeout: 60000,
   headers: {
     Accept: 'application/json',
@@ -10,9 +10,11 @@ const api = axios.create({
   }
 })
 
-export async function apiGetProposals(){
+export async function apiGetProposals(landId) {
+  const apiInfo = getApi(API_SNAPSHOT_DOMAIN, landId)
+  console.log(apiInfo)
   const response = await api.get(
-    `api/evoland.eth/proposals`
+    `${apiInfo.domain}${apiInfo.getProposals}`
   );
 
   try {

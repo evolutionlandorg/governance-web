@@ -20,7 +20,7 @@
     "account": "Account",
     "connect with": "Connect with",
     "copy address": "Copy Address",
-    "view on etherscan": "View on Etherscan",
+    "view on expolorer": "View on {explorer}",
     "disconnect": "Disconnect",
     "recent transaction": "Recent Transaction",
     "clear all": "clear all",
@@ -30,7 +30,9 @@
     "transaction submitted": "Transaction Submitted.",
     "confirmed transaction": "Confirmed transaction",
     "failed transaction": "Failed transaction",
-    "pending": "Pending"
+    "pending": "Pending",
+    "error": "Error",
+    "unsupport network": "Unsupported network, please switch wallet network"
   },
   "common": {
     "cancel": "Cancel"
@@ -76,6 +78,11 @@
   },
   "unlockable countdown": "Unlockable countdown: ",
   "day": "days",
-  "for atlantis":"Atlantis Continent",
-  "proposal list tip": "Proposal with power lower than 100 won’t be shown."
+  "for lands":"{land} Land",
+  "proposal list tip": "Proposal with power lower than 100 won’t be shown.",
+  "lands": {
+    "atlantis": "Atlantis",
+    "eden": "Eden",
+    "unknown": "Unknown"
+  }
 }
