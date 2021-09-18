@@ -12,11 +12,11 @@ const prod = {
 const dev  = {
   ...prod,
   101: {
-    name: 'atlantis',
+    name: 'atlantis testnet',
     networks: [3]
   },
   105: {
-    name: 'eden',
+    name: 'eden testnet',
     networks: [80001]
   },
 }
