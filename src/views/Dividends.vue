@@ -7,13 +7,13 @@
       <el-col :xs="24" :sm="22" :md="20" :lg="18" :xl="18">
         <Connect class="connector" />
         <PageTab />
-        <Content :title="$t('module.dividends')">
-          <div class="dividends-box" slot="content">
+        <Content :title="$t('module.staking')">
+          <div class="staking-box" slot="content">
             <div class="image-box">
-              <img src="../assets/dividends-banner-1.png" alt="" />
+              <img src="../assets/rewards-banner-1.png" alt="" />
             </div>
             <div class="info-box">
-              <p class="title">{{$t('claimed dividends')}}</p>
+              <p class="title">{{$t('claimed rewards')}}</p>
               <p class="value">{{convertFixedAmountFromRawNumber(getTotalDividends())}} RING</p>
               <div class="claim-info">
                 <p class="subtitle">{{$t('unclaimed')}}: {{convertFixedAmountFromRawNumber(_evolutionTeller_get_value.earned)}} RING</p>
@@ -120,7 +120,7 @@
   .connector {
     margin-bottom: 20px;
   }
-  .dividends-box {
+  .staking-box {
     display: flex;
     align-items: center;
     .image-box {
@@ -163,7 +163,7 @@
     padding: 20px;
   }
   @media screen and (max-width: $--sm) {
-    .dividends-box {
+    .staking-box {
       padding-left: 10px;
       padding-right: 10px;
       flex-direction: column;
@@ -190,7 +190,7 @@
   }
 
     @media screen and (max-width: 400px) {
-    .dividends-box {
+    .staking-box {
       .image-box img {
         width: 100%;
         height: auto;

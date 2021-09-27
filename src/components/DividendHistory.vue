@@ -45,7 +45,7 @@
           </div>
         </el-table>
       </el-tab-pane>
-      <el-tab-pane :label="$t('dividend')" name="dividend">
+      <el-tab-pane :label="$t('rewards')" name="rewards">
         <el-table class="history-table" :data="_evolutionTeller_staked_history.Dividend" style="width: 100%">
           <el-table-column prop="id" :label="$t('txhash')" min-width="450">
             <template slot-scope="scope">

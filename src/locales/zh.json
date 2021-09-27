@@ -5,12 +5,12 @@
     "forum": "论坛",
     "docs": "文档",
     "governance": "治理",
-    "dividends": "分红"
+    "staking": "质押"
   },
   "module": {
     "power": "Power",
     "proposal list": "提案列表",
-    "dividends": "分红",
+    "staking": "质押",
     "kton balance": "KTON 余额",
     "history": "历史记录"
   },
@@ -55,7 +55,7 @@
   "lock kton": "锁定 KTON",
   "balance": "余额",
   "locked": "已锁定",
-  "claimed dividends": "已领取分红",
+  "claimed rewards": "已领取奖励",
   "unclaimed": "待领取",
   "claim": "领取",
   "txhash": "交易哈希",
@@ -63,7 +63,7 @@
   "my land": "我的地块",
   "my apostle": "我的使徒",
   "unlocked": "已解锁",
-  "dividend": "分红",
+  "rewards": "奖励",
   "power tip": [
     "每锁定 1 KTON，可获得 10 Power；",
     "每持有 1 块土地，可获得 100 Power；",

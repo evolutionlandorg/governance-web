@@ -4,9 +4,9 @@
       <img src="../assets/home-tab-icon-1.png" alt="" />
       <span>{{$t('nav.governance')}}</span>
     </router-link>
-    <router-link tag="div" :class="{'tab-item': true, 'active': routePath.includes(`/land/${landId}/dividends`)}" :to="`/land/${landId}/dividends`">
+    <router-link tag="div" :class="{'tab-item': true, 'active': routePath.includes(`/land/${landId}/staking`)}" :to="`/land/${landId}/staking`">
       <img src="../assets/home-tab-icon-2.png" alt="" />
-      <span>{{$t('nav.dividends')}}</span>
+      <span>{{$t('nav.staking')}}</span>
     </router-link>
   </div>
 </template>

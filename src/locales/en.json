@@ -5,12 +5,12 @@
     "forum": "Forum",
     "docs": "Docs",
     "governance": "Governance",
-    "dividends": "Dividends"
+    "staking": "Staking"
   },
   "module": {
     "power": "Power",
     "proposal list": "Proposal List",
-    "dividends": "Dividends",
+    "staking": "Staking",
     "kton balance": "Kton Balance",
     "history": "History"
   },
@@ -55,7 +55,7 @@
   "lock kton": "Lock KTON",
   "balance": "Balance",
   "locked": "Locked",
-  "claimed dividends": "Claimed Dividends",
+  "claimed rewards": "Claimed Rewards",
   "unclaimed": "Unclaimed",
   "claim": "Claim",
   "txhash": "Txhash",
@@ -63,7 +63,7 @@
   "my land": "My Land",
   "my apostle": "My Apostle",
   "unlocked": "Unlocked",
-  "dividend": "Dividend",
+  "rewards": "Rewards",
   "power tip": [
     "Lock 1 KTON can get 10 Power,",
     "Holding 1 land can get 100 Power,",
