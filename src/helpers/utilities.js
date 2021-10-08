@@ -107,8 +107,13 @@ export function isMobile() {
 }
 
 export function getChainData(chainId) {
+  let _chainId = chainId;
+  if(typeof(chainId) === 'string' && (chainId.charAt(1) === 'X' || chainId.charAt(1) === 'x')) {
+    _chainId = parseInt(chainId, 16);
+  }
+
   const chainData = supportedChains.filter(
-    (chain) => chain.chain_id === chainId
+    (chain) => chain.chain_id === _chainId
   )[0];
 
   if (!chainData) {
