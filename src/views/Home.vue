@@ -27,8 +27,8 @@
                   <div class="asset-buttons">
                     <div class="item">
                       <p>{{$t('balance')}}: {{convertFixedAmountFromRawNumber(_kton_get_value.balanceOf)}}</p>
-                      <el-button class="fixed-button" size="small" type="primary" v-if="!_evolutionTeller_is_approve_kton" @click="approveKtonToEvolutionTeller">{{$t('approve')}}</el-button>
-                      <el-button class="fixed-button" size="small" type="primary" v-else @click="toggleLockKtonDialogVisible">{{$t('lock')}}</el-button>
+                      <!-- <el-button class="fixed-button" size="small" type="primary" v-if="!_evolutionTeller_is_approve_kton" @click="approveKtonToEvolutionTeller">{{$t('approve')}}</el-button>
+                      <el-button class="fixed-button" size="small" type="primary" v-else @click="toggleLockKtonDialogVisible">{{$t('lock')}}</el-button> -->
                     </div>
                     <div class="item">
                       <p>{{$t('locked')}}: {{convertFixedAmountFromRawNumber(_evolutionTeller_get_value.balanceOfStaking)}}</p>

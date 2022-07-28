@@ -15,8 +15,8 @@
         </div>
       </div>
       <div class="buttons-box">
-        <el-button class="is-fixed" size="small" v-if="!_evolutionTeller_is_approve_kton" @click="approveKtonToEvolutionTeller">{{$t('approve')}}</el-button>
-        <el-button class="is-fixed" size="small" v-else @click="toggleLockKtonDialogVisible">{{$t('lock')}}</el-button>
+        <!-- <el-button class="is-fixed" size="small" v-if="!_evolutionTeller_is_approve_kton" @click="approveKtonToEvolutionTeller">{{$t('approve')}}</el-button>
+        <el-button class="is-fixed" size="small" v-else @click="toggleLockKtonDialogVisible">{{$t('lock')}}</el-button> -->
         <el-button class="is-fixed" size="small" @click="toggleUnlockKtonDialogVisible">{{$t('unlock')}}</el-button>
       </div>
     </div>
